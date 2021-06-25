@@ -5,6 +5,9 @@ Dev-10 Capstone Project
 Description: Online Tamagotchi app: take care of an 8 bit pet and then battle them against friends for fun prizes or other Tamagotchi! If your pet isn’t taken care of well enough it will lose stamina, become dissatisfied, or even run away. Conversely, tending to all their needs will allow them to become a true battle master and climb the ranks of the battle board.
 =======
 description: Online Tamagotchi app: take care of an 8 bit pet and then battle them against friends for fun prizes or other Tamagotchi! If your pet isn’t taken care of well enough it will lose stamina, become dissatisfied, or even run away. Conversely, tending to all their needs will allow them to become a true battle master and climb the ranks of the battle board.
+<<<<<<< HEAD
 
 erhyw4erth
 >>>>>>> 4a60b227a81846fbb99262f05cd4e7d85fd342b0
+=======
+>>>>>>> 7d478d1c98be813b5f13b471167890f4242645bf
