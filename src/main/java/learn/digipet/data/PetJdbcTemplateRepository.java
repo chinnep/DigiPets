@@ -1,6 +1,8 @@
 package learn.digipet.data;
 
+import learn.digipet.data.mappers.MoveMapper;
 import learn.digipet.data.mappers.PetMapper;
+import learn.digipet.data.mappers.PetTypeMapper;
 import learn.digipet.models.Pet;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -53,19 +55,22 @@ public class PetJdbcTemplateRepository implements PetRepository {
                 + "from location "
                 + "where agency_id = ?";
 
-        var locations = jdbcTemplate.query(sql, new LocationMapper(), agency.getAgencyId());
-        agency.setLocations(locations);
+        var petType = jdbcTemplate.query(sql, new PetTypeMapper(), pet.getPetId())
+                .stream()
+                .findFirst()
+                .orElse(null);
+        pet.setPetType(petType);
     }
 
     private void addMoves(Pet pet) {
 
         final String sql = "select move_id, move_name, damage "
                 + "from move m "
-                + "inner join agent a on aa.agent_id = a.agent_id "
-                + "inner join security_clearance sc on aa.security_clearance_id = sc.security_clearance_id "
-                + "where aa.agency_id = ?";
+                + "inner join pet_move pm on m.move_id = pm.move_id "
+                + "inner join pet p on p.pet_id = pm.pet_id "
+                + "where p.pet_id = ?";
 
-        var agencyAgents = jdbcTemplate.query(sql, new AgencyAgentMapper(), agency.getAgencyId());
-        agency.setAgents(agencyAgents);
+        var moves = jdbcTemplate.query(sql, new MoveMapper(), pet.getPetId());
+        pet.setMoves(moves);
     }
 }
