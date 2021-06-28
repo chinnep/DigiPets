@@ -1,9 +1,13 @@
 package learn.digipet.models;
 
+import java.util.List;
+
 public class User {
 
     private int userId;
     private int gold;
+    private List<Pet> pets;
+    private List<Item> items;
 
     public int getUserId() {
         return userId;
@@ -21,4 +25,19 @@ public class User {
         this.gold = gold;
     }
 
+    public List<Pet> getPets() {
+        return pets;
+    }
+
+    public void setPets(List<Pet> pets) {
+        this.pets = pets;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
 }
