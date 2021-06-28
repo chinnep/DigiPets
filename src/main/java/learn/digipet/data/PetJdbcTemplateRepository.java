@@ -6,6 +6,7 @@ import learn.digipet.data.mappers.PetTypeMapper;
 import learn.digipet.models.Pet;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class PetJdbcTemplateRepository implements PetRepository {
     }
 
     @Override
+    @Transactional
     public Pet findById(int petId) {
         final String sql = "select pet_id, pet_name, hunger_lvl, care_lvl, thirst_lvl, health_lvl" +
                 "time_to_zero, is_dead, trophies, user_id "
@@ -44,6 +46,7 @@ public class PetJdbcTemplateRepository implements PetRepository {
     }
 
     @Override
+    @Transactional
     public boolean deleteById(int petId) {
         return jdbcTemplate.update("delete from pet where pet_id = ?", petId) > 0;
     }
