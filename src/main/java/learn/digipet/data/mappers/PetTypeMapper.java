@@ -14,7 +14,7 @@ public class PetTypeMapper implements RowMapper<PetType> {
 
         petType.setPetTypeId(resultSet.getInt("pet_type_id"));
         petType.setName(resultSet.getString("pet_type_name"));
-        petType.setAppetite(resultSet.getInt("apetite")); // accurate DB label
+        petType.setAppetite(resultSet.getInt("appetite")); // accurate DB label
         petType.setThirst(resultSet.getInt("thirst"));
         petType.setHealth(resultSet.getInt("health"));
         petType.setNextPetTypeId(resultSet.getInt("next_pet_type_id"));
