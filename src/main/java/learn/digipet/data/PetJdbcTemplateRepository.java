@@ -45,15 +45,14 @@ public class PetJdbcTemplateRepository implements PetRepository {
 
     @Override
     public boolean deleteById(int petId) {
-        return false;
+        return jdbcTemplate.update("delete from pet where pet_id = ?", petId) > 0;
     }
 
     private void addPetType(Pet pet) {
 
-        final String sql = "select location_id, name, address, city, region, "
-                + "country_code, postal_code, agency_id "
-                + "from location "
-                + "where agency_id = ?";
+        final String sql = "select pet_type_id, pet_type_name, appetite, care, thirst, health, next_pet_type_id "
+                + "from pet_type "
+                + "where pet_type_id = ?";
 
         var petType = jdbcTemplate.query(sql, new PetTypeMapper(), pet.getPetId())
                 .stream()
