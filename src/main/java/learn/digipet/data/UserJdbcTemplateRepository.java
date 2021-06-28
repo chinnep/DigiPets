@@ -76,4 +76,27 @@ public class UserJdbcTemplateRepository implements UserRepository {
                 "delete from user where user_id = ?", userId) > 0;
     }
 
+    private void addPets(User user) {
+
+        final String sql = "select pet_id, pet_name, hunger_lvl, care_lvl, "
+                + "thirst_lvl, health_lvl, time_to_zero, is_dead, trophies "
+                + "from pet "git 
+                + "where user_id = ?";
+
+        var pets = jdbcTemplate.query(sql, new PetMapper(), user.getUserId());
+        user.setPets(pets);
+    }
+
+    private void addItems(User user) {
+
+        final String sql = "select ui.user_id, ui.item_id, ui.quantity, "
+                + "i.item_name, i.description, i.for_battle, i.price "
+                + "from user_item ui "
+                + "inner join item i on ui.item_id = i.item_id "
+                + "where ui.user_id = ?";
+
+        var userItems = jdbcTemplate.query(sql, new UserItemMapper(), user.getUserId());
+        user.setItems(userItems);
+    }
+
 }
