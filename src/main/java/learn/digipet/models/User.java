@@ -1,11 +1,9 @@
 package learn.digipet.models;
 
-import java.math.BigDecimal;
-
 public class User {
 
     private int userId;
-    private BigDecimal gold;
+    private int gold;
 
     public int getUserId() {
         return userId;
@@ -15,11 +13,11 @@ public class User {
         this.userId = userId;
     }
 
-    public BigDecimal getGold() {
+    public int getGold() {
         return gold;
     }
 
-    public void setGold(BigDecimal gold) {
+    public void setGold(int gold) {
         this.gold = gold;
     }
 
