@@ -5,6 +5,7 @@ public class Item {
     private int itemId;
     private String name;
     private String description;
+    private double price;
 
     public void setItemId(int itemId) {
         this.itemId = itemId;
@@ -21,8 +22,6 @@ public class Item {
     public void setPrice(double price) {
         this.price = price;
     }
-
-    private double price;
 
     public int getItemId() {
         return itemId;
