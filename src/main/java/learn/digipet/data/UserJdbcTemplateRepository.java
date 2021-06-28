@@ -1,5 +1,6 @@
 package learn.digipet.data;
 
+import learn.digipet.data.mappers.PetMapper;
 import learn.digipet.data.mappers.UserMapper;
 import learn.digipet.models.User;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -80,7 +81,7 @@ public class UserJdbcTemplateRepository implements UserRepository {
 
         final String sql = "select pet_id, pet_name, hunger_lvl, care_lvl, "
                 + "thirst_lvl, health_lvl, time_to_zero, is_dead, trophies "
-                + "from pet "git 
+                + "from pet "
                 + "where user_id = ?";
 
         var pets = jdbcTemplate.query(sql, new PetMapper(), user.getUserId());
