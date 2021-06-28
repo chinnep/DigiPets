@@ -12,7 +12,7 @@ create table item(
 	item_id int primary key auto_increment,
 	item_name varchar(150) not null,
 	description varchar(250),
-	price float not null,
+	price int not null,
     for_battle boolean
 );
 
@@ -32,7 +32,7 @@ create table user_item(
 
 create table pet_type(
 	pet_type_id int primary key auto_increment,
-    pet_type varchar(150) not null,
+    pet_type_name varchar(150) not null,
     apetite int not null,
     care int not null,
     thirst int not null,

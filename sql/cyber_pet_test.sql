@@ -32,7 +32,7 @@ create table user_item(
 
 create table pet_type(
 	pet_type_id int primary key auto_increment,
-    pet_type varchar(150) not null,
+    pet_type_name varchar(150) not null,
     apetite int not null,
     care int not null,
     thirst int not null,
@@ -80,6 +80,9 @@ create table pet_move(
         references move(move_id)
 );
 
+drop procedure if exists set_known_good_state;
+-- change default delimiter
+delimiter //
 create procedure set_known_good_state()
 begin
 
@@ -88,62 +91,60 @@ begin
     delete from user;
     alter table user auto_increment = 1;
     delete from user_item;
-	delete from agency;
-	alter table agency auto_increment = 1;
-    delete from agent;
-    alter table agent auto_increment = 1;
-    delete from security_clearance;
-    alter table security_clearance auto_increment = 1;
+	delete from pet;
+	alter table pet auto_increment = 1;
+    delete from pet_move;
+    delete from move;
+    alter table move auto_increment = 1;
+    delete from pet_type;
+    alter table pet_type auto_increment = 1;
     
-    -- new code: security_clearance is required below...
-    insert into security_clearance values
-        (1, 'Secret'),
-        (2, 'Top Secret');
+    insert into item(item_name, description, for_battle, price) values
+        ('Sledgehammer','A sledgehammer is a tool with a large, flat, often metal head, attached to a long handle. 
+        The long handle combined with a heavy head allows the sledgehammer to gather momentum during a swing and apply
+        a large force compared to hammers designed to drive nails.', true, 200),
+        ('Biscuit','A flour-based baked food product. Give your pet this buttery treat for more <3 points', false, 20);
     
-    insert into agency(agency_id, short_name, long_name) values
-        (1, 'ACME', 'Agency to Classify & Monitor Evildoers'),
-        (2, 'MASK', 'Mobile Armored Strike Kommand'),
-        (3, 'ODIN', 'Organization of Democratic Intelligence Networks');
+    insert into user(user_id, gold) values
+        (1, 1000),
+        (2, 2000),
+        (3, 3000);
         
-	insert into location (location_id, name, address, city, region, country_code, postal_code, agency_id)
+	insert into pet_type (pet_type_name, apetite, care, thirst, health, next_pet_type_id)
 		values
-	(1, 'HQ', '123 Elm', 'Des Moines', 'IA', 'USA', '55555', 1),
-    (2, 'Safe House #1', 'A One Ave.', 'Walla Walla', 'WA', 'USA', '54321-1234', 1),
-    (3, 'HQ', '123 Elm', 'Test', 'WI', 'USA', '55555', 2),
-	(4, 'Remote', '999 Nine St.', 'Test', 'WI', 'USA', '55555', 2),
-	(5, 'HQ', '123 Elm', 'Test', 'WI', 'USA', '55555', 3), -- for delete tests
-	(6, 'Remote', '999 Nine St.', 'Test', 'WI', 'USA', '55555', 3);
+	('egg', 0,0,0,10,2),
+    ('child',10,10,10,10,3),
+    ('teen', 50,50,50,50,4),
+	('adult',100,100,100,100,null);
         
-	insert into agent 
-		(first_name, middle_name, last_name, dob, height_in_inches) 
+	insert into move(move_name, damage) 
 	values
-		('Hazel','C','Sauven','1954-09-16',76),
-		('Claudian','C','O''Lynn','1956-11-09',41),
-		('Winn','V','Puckrin','1999-10-21',60),
-		('Kiab','U','Whitham','1960-07-29',52),
-		('Min','E','Dearle','1967-04-18',44),
-		('Urban','H','Carwithen',null,58),
-		('Ulises','B','Muhammad','2008-04-01',80),
-		('Phylys','Y','Howitt','1979-03-28',68);
+		('Nuckle Sandwich', 15),
+        ('wet willy',20);
         
-	insert into alias (`name`, persona, agent_id)
-			values
-            ('Rick Sanchez','disagreeable genius scientist',1),
-            ('Morty Smith','scared preteen',2),
-            ('Summer Smith','classic teenager',3);
+	insert into pet 
+    (pet_name, hunger_lvl, care_lvl, thirst_lvl, health_lvl, time_to_zero, is_dead, trophies, pet_type_id, user_id)
+	values
+	('Rick Sanchez',0.9,0.99,0.8,1,'23:59',false,0,2,1),
+	('Morty Smith',1,1,1,1,'23:59',false,10,1,1),
+    ('Summer Smith',1,0.75,1,1,'23:59',false,1000,4,2);
+    
+    insert into user_item(user_id, item_id)
+    values
+    (1,1,10),
+    (1,2,5),
+    (2,1,3),
+    (2,2,19);
             
-	insert into agency_agent 
-		(agency_id, agent_id, identifier, security_clearance_id, activation_date)
-    select
-        agency.agency_id,                              -- agency_id
-        agent.agent_id,                                -- agent_id
-        concat(agency.agency_id, '-', agent.agent_id), -- identifier
-        1,                     					       -- security_clearance_id
-        date_add(agent.dob, interval 10 year)          -- activation_date
-    from agency
-    inner join agent
-    where agent.agent_id not in (6, 8)
-    and agency.agency_id != 2;
+	insert into pet_move(move_id, pet_id) 
+    values
+    (1,1),
+    (1,2),
+    (1,3),
+    (2,1),
+    (2,2),
+    (2,3);
+    
 
 end //
 -- 4. Change the statement terminator back to the original.
