@@ -50,7 +50,7 @@ create table pet(
     care_lvl float not null,
     thirst_lvl float not null,
     health_lvl float not null,
-    time_to_zero datetime not null,
+    time_to_zero time not null,
     is_dead boolean not null,
     trophies int not null,
     pet_type_id int not null,
