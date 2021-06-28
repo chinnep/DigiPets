@@ -12,7 +12,8 @@ create table item(
 	item_id int primary key auto_increment,
 	item_name varchar(150) not null,
 	description varchar(250),
-	price float not null
+	price float not null,
+    for_battle boolean
 );
 
 create table user_item(
