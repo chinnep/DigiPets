@@ -1,6 +1,6 @@
 package learn.digipet.models;
 
-import java.time.LocalTime;
+import java.sql.Time;
 import java.util.List;
 
 public class Pet {
@@ -11,9 +11,11 @@ public class Pet {
     private int careLevel;
     private int thirstLevel;
     private int healthLevel;
-    private LocalTime timeToZero;
-    private List<String> trophies;
-    private int petTypeId;
+    private Time timeToZero;
+    private boolean isDead;
+    private int trophies;
+    private PetType petType;
+    private List<Move> moves;
     private int userId;
 
     public int getPetId() {
@@ -64,28 +66,20 @@ public class Pet {
         this.healthLevel = healthLevel;
     }
 
-    public LocalTime getTimeToZero() {
+    public Time getTimeToZero() {
         return timeToZero;
     }
 
-    public void setTimeToZero(LocalTime timeToZero) {
+    public void setTimeToZero(Time timeToZero) {
         this.timeToZero = timeToZero;
     }
 
-    public List<String> getTrophies() {
+    public int getTrophies() {
         return trophies;
     }
 
-    public void setTrophies(List<String> trophies) {
+    public void setTrophies(int trophies) {
         this.trophies = trophies;
-    }
-
-    public int getPetTypeId() {
-        return petTypeId;
-    }
-
-    public void setPetTypeId(int petTypeId) {
-        this.petTypeId = petTypeId;
     }
 
     public int getUserId() {
@@ -96,4 +90,27 @@ public class Pet {
         this.userId = userId;
     }
 
+    public boolean isDead() {
+        return isDead;
+    }
+
+    public void setDead(boolean dead) {
+        isDead = dead;
+    }
+
+    public PetType getPetType() {
+        return petType;
+    }
+
+    public void setPetType(PetType petType) {
+        this.petType = petType;
+    }
+
+    public List<Move> getMoves() {
+        return moves;
+    }
+
+    public void setMoves(List<Move> moves) {
+        this.moves = moves;
+    }
 }

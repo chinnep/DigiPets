@@ -33,7 +33,7 @@ create table user_item(
 create table pet_type(
 	pet_type_id int primary key auto_increment,
     pet_type_name varchar(150) not null,
-    apetite int not null,
+    appetite int not null,
     care int not null,
     thirst int not null,
     health int not null,
@@ -50,7 +50,7 @@ create table pet(
     care_lvl float not null,
     thirst_lvl float not null,
     health_lvl float not null,
-    time_to_zero datetime not null,
+    time_to_zero time not null,
     is_dead boolean not null,
     trophies int not null,
     pet_type_id int not null,
@@ -110,7 +110,7 @@ begin
         (2, 2000),
         (3, 3000);
         
-	insert into pet_type (pet_type_name, apetite, care, thirst, health, next_pet_type_id)
+	insert into pet_type (pet_type_name, appetite, care, thirst, health, next_pet_type_id)
 		values
 	('egg', 0,0,0,10,2),
     ('child',10,10,10,10,3),
@@ -125,9 +125,9 @@ begin
 	insert into pet 
     (pet_name, hunger_lvl, care_lvl, thirst_lvl, health_lvl, time_to_zero, is_dead, trophies, pet_type_id, user_id)
 	values
-	('Rick Sanchez',0.9,0.99,0.8,1,'23:59',false,0,2,1),
-	('Morty Smith',1,1,1,1,'23:59',false,10,1,1),
-    ('Summer Smith',1,0.75,1,1,'23:59',false,1000,4,2);
+	('Rick Sanchez',0.9,0.99,0.8,1,'30:00:00.0',false,0,2,1),
+	('Morty Smith',1,1,1,1,'30:00:00.0',false,10,1,1),
+    ('Summer Smith',1,0.75,1,1,'30:00:00.0',false,1000,4,2);
     
     insert into user_item(user_id, item_id)
     values
@@ -149,3 +149,10 @@ begin
 end //
 -- 4. Change the statement terminator back to the original.
 delimiter ;
+
+use cyber_pet_test;
+
+select * from pet;
+
+
+

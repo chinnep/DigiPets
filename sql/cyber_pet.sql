@@ -33,7 +33,7 @@ create table user_item(
 create table pet_type(
 	pet_type_id int primary key auto_increment,
     pet_type_name varchar(150) not null,
-    apetite int not null,
+    appetite int not null,
     care int not null,
     thirst int not null,
     health int not null,
@@ -50,7 +50,7 @@ create table pet(
     care_lvl float not null,
     thirst_lvl float not null,
     health_lvl float not null,
-    time_to_zero datetime not null,
+    time_to_zero time not null,
     is_dead boolean not null,
     trophies int not null,
     pet_type_id int not null,
