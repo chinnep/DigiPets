@@ -33,10 +33,12 @@ create table user_item(
 create table pet_type(
 	pet_type_id int primary key auto_increment,
     pet_type_name varchar(150) not null,
-    appetite int not null,
-    care int not null,
-    thirst int not null,
-    health int not null,
+    -- points/hr that it decreases
+    appetite float not null,
+    care float not null,
+    thirst float not null,
+    -- starting total for battle
+    health float not null,
     next_pet_type_id int,
     constraint fk_next_pet_type_id
         foreign key (next_pet_type_id)
@@ -50,7 +52,7 @@ create table pet(
     care_lvl float not null,
     thirst_lvl float not null,
     health_lvl float not null,
-    time_to_zero time not null,
+    time_at_last_login datetime,
     is_dead boolean not null,
     trophies int not null,
     pet_type_id int not null,

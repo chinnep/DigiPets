@@ -1,4 +1,3 @@
-
 package learn.digipet.data;
 
 import learn.digipet.data.mappers.ItemMapper;
