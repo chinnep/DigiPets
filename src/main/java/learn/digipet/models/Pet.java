@@ -1,7 +1,6 @@
 package learn.digipet.models;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -25,6 +24,8 @@ public class Pet {
     private int trophies;
     @NotBlank
     private PetType petType;
+    @Size.List(@Size(min = 1, message = "Need at least one move."))
+    @Size.List(@Size(max = 3, message = "Cannot have more than 3 moves, delete a move first."))
     private List<Move> moves;
     @PositiveOrZero
     private int userId;
