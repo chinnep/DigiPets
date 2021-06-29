@@ -25,6 +25,8 @@ class ItemJdbcTemplateRepositoryTest {
     @Test
     void shouldFindTwo() {
         List<Item> items = repository.findAll();
+        assertNotNull(items);
+        assertEquals(2, items.size());
     }
 
     @Test
