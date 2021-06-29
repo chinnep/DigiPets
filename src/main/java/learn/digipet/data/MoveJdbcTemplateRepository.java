@@ -7,6 +7,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Moves will be a set list inserted into sql directly -- no need for adds, deletes, updates
+ */
 @Repository
 public class MoveJdbcTemplateRepository implements MoveRepository {
 
