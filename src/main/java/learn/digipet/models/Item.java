@@ -1,10 +1,12 @@
 package learn.digipet.models;
 
+import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
 public class Item {
 
     private int itemId;
+    @NotBlank
     private String name;
     private String description;
     private boolean forBattle;

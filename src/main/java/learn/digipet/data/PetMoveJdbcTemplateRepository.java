@@ -2,6 +2,7 @@ package learn.digipet.data;
 
 import learn.digipet.models.PetMove;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 
 /**
@@ -9,6 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
  * No editing of moves, deleting moves, and no need to read
  *  (reading attached moves will be handled by PetRepo)
  */
+@Repository
 public class PetMoveJdbcTemplateRepository implements PetMoveRepository {
 
     private final JdbcTemplate jdbcTemplate;

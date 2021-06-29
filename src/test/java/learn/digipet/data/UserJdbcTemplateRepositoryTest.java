@@ -6,14 +6,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.NONE)
 class UserJdbcTemplateRepositoryTest {
-
-    final static int NEXT_ID = 4;
 
     @Autowired
     UserJdbcTemplateRepository repository;
@@ -24,12 +20,6 @@ class UserJdbcTemplateRepositoryTest {
     @BeforeEach
     void setup() { knownGoodState.set(); }
 
-    @Test
-    void shouldFindAll() {
-        List<User> users = repository.findAll();
-        assertNotNull(users);
-        assertEquals(3, users.size());
-    }
 
     @Test
     void shouldFindById() {
@@ -41,34 +31,34 @@ class UserJdbcTemplateRepositoryTest {
     @Test
     void shouldAdd() {
         User user = makeUser();
-        User actual = repository.add(user);
-        assertNotNull(actual);
-        assertEquals(NEXT_ID, actual.getUserId());
-    }
-
-    @Test
-    void shouldNotAdd() {
+        assertTrue(repository.add(user));
+        assertEquals(4, repository.findAll().size());
     }
 
     @Test
     void shouldUpdate() {
+        User user = makeUser();
+        user.setUserId(2);
+        assertTrue(repository.update(user));
+
+        user.setUserId(15);
+        assertFalse(repository.update(user));
+
     }
 
-    @Test
-    void shouldNotUpdate() {
-    }
-
-    @Test
-    void shouldDeleteById() {
-    }
-
-    @Test
-    void shouldNotDeleteById() {
-    }
+//    @Test
+//    void shouldUpdate() {
+//        Agent agent = makeAgent();
+//        agent.setAgentId(3);
+//        assertTrue(repository.update(agent));
+//        agent.setAgentId(13);
+//        assertFalse(repository.update(agent));
+//    }
 
     private User makeUser() {
         User user = new User();
-        user.setGold(500);
+        user.setUserId(4);
+        user.setGold(800);
         return user;
     }
 

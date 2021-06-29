@@ -42,23 +42,13 @@ public class UserJdbcTemplateRepository implements UserRepository {
     }
 
     @Override
-    public User add(User user) {
+    public boolean add(User user) {
 
-        final String sql = "insert into user (gold) values (?);";
+        final String sql = "insert into user (user_id, gold) values (?,?);";
 
-        KeyHolder keyHolder = new GeneratedKeyHolder();
-        int rowsAffected = jdbcTemplate.update(connection -> {
-            PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, user.getGold());
-            return ps;
-        }, keyHolder);
-
-        if (rowsAffected <= 0) {
-            return null;
-        }
-
-        user.setUserId(keyHolder.getKey().intValue());
-        return user;
+        return jdbcTemplate.update(sql,
+                user.getUserId(),
+                user.getGold()) > 0;
     }
 
     @Override
@@ -69,13 +59,9 @@ public class UserJdbcTemplateRepository implements UserRepository {
                 + "gold = ? "
                 + "where user_id = ?;";
 
-        return jdbcTemplate.update(sql, user.getGold()) > 0;
-    }
-
-    @Override
-    public boolean deleteById(int userId) {
-        return jdbcTemplate.update(
-                "delete from user where user_id = ?", userId) > 0;
+        return jdbcTemplate.update(sql,
+                user.getGold(),
+                user.getUserId()) > 0;
     }
 
     private void addPets(User user) {

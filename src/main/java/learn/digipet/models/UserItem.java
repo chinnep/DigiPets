@@ -1,9 +1,14 @@
 package learn.digipet.models;
 
+import javax.validation.constraints.PositiveOrZero;
+
 public class UserItem {
 
+    @PositiveOrZero
     private int userId;
+    @PositiveOrZero
     private int itemId;
+    @PositiveOrZero
     private int quantity;
 
     public int getUserId() {

@@ -1,14 +1,21 @@
 package learn.digipet.models;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PositiveOrZero;
 import java.util.Objects;
 
 public class PetType {
 
     private int petTypeId;
+    @NotBlank
     private String name;
+    @PositiveOrZero
     private double appetite;
+    @PositiveOrZero
     private double care;
+    @PositiveOrZero
     private double health;
+    @PositiveOrZero
     private double thirst;
     private int nextPetTypeId;
 

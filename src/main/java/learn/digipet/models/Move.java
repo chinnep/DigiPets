@@ -1,9 +1,14 @@
 package learn.digipet.models;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PositiveOrZero;
+
 public class Move {
 
     private int moveId;
+    @NotBlank
     private String name;
+    @PositiveOrZero
     private int damage;
 
     public int getMoveId() {

@@ -10,9 +10,8 @@ public interface UserRepository {
 
     User findById(int userId_);
 
-    User add(User user);
+    boolean add(User user);
 
     boolean update(User user);
 
-    boolean deleteById(int userId);
 }

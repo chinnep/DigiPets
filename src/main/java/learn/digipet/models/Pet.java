@@ -1,21 +1,32 @@
 package learn.digipet.models;
 
-import java.sql.Time;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PositiveOrZero;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class Pet {
 
     private int petId;
+    @NotBlank
     private String name;
+    @PositiveOrZero
     private int hungerLevel;
+    @PositiveOrZero
     private int careLevel;
+    @PositiveOrZero
     private int thirstLevel;
+    @PositiveOrZero
     private int healthLevel;
-    private Time timeToZero;
+    private LocalDateTime timeAtLastLogin;
+    @NotBlank
     private boolean isDead;
+    @PositiveOrZero
     private int trophies;
+    @NotBlank
     private PetType petType;
     private List<Move> moves;
+    @PositiveOrZero
     private int userId;
 
     public int getPetId() {
@@ -66,12 +77,12 @@ public class Pet {
         this.healthLevel = healthLevel;
     }
 
-    public Time getTimeToZero() {
-        return timeToZero;
+    public LocalDateTime getTimeAtLastLogin() {
+        return timeAtLastLogin;
     }
 
-    public void setTimeToZero(Time timeToZero) {
-        this.timeToZero = timeToZero;
+    public void setTimeAtLastLogin(LocalDateTime timeAtLastLogin) {
+        this.timeAtLastLogin = this.timeAtLastLogin;
     }
 
     public int getTrophies() {

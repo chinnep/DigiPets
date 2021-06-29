@@ -22,7 +22,7 @@ public class PetJdbcTemplateRepository implements PetRepository {
     @Override
     public List<Pet> findAll() {
         final String sql = "select pet_id, pet_name, hunger_lvl, care_lvl, thirst_lvl, health_lvl, " +
-                "time_to_zero, is_dead, trophies, user_id from pet;";
+                "time_at_last_login, is_dead, trophies, user_id from pet;";
         return jdbcTemplate.query(sql, new PetMapper());
     }
 
@@ -30,9 +30,9 @@ public class PetJdbcTemplateRepository implements PetRepository {
     @Transactional
     public Pet findById(int petId) {
         final String sql = "select pet_id, pet_name, hunger_lvl, care_lvl, thirst_lvl, health_lvl, " +
-                "time_to_zero, is_dead, trophies, user_id "
-                + "from pet;"
-                + "where pet_id = ?;";
+                "time_at_last_login, is_dead, trophies, user_id "
+                + "from pet "
+                + "where pet_id = ?";
 
         Pet result = jdbcTemplate.query(sql, new PetMapper(), petId).stream()
                 .findAny().orElse(null);
