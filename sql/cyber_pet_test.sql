@@ -11,8 +11,8 @@ create table user(
 create table item(
 	item_id int primary key auto_increment,
 	item_name varchar(150) not null,
-	description text,
-	price float not null,
+	description varchar(250),
+	price int not null,
     for_battle boolean
 );
 
@@ -33,10 +33,12 @@ create table user_item(
 create table pet_type(
 	pet_type_id int primary key auto_increment,
     pet_type_name varchar(150) not null,
-    appetite int not null,
-    care int not null,
-    thirst int not null,
-    health int not null,
+    -- points/hr that it decreases
+    appetite float not null,
+    care float not null,
+    thirst float not null,
+    -- starting total for battle
+    health float not null,
     next_pet_type_id int,
     constraint fk_next_pet_type_id
         foreign key (next_pet_type_id)
@@ -50,7 +52,7 @@ create table pet(
     care_lvl float not null,
     thirst_lvl float not null,
     health_lvl float not null,
-    time_to_zero time not null,
+    time_at_last_login datetime,
     is_dead boolean not null,
     trophies int not null,
     pet_type_id int not null,
@@ -88,12 +90,6 @@ begin
 
 	SET SQL_SAFE_UPDATES = 0;
 
-	delete from pet_move;
-    delete from user_item;
-    delete from pet_type;
-    alter table pet_type auto_increment = 1;
-    delete from item;
-
 	SET FOREIGN_KEY_CHECKS = 0;
     
     delete from pet_type;
@@ -111,13 +107,9 @@ begin
     alter table user auto_increment = 1;
     delete from move;
     alter table move auto_increment = 1;
-    delete from pet;
-	alter table pet auto_increment = 1;
     
     insert into item(item_name, description, for_battle, price) values
-        ('Sledgehammer','A sledgehammer is a tool with a large, flat, often metal head, attached to a long handle. 
-        The long handle combined with a heavy head allows the sledgehammer to gather momentum during a swing and apply
-        a large force compared to hammers designed to drive nails.', true, 200),
+        ('Sledgehammer','A sledgehammer is a tool with a large, flat, often metal head, attached to a long handle.', true, 200),
         ('Biscuit','A flour-based baked food product. Give your pet this buttery treat for more <3 points', false, 20);
     
     insert into user(user_id, gold) values
@@ -138,11 +130,11 @@ begin
         ('Wet willy',20);
         
 	insert into pet 
-    (pet_name, hunger_lvl, care_lvl, thirst_lvl, health_lvl, time_to_zero, is_dead, trophies, pet_type_id, user_id)
+    (pet_name, hunger_lvl, care_lvl, thirst_lvl, health_lvl, time_at_last_login, is_dead, trophies, pet_type_id, user_id)
 	values
-		('Rick Sanchez',0.9,0.99,0.8,1,'30:00:00.0',false,0,2,1),
-		('Morty Smith',1,1,1,1,'30:00:00.0',false,10,1,1),
-		('Summer Smith',1,0.75,1,1,'30:00:00.0',false,1000,4,2);
+		('Rick Sanchez',100,100,100,100,'1998-01-01 23:59:59.997',false,0,2,1),
+		('Morty Smith',50,50,50,50,'1998-01-01 23:59:59.997',false,10,1,1),
+		('Summer Smith',1,0.75,1,1,'1998-01-01 23:59:59.997',false,1000,4,2);
     
     insert into user_item(user_id, item_id, quantity)
     values
