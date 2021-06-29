@@ -88,18 +88,23 @@ begin
 
 	SET SQL_SAFE_UPDATES = 0;
 
+	SET FOREIGN_KEY_CHECKS = 0;
+    
+    delete from pet_type;
+    alter table pet_type auto_increment = 1;
+    
+    SET FOREIGN_KEY_CHECKS = 1;
+
+	delete from user_item;
+    delete from pet_move;
+    delete from pet;
+	alter table pet auto_increment = 1;
 	delete from item;
     alter table item auto_increment = 1;
     delete from user;
     alter table user auto_increment = 1;
-    delete from user_item;
-	delete from pet;
-	alter table pet auto_increment = 1;
-    delete from pet_move;
     delete from move;
     alter table move auto_increment = 1;
-    delete from pet_type;
-    alter table pet_type auto_increment = 1;
     
     insert into item(item_name, description, for_battle, price) values
         ('Sledgehammer','A sledgehammer is a tool with a large, flat, often metal head, attached to a long handle. 
@@ -153,5 +158,4 @@ end //
 -- 4. Change the statement terminator back to the original.
 delimiter ;
 
-use cyber_pet_test;
 call set_known_good_state();
