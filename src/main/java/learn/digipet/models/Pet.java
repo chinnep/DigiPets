@@ -71,7 +71,7 @@ public class Pet {
     }
 
     public void setTimeAtLastLogin(LocalDateTime timeAtLastLogin) {
-        this.timeAtLastLogin = this.timeAtLastLogin;
+        this.timeAtLastLogin = timeAtLastLogin;
     }
 
     public int getTrophies() {
