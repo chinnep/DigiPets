@@ -1,9 +1,14 @@
 package learn.digipet.data;
 
+import learn.digipet.models.Pet;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 class PetJdbcTemplateRepositoryTest {
@@ -21,8 +26,10 @@ class PetJdbcTemplateRepositoryTest {
 
 
     @Test
-    void shouldfindAll() {
-
+    void shouldFindAll() {
+        List<Pet> pets = repository.findAll();
+        assertNotNull(pets);
+        assertTrue(pets.size() > 0);
     }
 
 }
