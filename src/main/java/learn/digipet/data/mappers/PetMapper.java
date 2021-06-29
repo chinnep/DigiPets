@@ -5,6 +5,8 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class PetMapper implements RowMapper<Pet> {
 
@@ -18,7 +20,8 @@ public class PetMapper implements RowMapper<Pet> {
         pet.setCareLevel(resultSet.getInt("care_lvl"));
         pet.setThirstLevel(resultSet.getInt("thirst_lvl"));
         pet.setHealthLevel(resultSet.getInt("health_lvl"));
-        pet.setTimeToZero(resultSet.getTime("time_to_zero"));
+        pet.setTimeAtLastLogin(LocalDateTime.parse(resultSet.getString("time_at_last_login"),
+                DateTimeFormatter.ISO_LOCAL_DATE_TIME));
         pet.setDead(resultSet.getBoolean("is_dead"));
         pet.setTrophies(resultSet.getInt("trophies"));
         pet.setUserId(resultSet.getInt("user_int"));

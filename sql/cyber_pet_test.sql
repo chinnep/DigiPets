@@ -132,9 +132,9 @@ begin
 	insert into pet 
     (pet_name, hunger_lvl, care_lvl, thirst_lvl, health_lvl, time_at_last_login, is_dead, trophies, pet_type_id, user_id)
 	values
-		('Rick Sanchez',100,100,100,100,'1998-01-01 23:59:59.997',false,0,2,1),
-		('Morty Smith',50,50,50,50,'1998-01-01 23:59:59.997',false,10,1,1),
-		('Summer Smith',1,0.75,1,1,'1998-01-01 23:59:59.997',false,1000,4,2);
+		('Rick Sanchez',100,100,100,100,'1998-01-01T23:59:59',false,0,2,1),
+		('Morty Smith',50,50,50,50,'1998-01-01T23:59:59',false,10,1,1),
+		('Summer Smith',1,0.75,1,1,'1998-01-01T23:59:59',false,1000,4,2);
     
     insert into user_item(user_id, item_id, quantity)
     values
