@@ -113,4 +113,22 @@ public class Pet {
     public void setMoves(List<Move> moves) {
         this.moves = moves;
     }
+
+    @Override
+    public String toString() {
+        return "Pet{" +
+                "petId=" + petId +
+                ", name='" + name + '\'' +
+                ", hungerLevel=" + hungerLevel +
+                ", careLevel=" + careLevel +
+                ", thirstLevel=" + thirstLevel +
+                ", healthLevel=" + healthLevel +
+                ", timeAtLastLogin=" + timeAtLastLogin +
+                ", isDead=" + isDead +
+                ", trophies=" + trophies +
+                ", petType=" + petType +
+                ", moves=" + moves +
+                ", userId=" + userId +
+                '}';
+    }
 }

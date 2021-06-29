@@ -27,6 +27,8 @@ class PetJdbcTemplateRepositoryTest {
     @Test
     void shouldFindAll() {
         List<Pet> pets = repository.findAll();
+        pets.stream()
+                .forEach(p -> System.out.println(p.getTimeAtLastLogin()));
         assertNotNull(pets);
         assertTrue(pets.size() > 0);
     }
