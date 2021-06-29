@@ -37,11 +37,7 @@ public class PetJdbcTemplateRepository implements PetRepository {
         final String sql = "select pet_id, pet_name, hunger_lvl, care_lvl, thirst_lvl, health_lvl, " +
                 "time_at_last_login, is_dead, trophies, user_id "
                 + "from pet "
-<<<<<<< HEAD
                 + "where pet_id = ?";
-=======
-                + "where pet_id = ?; ";
->>>>>>> 76007d2074d06c0fc85839e6e306a7e72ff80314
 
         Pet result = jdbcTemplate.query(sql, new PetMapper(), petId).stream()
                 .findAny().orElse(null);
