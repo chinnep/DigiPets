@@ -14,10 +14,10 @@ public class PetTypeMapper implements RowMapper<PetType> {
 
         petType.setPetTypeId(resultSet.getInt("pet_type_id"));
         petType.setName(resultSet.getString("pet_type_name"));
-        petType.setAppetite(resultSet.getInt("appetite"));
-        petType.setCare(resultSet.getInt("care"));
-        petType.setThirst(resultSet.getInt("thirst"));
-        petType.setHealth(resultSet.getInt("health"));
+        petType.setAppetite(resultSet.getDouble("appetite"));
+        petType.setCare(resultSet.getDouble("care"));
+        petType.setThirst(resultSet.getDouble("thirst"));
+        petType.setHealth(resultSet.getDouble("health"));
         petType.setNextPetTypeId(resultSet.getInt("next_pet_type_id")); // converts null to 0
 
         return petType;
