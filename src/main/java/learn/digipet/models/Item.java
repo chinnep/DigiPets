@@ -1,5 +1,7 @@
 package learn.digipet.models;
 
+import java.util.Objects;
+
 public class Item {
 
     private int itemId;
@@ -48,4 +50,27 @@ public class Item {
         this.price = price;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return itemId == item.itemId && forBattle == item.forBattle && price == item.price && name.equals(item.name) && Objects.equals(description, item.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(itemId, name, description, forBattle, price);
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "itemId=" + itemId +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", forBattle=" + forBattle +
+                ", price=" + price +
+                '}';
+    }
 }
