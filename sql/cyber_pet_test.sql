@@ -11,7 +11,7 @@ create table user(
 create table item(
 	item_id int primary key auto_increment,
 	item_name varchar(150) not null,
-	description varchar(250),
+	description text,
 	price float not null,
     for_battle boolean
 );
@@ -86,6 +86,8 @@ delimiter //
 create procedure set_known_good_state()
 begin
 
+	SET SQL_SAFE_UPDATES = 0;
+
 	delete from item;
     alter table item auto_increment = 1;
     delete from user;
@@ -112,24 +114,24 @@ begin
         
 	insert into pet_type (pet_type_name, appetite, care, thirst, health, next_pet_type_id)
 		values
-	('egg', 0,0,0,10,2),
-    ('child',10,10,10,10,3),
-    ('teen', 50,50,50,50,4),
-	('adult',100,100,100,100,null);
+	('adult',100,100,100,100,null),
+    ('teen', 50,50,50,50,1),
+    ('child',10,10,10,10,2),
+	('egg', 0,0,0,10,3);
         
 	insert into move(move_name, damage) 
 	values
-		('Nuckle Sandwich', 15),
-        ('wet willy',20);
+		('Knuckle Sandwich',15),
+        ('Wet willy',20);
         
 	insert into pet 
     (pet_name, hunger_lvl, care_lvl, thirst_lvl, health_lvl, time_to_zero, is_dead, trophies, pet_type_id, user_id)
 	values
-	('Rick Sanchez',0.9,0.99,0.8,1,'30:00:00.0',false,0,2,1),
-	('Morty Smith',1,1,1,1,'30:00:00.0',false,10,1,1),
-    ('Summer Smith',1,0.75,1,1,'30:00:00.0',false,1000,4,2);
+		('Rick Sanchez',0.9,0.99,0.8,1,'30:00:00.0',false,0,2,1),
+		('Morty Smith',1,1,1,1,'30:00:00.0',false,10,1,1),
+		('Summer Smith',1,0.75,1,1,'30:00:00.0',false,1000,4,2);
     
-    insert into user_item(user_id, item_id)
+    insert into user_item(user_id, item_id, quantity)
     values
     (1,1,10),
     (1,2,5),
@@ -145,14 +147,11 @@ begin
     (2,2),
     (2,3);
     
+    SET SQL_SAFE_UPDATES = 1;
 
 end //
 -- 4. Change the statement terminator back to the original.
 delimiter ;
 
 use cyber_pet_test;
-
-select * from pet;
-
-
-
+call set_known_good_state();

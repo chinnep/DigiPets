@@ -18,7 +18,7 @@ public class PetTypeJdbcTemplateRepository implements PetTypeRepository {
 
     @Override
     public List<PetType> findAll() {
-        final String sql = "select pet_type_id, pet_type_name, apetite, care, thirst, health, next_pet_type_id" +
+        final String sql = "select pet_type_id, pet_type_name, appetite, care, thirst, health, next_pet_type_id" +
                 " from pet_type;";
         return jdbcTemplate.query(sql, new PetTypeMapper());
     }
@@ -26,7 +26,8 @@ public class PetTypeJdbcTemplateRepository implements PetTypeRepository {
     @Override
     public PetType findById(int petTypeId) {
 
-        final String sql = "select pet_type_id, pet_type_name, apetite, care, thirst, health, next_pet_type_id" +
+        final String sql = "select pet_type_id, pet_type_name, appetite, care, thirst, health, next_pet_type_id" +
+                " from pet_type" +
                 " where pet_type_id = ?;";
 
         PetType petType = jdbcTemplate.query(sql, new PetTypeMapper(), petTypeId).stream()

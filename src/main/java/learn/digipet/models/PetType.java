@@ -1,5 +1,7 @@
 package learn.digipet.models;
 
+import java.util.Objects;
+
 public class PetType {
 
     private int petTypeId;
@@ -9,6 +11,18 @@ public class PetType {
     private int health;
     private int thirst;
     private int nextPetTypeId;
+
+    public PetType(int petTypeId, String name, int appetite, int care, int health, int thirst, int nextPetTypeId) {
+        this.petTypeId = petTypeId;
+        this.name = name;
+        this.appetite = appetite;
+        this.care = care;
+        this.health = health;
+        this.thirst = thirst;
+        this.nextPetTypeId = nextPetTypeId;
+    }
+
+    public PetType() {}
 
     public int getPetTypeId() {
         return petTypeId;
@@ -66,4 +80,16 @@ public class PetType {
         this.nextPetTypeId = nextPetTypeId;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PetType petType = (PetType) o;
+        return petTypeId == petType.petTypeId && appetite == petType.appetite && care == petType.care && health == petType.health && thirst == petType.thirst && nextPetTypeId == petType.nextPetTypeId && Objects.equals(name, petType.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(petTypeId, name, appetite, care, health, thirst, nextPetTypeId);
+    }
 }
