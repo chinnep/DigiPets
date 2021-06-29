@@ -27,10 +27,6 @@ class PetTypeJdbcTemplateRepositoryTest {
         List<PetType> petTypes = repository.findAll();
         assertNotNull(petTypes);
         assertEquals(4, petTypes.size());
-
-        for (PetType p : petTypes) {
-            System.out.println(p.getNextPetTypeId());
-        }
     }
 
     @Test

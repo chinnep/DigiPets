@@ -6,13 +6,13 @@ public class PetType {
 
     private int petTypeId;
     private String name;
-    private int appetite;
-    private int care;
-    private int health;
-    private int thirst;
+    private double appetite;
+    private double care;
+    private double health;
+    private double thirst;
     private int nextPetTypeId;
 
-    public PetType(int petTypeId, String name, int appetite, int care, int health, int thirst, int nextPetTypeId) {
+    public PetType(int petTypeId, String name, double appetite, double care, double health, double thirst, int nextPetTypeId) {
         this.petTypeId = petTypeId;
         this.name = name;
         this.appetite = appetite;
@@ -40,35 +40,35 @@ public class PetType {
         this.name = name;
     }
 
-    public int getAppetite() {
+    public double getAppetite() {
         return appetite;
     }
 
-    public void setAppetite(int appetite) {
+    public void setAppetite(double appetite) {
         this.appetite = appetite;
     }
 
-    public int getCare() {
+    public double getCare() {
         return care;
     }
 
-    public void setCare(int care) {
+    public void setCare(double care) {
         this.care = care;
     }
 
-    public int getHealth() {
+    public double getHealth() {
         return health;
     }
 
-    public void setHealth(int health) {
+    public void setHealth(double health) {
         this.health = health;
     }
 
-    public int getThirst() {
+    public double getThirst() {
         return thirst;
     }
 
-    public void setThirst(int thirst) {
+    public void setThirst(double thirst) {
         this.thirst = thirst;
     }
 
