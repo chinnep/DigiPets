@@ -5,6 +5,13 @@ public class PetMove {
     private int moveId;
     private int petId;
 
+    public PetMove(int moveId, int petId) {
+        this.moveId = moveId;
+        this.petId = petId;
+    }
+
+    public PetMove(){}
+
     public int getMoveId() {
         return moveId;
     }
@@ -20,4 +27,6 @@ public class PetMove {
     public void setPetId(int petId) {
         this.petId = petId;
     }
+
+
 }
