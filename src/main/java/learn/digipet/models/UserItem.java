@@ -11,6 +11,14 @@ public class UserItem {
     @PositiveOrZero
     private int quantity;
 
+    public UserItem(int userId, int itemId, int quantity) {
+        this.userId = userId;
+        this.itemId = itemId;
+        this.quantity = quantity;
+    }
+
+    public UserItem(){}
+
     public int getUserId() {
         return userId;
     }

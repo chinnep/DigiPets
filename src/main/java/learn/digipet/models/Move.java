@@ -11,6 +11,14 @@ public class Move {
     @PositiveOrZero
     private int damage;
 
+    public Move (int moveId, String name, int damage) {
+        this.moveId = moveId;
+        this.name = name;
+        this.damage = damage;
+    }
+
+    public Move() {}
+
     public int getMoveId() {
         return moveId;
     }

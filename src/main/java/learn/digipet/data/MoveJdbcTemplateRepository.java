@@ -7,6 +7,11 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Moves will be a set list inserted into sql directly -- no need for adds, deletes, updates
+ * findById to check if special item move has been unlocked
+ * findAll ?
+ */
 @Repository
 public class MoveJdbcTemplateRepository implements MoveRepository {
 

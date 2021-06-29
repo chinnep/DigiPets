@@ -10,5 +10,9 @@ public interface PetRepository {
 
     Pet findById(int petId);
 
+    Pet add(Pet pet);
+
+    boolean update(Pet pet);
+
     boolean deleteById(int petId);
 }
