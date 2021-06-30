@@ -21,14 +21,14 @@ public class UserJdbcTemplateRepository implements UserRepository {
     @Override
     public List<User> findAll() {
 
-        final String sql = "select user_id, gold from user limit 1000;";
+        final String sql = "select username, password, password_hash, gold from user limit 1000;";
         return jdbcTemplate.query(sql, new UserMapper());
     }
 
     @Override
     public User findByUsername(String username) {
 
-        final String sql = "select gold from user "
+        final String sql = "select password, password_hash, gold from user "
                 + "where username = ?;";
 
         User user = jdbcTemplate.query(sql, new UserMapper(), username).stream()

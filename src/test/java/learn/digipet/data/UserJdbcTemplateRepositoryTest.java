@@ -22,9 +22,9 @@ class UserJdbcTemplateRepositoryTest {
 
 
     @Test
-    void shouldFindByUsername() {
-        User expected = new User("username...");
-        User actual = repository.findByUsername("username...");
+    void shouldFind1ByUsername() {
+        User expected = new User("abc123");
+        User actual = repository.findByUsername("abc123");
         assertEquals(expected, actual);
     }
 
@@ -48,10 +48,10 @@ class UserJdbcTemplateRepositoryTest {
 
     private User makeUser() {
         User user = new User();
-        user.setUsername("abc123");
-        user.setPassword("abc123");
-        user.setPasswordHash("hash...");
-        user.setGold(800);
+        user.setUsername("abc12345");
+        user.setPassword("ketchup3000");
+        user.setPasswordHash("$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQd");
+        user.setGold(5000);
         return user;
     }
 

@@ -24,19 +24,19 @@ class UserItemJdbcTemplateRepositoryTest {
 
     @Test
     void shouldFindTwo() {
-        List<UserItem> result = repository.findByUserId(1);
+        List<UserItem> result = repository.findByUsername("abc123");
         assertEquals(2, result.size());
     }
 
     @Test
     void shouldAdd() {
-        UserItem toAdd = new UserItem(3,2,1);
+        UserItem toAdd = new UserItem("dev10peeps",2,1);
         assertTrue(repository.add(toAdd));
     }
 
     @Test
     void shouldUpdateTo11() {
-        UserItem toUpdate = new UserItem(2,2,11);
+        UserItem toUpdate = new UserItem("tamagotchi-gang",2,11);
         assertTrue(repository.update(toUpdate));
 
     }

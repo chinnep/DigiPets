@@ -27,7 +27,7 @@ public class PetJdbcTemplateRepository implements PetRepository {
     @Override
     public List<Pet> findAll() {
         final String sql = "select pet_id, pet_name, hunger_lvl, care_lvl, thirst_lvl, health_lvl, " +
-                "time_at_last_login, is_dead, trophies, user_id from pet;";
+                "time_at_last_login, is_dead, trophies, username from pet;";
         return jdbcTemplate.query(sql, new PetMapper());
     }
 
@@ -35,7 +35,7 @@ public class PetJdbcTemplateRepository implements PetRepository {
     @Transactional
     public Pet findById(int petId) {
         final String sql = "select pet_id, pet_name, hunger_lvl, care_lvl, thirst_lvl, health_lvl, " +
-                "time_at_last_login, is_dead, trophies, user_id "
+                "time_at_last_login, is_dead, trophies, username "
                 + "from pet "
                 + "where pet_id = ?";
 
@@ -53,7 +53,7 @@ public class PetJdbcTemplateRepository implements PetRepository {
     @Override
     public Pet add(Pet pet) {
         final String sql = "insert into pet(pet_name, hunger_lvl, care_lvl, thirst_lvl, health_lvl, "
-                        +  " time_at_last_login, is_dead, trophies, pet_type_id, user_id) "
+                        +  " time_at_last_login, is_dead, trophies, pet_type_id, username) "
                         +  " values (?,?,?,?,?,?,?,?,?,?);";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -68,7 +68,7 @@ public class PetJdbcTemplateRepository implements PetRepository {
             ps.setBoolean(7, pet.isDead());
             ps.setInt(8, pet.getTrophies());
             ps.setInt(9, pet.getPetType().getPetTypeId());
-            ps.setInt(10, pet.getUserId());
+            ps.setString(10, pet.getUsername());
             return ps;
         }, keyHolder);
 
@@ -92,7 +92,7 @@ public class PetJdbcTemplateRepository implements PetRepository {
                 + "is_dead = ?, "
                 + "trophies = ?, "
                 + "pet_type_id = ?, "
-                + "user_id = ? "
+                + "username = ? "
                 + "where pet_id = ?";
 
         return jdbcTemplate.update(sql,
@@ -105,7 +105,7 @@ public class PetJdbcTemplateRepository implements PetRepository {
                 pet.isDead(),
                 pet.getTrophies(),
                 pet.getPetType().getPetTypeId(),
-                pet.getUserId(),
+                pet.getUsername(),
                 pet.getPetId()) > 0;
     }
 

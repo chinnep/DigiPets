@@ -49,7 +49,7 @@ class PetJdbcTemplateRepositoryTest {
     }
 
     @Test
-    void shouldAddAgency() {
+    void shouldAddPet() {
         Pet pet = makePet();
         Pet actual = repository.add(pet);
         assertNotNull(actual);
@@ -57,7 +57,7 @@ class PetJdbcTemplateRepositoryTest {
     }
 
     @Test
-    void shouldUpdateAgency() {
+    void shouldUpdatePet() {
 
         Pet pet = makePet();
         pet.setPetId(1);
@@ -90,7 +90,7 @@ class PetJdbcTemplateRepositoryTest {
         pet.setDead(false);
         pet.setTrophies(0);
         pet.setPetType(petType);
-        pet.setUserId(1);
+        pet.setUsername("abc12345");
 
         return pet;
     }

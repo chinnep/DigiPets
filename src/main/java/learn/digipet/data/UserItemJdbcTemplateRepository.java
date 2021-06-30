@@ -23,21 +23,21 @@ public class UserItemJdbcTemplateRepository implements UserItemRepository {
     }
 
     @Override
-    public List<UserItem> findByUserId(int id) {
-        final String sql = "select quantity, user_id, item_id "
+    public List<UserItem> findByUsername(String username) {
+        final String sql = "select quantity, username, item_id "
                 + "from user_item "
-                + "where user_id = ?;";
+                + "where username = ?;";
 
-        return jdbcTemplate.query(sql, new UserItemMapper(), id);
+        return jdbcTemplate.query(sql, new UserItemMapper(), username);
     }
 
     @Override
     public boolean add(UserItem userItem) {
 
-        final String sql = "insert into user_item (user_id, item_id, quantity) values (?,?,?);";
+        final String sql = "insert into user_item (username, item_id, quantity) values (?,?,?);";
 
         return jdbcTemplate.update(sql,
-                userItem.getUserId(),
+                userItem.getUsername(),
                 userItem.getItemId(),
                 userItem.getQuantity()) > 0;
     }
@@ -45,12 +45,12 @@ public class UserItemJdbcTemplateRepository implements UserItemRepository {
     @Override
     public boolean update(UserItem userItem) {
         final String sql = "update user_item set quantity = ? "
-                + "where user_id = ? "
+                + "where username = ? "
                 + "and item_id = ?;";
 
         return jdbcTemplate.update(sql,
                 userItem.getQuantity(),
-                userItem.getUserId(),
+                userItem.getUsername(),
                 userItem.getItemId()) > 0;
     }
 }

@@ -13,7 +13,7 @@ public class UserItemMapper implements RowMapper<UserItem> {
         UserItem userItem = new UserItem();
 
         userItem.setItemId(resultSet.getInt("item_id"));
-        userItem.setUserId(resultSet.getInt("user_id"));
+        userItem.setUsername(resultSet.getString("username"));
         userItem.setQuantity(resultSet.getInt("quantity"));
 
         return userItem;

@@ -25,8 +25,8 @@ public class Pet {
     private PetType petType;
     @Size.List(@Size(min = 1, message = "Need at least one move."))
     private List<Move> moves;
-    @PositiveOrZero
-    private int userId;
+    @NotBlank
+    private String username;
 
     public int getPetId() {
         return petId;
@@ -92,12 +92,12 @@ public class Pet {
         this.trophies = trophies;
     }
 
-    public int getUserId() {
-        return userId;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public boolean isDead() {
@@ -138,7 +138,7 @@ public class Pet {
                 ", trophies=" + trophies +
                 ", petType=" + petType +
                 ", moves=" + moves +
-                ", userId=" + userId +
+                ", userId=" + username +
                 '}';
     }
 }

@@ -4,7 +4,9 @@ use cyber_pet_test;
 
 -- create tables
 create table user(
-	user_id int primary key,
+	username varchar(150) primary key,
+    password varchar(150) not null,
+    password_hash varchar(250) not null,
 	gold int
 );
 
@@ -18,13 +20,13 @@ create table item(
 
 create table user_item(
 	quantity int not null,
-    user_id int not null,
+    username varchar(250) not null,
     item_id int not null,
     constraint pk_user_item
-        primary key (user_id, item_id),
-	constraint fk_user_item_user_id
-        foreign key (user_id)
-        references user(user_id),
+        primary key (username, item_id),
+	constraint fk_user_item_username
+        foreign key (username)
+        references user(username),
 	constraint fk_user_item_item_id
         foreign key (item_id)
         references item(item_id)
@@ -56,13 +58,13 @@ create table pet(
     is_dead boolean not null,
     trophies int not null,
     pet_type_id int not null,
-    user_id int not null,
+    username varchar(250) not null,
 	constraint fk_pet_pet_type_id
         foreign key (pet_type_id)
         references pet_type(pet_type_id),
-	constraint fk_pet_user_id
-        foreign key (user_id)
-        references user(user_id)
+	constraint fk_pet_username
+        foreign key (username)
+        references user(username)
 );
 
 create table move(
@@ -112,10 +114,10 @@ begin
         ('Sledgehammer','A sledgehammer is a tool with a large, flat, often metal head, attached to a long handle.', true, 200),
         ('Biscuit','A flour-based baked food product. Give your pet this buttery treat for more <3 points', false, 20);
     
-    insert into user(user_id, gold) values
-        (1, 1000),
-        (2, 2000),
-        (3, 3000);
+    insert into user(username, password, password_hash, gold) values
+        ('abc123','top-secret','$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa',1000),
+        ('tamagotchi-gang','top-secreter','$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQb',2000),
+        ('dev10peeps','top-secretest','$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQc',3000);
         
 	insert into pet_type (pet_type_name, appetite, care, thirst, health, next_pet_type_id)
 		values
@@ -130,18 +132,18 @@ begin
         ('Wet willy',20);
         
 	insert into pet 
-    (pet_name, hunger_lvl, care_lvl, thirst_lvl, health_lvl, time_at_last_login, is_dead, trophies, pet_type_id, user_id)
+    (pet_name, hunger_lvl, care_lvl, thirst_lvl, health_lvl, time_at_last_login, is_dead, trophies, pet_type_id, username)
 	values
-		('Rick Sanchez',100,100,100,100,'2011-12-03T10:15:30',false,0,2,1),
-		('Morty Smith',50,50,50,50,'2011-12-03T10:15:30',false,10,1,1),
-		('Summer Smith',1,0.75,1,1,'1998-01-01T23:59:59',false,1000,4,2);
+		('Rick Sanchez',100,100,100,100,'2011-12-03T10:15:30',false,0,2,'abc123'),
+		('Morty Smith',50,50,50,50,'2011-12-03T10:15:30',false,10,1,'tamagotchi-gang'),
+		('Summer Smith',1,0.75,1,1,'1998-01-01T23:59:59',false,1000,4,'dev10peeps');
     
-    insert into user_item(user_id, item_id, quantity)
+    insert into user_item(username, item_id, quantity)
     values
-    (1,1,10),
-    (1,2,5),
-    (2,1,3),
-    (2,2,19);
+    ('abc123',1,10),
+    ('abc123',2,5),
+    ('tamagotchi-gang',1,3),
+    ('tamagotchi-gang',2,19);
             
 	insert into pet_move(move_id, pet_id) 
     values
