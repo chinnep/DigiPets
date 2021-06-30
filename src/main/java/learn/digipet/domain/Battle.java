@@ -18,6 +18,13 @@ public class Battle {
     public Battle() {
     }
 
+    public Battle(Pet petA, Pet petB, Item itemA, Item itemB) {
+        this.petA = petA;
+        this.petB = petB;
+        this.itemA = itemA;
+        this.itemB = itemB;
+    }
+
     public void setPetAHealth(Move move) {
         petA.setHealthLevel(petA.getHealthLevel() - move.getDamage());
     }
