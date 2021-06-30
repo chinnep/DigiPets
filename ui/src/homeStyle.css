@@ -1,0 +1,49 @@
+#title-container {
+    margin-left:10%;
+    margin-right:10%;
+    text-align: center;
+    font-size: 60px;
+    color: #08B2E3;
+}
+
+.container {
+    background-color: #EAF47C;
+}
+
+.caption {
+    font-size: 20px;
+}
+
+#about-section {
+    margin-top: 200px;
+    background-color: #28965A;
+    width:100%;
+    padding: 50px;
+}
+
+#devs-section {
+    margin-top: 200px;
+    background-color: #EE6352;
+    width:100%;
+    padding: 50px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.column {
+    float: left;
+    width: 33.33%;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  #profiles {
+      text-align: center;
+  }

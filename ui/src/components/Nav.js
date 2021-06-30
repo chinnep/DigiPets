@@ -1,16 +1,15 @@
-import { Link } from "react-router-dom";
+import '../navStyle.css';
 
 function Nav() {
 
   return (
-      <div className="topnav">
-        <Link to="/">
-            <img src="digipetHeader.png" alt="img not found"/>
-        </Link>
-        <Link class="nes-badge from-right">
-            <span class="is-primary">To</span>
-        </Link>
-      </div>
+    <>
+    <div class="topnav">
+        <a class="active" href="/">DigiPet</a>
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+    </div>
+    </>
   );
 }
 

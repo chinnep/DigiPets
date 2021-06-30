@@ -3,6 +3,7 @@ import { useState } from "react";
 import LoginContext from "./contexts/LoginContext";
 import Nav from './components/Nav';
 import Home from './components/Home';
+import NotFound from "./components/NotFound";
 import "nes.css/css/nes.min.css";
 
 function App() {
@@ -31,6 +32,11 @@ function App() {
           <Router>
             <Nav />
             <Switch>
+
+              <Route path={"/error"}>
+                <NotFound/>
+              </Route>
+
               <Route path={"/"}>
                 <Home/>
               </Route>
