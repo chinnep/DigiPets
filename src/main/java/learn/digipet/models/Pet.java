@@ -18,11 +18,10 @@ public class Pet {
     @PositiveOrZero
     private int healthLevel;
     private LocalDateTime timeAtLastLogin;
-    @NotBlank
     private boolean isDead;
     @PositiveOrZero
     private int trophies;
-    @NotBlank
+    @NotNull
     private PetType petType;
     @Size.List(@Size(min = 1, message = "Need at least one move."))
     private List<Move> moves;
