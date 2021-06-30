@@ -5,12 +5,8 @@ import learn.digipet.data.mappers.PetMapper;
 import learn.digipet.data.mappers.UserMapper;
 import learn.digipet.models.User;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
 
-import java.sql.PreparedStatement;
-import java.sql.Statement;
 import java.util.List;
 
 @Repository
