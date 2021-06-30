@@ -45,7 +45,7 @@ public class UserService {
 
         // hash the password
         user.setPasswordHash(passwordEncoder.encode(user.getPassword()));
-        // get rid of the paintext password
+        // get rid of the plaintext password
         user.setPassword(null);
 
         //store in the database
@@ -113,7 +113,8 @@ public class UserService {
             result.addMessage("User gold cannot be less than zero.", ResultType.INVALID);
         }
 
-        //result.setPayload(repository.add(user)); // WAT?
+        //result.setPayload(repository.add(user)); // WAT? same result we've used in every project, looking for a user but this add method
+                                                   // returns a boolean... Not sure how to adjust this.
         return result;
     }
 
