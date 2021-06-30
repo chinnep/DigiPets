@@ -52,7 +52,7 @@ create table pet(
     care_lvl float not null,
     thirst_lvl float not null,
     health_lvl float not null,
-    time_at_last_login datetime,
+    time_at_last_login varchar(30),
     is_dead boolean not null,
     trophies int not null,
     pet_type_id int not null,
