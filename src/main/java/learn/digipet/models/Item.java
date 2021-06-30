@@ -12,6 +12,8 @@ public class Item {
     private boolean forBattle;
     private int price;
 
+    public Item() {
+    }
     public Item(int itemId, String name, String description, boolean forBattle, int price) {
         this.itemId = itemId;
         this.name = name;

@@ -25,7 +25,6 @@ public class Pet {
     @NotBlank
     private PetType petType;
     @Size.List(@Size(min = 1, message = "Need at least one move."))
-    @Size.List(@Size(max = 3, message = "Cannot have more than 3 moves, delete a move first."))
     private List<Move> moves;
     @PositiveOrZero
     private int userId;

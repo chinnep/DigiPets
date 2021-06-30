@@ -30,11 +30,12 @@ public class UserService {
         if(!violations.isEmpty()) {
             for (ConstraintViolation<User> violation : violations) {
                 result.addMessage(violation.getMessage(), ResultType.INVALID);
+                return result;
             }
         }
-        return result;
 
         result = validate(user);
+        if(result.getMessages().size() > 0) return result;
 
         if (result.getMessages().size() > 0) {
             return result;
@@ -54,7 +55,7 @@ public class UserService {
             result.addMessage("User gold cannot be less than zero.", ResultType.INVALID);
         }
 
-        result.setPayload(repository.add(user)); // WAT?
+        //result.setPayload(repository.add(user)); // WAT?
         return result;
     }
 
