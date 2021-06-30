@@ -8,10 +8,10 @@ public interface UserRepository {
 
     List<User> findAll();
 
-    User findById(int userId_);
+    User findByUsername(String username);
 
     boolean add(User user);
 
-    boolean update(User user);
+//    boolean update(User user);
 
 }

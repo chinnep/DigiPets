@@ -22,9 +22,9 @@ class UserJdbcTemplateRepositoryTest {
 
 
     @Test
-    void shouldFindById() {
-        User expected = new User(1, 1000);
-        User actual = repository.findById(1);
+    void shouldFindByUsername() {
+        User expected = new User("username...");
+        User actual = repository.findByUsername("username...");
         assertEquals(expected, actual);
     }
 
@@ -35,29 +35,22 @@ class UserJdbcTemplateRepositoryTest {
         assertEquals(4, repository.findAll().size());
     }
 
-    @Test
-    void shouldUpdate() {
-        User user = makeUser();
-        user.setUserId(2);
-        assertTrue(repository.update(user));
-
-        user.setUserId(15);
-        assertFalse(repository.update(user));
-
-    }
-
 //    @Test
 //    void shouldUpdate() {
-//        Agent agent = makeAgent();
-//        agent.setAgentId(3);
-//        assertTrue(repository.update(agent));
-//        agent.setAgentId(13);
-//        assertFalse(repository.update(agent));
+//        User user = makeUser();
+//        user.setUsername("existing user...");
+//        assertTrue(repository.update(user));
+//
+//        user.setUsername("non-existing user...");
+//        assertFalse(repository.update(user));
+//
 //    }
 
     private User makeUser() {
         User user = new User();
-        user.setUserId(4);
+        user.setUsername("abc123");
+        user.setPassword("abc123");
+        user.setPasswordHash("hash...");
         user.setGold(800);
         return user;
     }

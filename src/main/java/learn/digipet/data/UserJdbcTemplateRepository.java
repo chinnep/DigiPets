@@ -26,12 +26,12 @@ public class UserJdbcTemplateRepository implements UserRepository {
     }
 
     @Override
-    public User findById(int userId) {
+    public User findByUsername(String username) {
 
-        final String sql = "select user_id, gold from user "
-                + "where user_id = ?;";
+        final String sql = "select gold from user "
+                + "where username = ?;";
 
-        User user = jdbcTemplate.query(sql, new UserMapper(), userId).stream()
+        User user = jdbcTemplate.query(sql, new UserMapper(), username).stream()
                 .findFirst().orElse(null);
 
         return user;
@@ -40,46 +40,50 @@ public class UserJdbcTemplateRepository implements UserRepository {
     @Override
     public boolean add(User user) {
 
-        final String sql = "insert into user (user_id, gold) values (?,?);";
+        final String sql = "insert into user (username, password, passwordHash, gold) values (?,?,?,?);";
 
         return jdbcTemplate.update(sql,
-                user.getUserId(),
+                user.getUsername(),
+                user.getPassword(),
+                user.getPasswordHash(),
                 user.getGold()) > 0;
     }
 
-    @Override
-    public boolean update(User user) {
-
-        // not allowing user_id updates...
-        final String sql = "update user set "
-                + "gold = ? "
-                + "where user_id = ?;";
-
-        return jdbcTemplate.update(sql,
-                user.getGold(),
-                user.getUserId()) > 0;
-    }
+// Do we need to update?? we won't let users update their gold... username we could change, but it's our identifier,
+// and password we could change but I'm not sure how difficult that would be.
+//    @Override
+//    public boolean update(User user) {
+//
+//        // not allowing user_id updates...
+//        final String sql = "update user set "
+//                + "gold = ? "
+//                + "where username = ?;";
+//
+//        return jdbcTemplate.update(sql,
+//                user.getGold(),
+//                user.getUsername()) > 0;
+//    }
 
     private void addPets(User user) {
 
         final String sql = "select pet_id, pet_name, hunger_lvl, care_lvl, "
                 + "thirst_lvl, health_lvl, time_to_zero, is_dead, trophies "
                 + "from pet "
-                + "where user_id = ?";
+                + "where username = ?";
 
-        var pets = jdbcTemplate.query(sql, new PetMapper(), user.getUserId());
+        var pets = jdbcTemplate.query(sql, new PetMapper(), user.getUsername());
         user.setPets(pets);
     }
 
     private void addItems(User user) {
 
-        final String sql = "select ui.user_id, ui.item_id, ui.quantity, "
+        final String sql = "select ui.username, ui.item_id, ui.quantity, "
                 + "i.item_name, i.description, i.for_battle, i.price "
                 + "from user_item ui "
                 + "inner join item i on ui.item_id = i.item_id "
-                + "where ui.user_id = ?";
+                + "where ui.username = ?";
 
-        var userItems = jdbcTemplate.query(sql, new ItemMapper(), user.getUserId());
+        var userItems = jdbcTemplate.query(sql, new ItemMapper(), user.getUsername());
         user.setItems(userItems);
     }
 
