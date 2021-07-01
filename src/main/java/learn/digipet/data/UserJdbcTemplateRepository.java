@@ -35,6 +35,11 @@ public class UserJdbcTemplateRepository implements UserRepository {
         User user = jdbcTemplate.query(sql, new UserMapper(), username).stream()
                 .findFirst().orElse(null);
 
+        if (user != null) {
+            addPets(user);
+            addItems(user);
+        }
+
         return user;
     }
 
@@ -68,7 +73,7 @@ public class UserJdbcTemplateRepository implements UserRepository {
     private void addPets(User user) {
 
         final String sql = "select pet_id, pet_name, hunger_lvl, care_lvl, "
-                + "thirst_lvl, health_lvl, time_to_zero, is_dead, trophies "
+                + "thirst_lvl, health_lvl, time_at_last_login, is_dead, trophies, username "
                 + "from pet "
                 + "where username = ?";
 

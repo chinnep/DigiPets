@@ -30,29 +30,30 @@ function App() {
 
   const logout = () => setCredentials({username:null, jwt:null});
 
-
   return (
-    <LoginContext.Provider value={{...credentials, afterAuth}}>
+    <LoginContext.Provider value={{...credentials, afterAuth, logout}}>
           <Router>
             <Nav />
             <Switch>
-            <Route path={"/login"}>
-                <Login/>
-              </Route>
 
-              <Route path={"/pets"}>
-                <Pets/>
-              </Route>
-
-              <Route path={"/register"}>
+              <Route path="/register">
                 <Register/>
               </Route>
 
-              <Route path={"/error"}>
+            <Route path="/login">
+                <Login/>
+              </Route>
+
+              <Route path="/pets">
+                {/* {credentials.username ? <Pets/> : <Redirect to="/" />} */}
+                <Pets />
+              </Route>
+
+              <Route path="/error">
                 <NotFound/>
               </Route>
 
-              <Route path={"/"}>
+              <Route path="/">
                 <Home/>
               </Route>
     

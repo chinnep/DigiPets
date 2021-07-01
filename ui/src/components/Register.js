@@ -1,7 +1,6 @@
-import {Link, useHistory} from 'react-router-dom';
-import LoginContext from '../contexts/LoginContext';
-import {useState, useContext} from 'react';
-//import {register} from '../services/auth';
+import { Link, useHistory } from 'react-router-dom';
+import { useState } from 'react';
+import { register } from '../services/auth';
 
 function Register() {
 
@@ -15,9 +14,9 @@ function Register() {
     async function onSubmit(evt) {
         evt.preventDefault();
         
-        // register({username, password})
-        // .then(() => history.push("/login"))
-        // .catch(() => history.push("/error"));
+        register({username, password})
+        .then(() => history.push("/login"))
+        .catch(() => history.push("/error"));
     }
 
     async function confirmPasswordsMatch(evt) {
@@ -42,7 +41,10 @@ function Register() {
                     <label for="inline_field">Confirm Password</label>
                     <input type="password" id="password" className="nes-input" placeholder="Confirm Password" required="" value={confirmPassword} onChange={evt => setConfirmPassword(evt.target.value)}></input>
                 </div>
-                <button type="button" className="nes-btn is-success">Success</button>
+                <div className="new-field is-inline">
+                    <button type="submit" className="nes-btn is-success">Submit</button>
+                    <Link to="/" className="new-btn is-warning">Cancel</Link>
+                </div>
             </form>
     );
 }
