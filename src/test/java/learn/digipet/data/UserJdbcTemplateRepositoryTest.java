@@ -23,9 +23,9 @@ class UserJdbcTemplateRepositoryTest {
 
     @Test
     void shouldFind1ByUsername() {
-        User expected = new User("abc123");
-        User actual = repository.findByUsername("abc123");
-        assertEquals(expected, actual);
+        User abc123 = repository.findByUsername("abc123");
+        assertEquals("abc123", abc123.getUsername());
+        assertEquals(1000, abc123.getGold());
     }
 
     @Test

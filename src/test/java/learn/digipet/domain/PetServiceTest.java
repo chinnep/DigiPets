@@ -108,7 +108,7 @@ class PetServiceTest {
     @Test
     void shouldNotAddWithInvalidUserId() {
         Pet pet = makePet();
-        pet.setUserId(0);
+        pet.setUsername("");
         Result<Pet> result = service.add(pet);
         assertEquals(ResultType.INVALID, result.getType());
     }
@@ -182,7 +182,7 @@ class PetServiceTest {
         pet.setDead(false);
         pet.setTrophies(0);
         pet.setPetType(petType);
-        pet.setUserId(1);
+        pet.setUsername("abc123");
 
         return pet;
     }

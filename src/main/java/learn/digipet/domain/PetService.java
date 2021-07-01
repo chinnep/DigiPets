@@ -124,8 +124,8 @@ public class PetService {
             result.addMessage("Name cannot be null.", ResultType.INVALID);
         }
 
-        if(pet.getUserId() < 1) {
-            result.addMessage("Invalid userId.", ResultType.INVALID);
+        if(pet.getUsername().isBlank()) {
+            result.addMessage("Username cannot be blank.", ResultType.INVALID);
         }
         if(pet.getPetType() != null && pet.getPetType().getPetTypeId() < 1) {
             result.addMessage("Invalid pet type id.", ResultType.INVALID);
