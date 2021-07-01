@@ -30,7 +30,7 @@ class UserItemJdbcTemplateRepositoryTest {
 
     @Test
     void shouldFindFiveBiscuits () {
-        UserItem result = repository.findByIds(new UserItem(1,2,0));
+        UserItem result = repository.findByIds(new UserItem("abc123",2,0));
         assertEquals(5, result.getQuantity());
     }
 

@@ -33,12 +33,12 @@ public class UserItemJdbcTemplateRepository implements UserItemRepository {
 
     @Override
     public UserItem findByIds(UserItem userItem) {
-        final String sql = "select quantity, user_id, item_id "
+        final String sql = "select quantity, username, item_id "
                 + "from user_item "
-                + "where user_id = ? "
+                + "where username = ? "
                 + "and item_id = ?;";
 
-        return jdbcTemplate.query(sql, new UserItemMapper(), userItem.getUserId(), userItem.getItemId())
+        return jdbcTemplate.query(sql, new UserItemMapper(), userItem.getUsername(), userItem.getItemId())
                 .stream().findAny().orElse(null);
     }
 

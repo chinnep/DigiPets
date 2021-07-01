@@ -51,11 +51,11 @@ public class Shop {
     }
 
     public Result<User> purchasePet(User user) {
-        user.setGold(user.getGold() - EGG_PRICE);
+        //user.setGold(user.getGold() - EGG_PRICE);
 
-        Result<User> result = userService.update(user);
+        //Result<User> result = userService.update(user); // No update currently
 
-        return result;
+        return null;
     }
 
     // Todo
