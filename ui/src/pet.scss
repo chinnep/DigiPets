@@ -13,12 +13,19 @@ html {
   margin: 0;
   padding: 0;
 }
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  background: $background;
+}
 
-#pet-container {
+#egg-container {
   width: 80rem;
   height: 80rem;
   position: absolute;
-  top: 50%;
+  margin-top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   * {
@@ -65,7 +72,7 @@ html {
   );
 }
 .display {
-  background: #dde2b1;
+  background: $lcd;
   width: 27rem;
   height: 27rem;
   top: 50%;
@@ -74,6 +81,16 @@ html {
   border-radius: 1rem;
 }
 
+#active-image {
+  width: 27rem;
+  margin-top: 6rem;
+}
+
+.buttons {
+  width: 100%;
+  text-align: center;
+  top: 80%;
+}
 #pet-button {
   width: 100%;
   text-align: center;
@@ -98,57 +115,4 @@ html {
   border-radius: 50%;
   left: 50%;
   transform: translatex(-50%);
-}
-
-.grid {
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  padding: 2.5rem;
-  display: grid;
-  grid-template-columns: repeat(16, 1fr);
-  grid-template-rows: repeat(16, 1fr);
-  * {
-    position: relative;
-    background: $lcd-on;
-  }
-  .pixel1 {
-    grid-area: 16 / 5 / span 1 / span 8;
-  }
-  .pixel2 {
-    grid-area: 15 / 6 / span 1 / span 2;
-  }
-  .pixel3 {
-    grid-area: 15 / 10 / span 1 / span 2;
-  }
-  .pixel4 {
-    grid-area: 14 / 5 / span 1 / span 2;
-  }
-  .pixel5 {
-    grid-area: 14 / 10 / span 1 / span 3;
-  }
-  .pixel6 {
-    grid-area: 11 / 5 / span 3 / span 1;
-  }
-  .pixel7 {
-    grid-area: 12 / 8 / span 2 / span 2;
-  }
-  .pixel8 {
-    grid-area: 13 / 11 / span 1 / span 2;
-  }
-  .pixel9 {
-    grid-area: 11 / 12 / span 2 / span 1;
-  }
-  .pixel10 {
-    grid-area: 10 / 6 / span 2 / span 2;
-  }
-  .pixel11 {
-    grid-area: 9 / 6 / span 1 / span 1;
-  }
-  .pixel12 {
-    grid-area: 8 / 7 / span 1 / span 4;
-  }
-  .pixel13 {
-    grid-area: 9 / 10 / span 2 / span 2;
-  }
 }

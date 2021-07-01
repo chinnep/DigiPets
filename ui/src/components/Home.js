@@ -26,7 +26,7 @@ function Home() {
                         _
                     </div>
                     <p>Hello! I'm from Northern Virginia and I love hiking, travelling, and learning new things.
-                        My favorite games are Settlers of Catan and Clash of Clans, and almost all Nintendo games.
+                        My favorite games are Settlers of Catan, Clash of Clans, and almost all Nintendo games.
                     </p>
                 </div>
                 <div className="column">

@@ -91,3 +91,8 @@ button[type="button"] {
 .nes-field {
     margin: 10px;
 }
+
+.form {
+  background-color: #EAF47C;
+  margin-top: 10rem;
+}
