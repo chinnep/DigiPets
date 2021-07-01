@@ -7,6 +7,7 @@ function Nav() {
         <a class="active" href="/">DigiPet</a>
         <a href="/login">Login</a>
         <a href="/register">Register</a>
+        <a href="/pets">See a pet!</a>
     </div>
     </>
   );

@@ -23,7 +23,6 @@ function SignIn() {
     }
 
     return (
-        <div className="row" id="login-form">
             <form className="form" onSubmit={onSubmit}>
                 <h1>Login</h1>
                 <div class="nes-field is-inline">
@@ -36,7 +35,6 @@ function SignIn() {
                 </div>
                 <button type="button" className="nes-btn is-success">Success</button>
             </form>
-        </div>
     );
 }
 

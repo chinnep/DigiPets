@@ -1,93 +1,98 @@
 /* Add a black background color to the top navigation */
 .topnav {
-    background-color: #08B2E3;
-    overflow: hidden;
-    margin-bottom: 20px;
-  }
-  
-  /* Style the links inside the navigation bar */
-  .topnav a {
-  float: left;
-  color: #f2f2f2;
+  background-color: #08B2E3;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+float: left;
+color: #f2f2f2;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+background-color: #28965A;
+color: whitesmoke;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+background-color: #EE6352;
+color: white;
+}
+#title-container {
+  margin-left:10%;
+  margin-right:10%;
   text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-  }
-  
-  /* Change the color of links on hover */
-  .topnav a:hover {
-  background-color: #28965A;
-  color: whitesmoke;
-  }
-  
-  /* Add a color to the active/current link */
-  .topnav a.active {
-  background-color: #EE6352;
-  color: white;
-  }
-  #title-container {
-    margin-left:10%;
-    margin-right:10%;
-    text-align: center;
-    font-size: 60px;
-    color: #08B2E3;
+  font-size: 60px;
+  color: #08B2E3;
 }
 
 .container {
-    background-color: #EAF47C;
+  background-color: #EAF47C;
 }
 
 .caption {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 #about-section {
-    margin-top: 200px;
-    background-color: #28965A;
-    width:100%;
-    padding: 50px;
+  margin-top: 200px;
+  background-color: #28965A;
+  width:100%;
+  padding: 50px;
 }
 
 #devs-section {
-    margin-top: 200px;
-    background-color: #EE6352;
-    width:100%;
-    padding: 50px;
+  margin-top: 200px;
+  background-color: #EE6352;
+  width:100%;
+  padding: 50px;
 }
 
 h1 {
-    text-align: center;
+  text-align: center;
 }
 
 .column {
-    float: left;
-    width: 33.33%;
-  }
-  
-  /* Clear floats after the columns */
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
+  float: left;
+  width: 33.33%;
+}
 
-  #profiles {
-      text-align: center;
-  }
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 
-  #login-form {
-    background-color: #EAF47C;
-    width:100%;
-    padding: 50px;
-    margin-top: 10rem;
-  }
+#profiles {
+    text-align: center;
+}
 
-  button[type="button"] {
-      margin: 10px;
-      color:tomato;
-  }
+#login-form {
+  background-color: #EAF47C;
+  width:100%;
+  padding: 50px;
+  margin-top: 10rem;
+}
 
-  .nes-field {
-      margin: 10px;
-  }
+button[type="button"] {
+    margin: 10px;
+    color:tomato;
+}
+
+.nes-field {
+    margin: 10px;
+}
+
+.form {
+  background-color: #EAF47C;
+  margin-top: 10rem;
+}

@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Register from "./components/Register";
 import NotFound from "./components/NotFound";
+import Pets from "./components/Pets";
 import './style.css';
 import "nes.css/css/nes.min.css";
 
@@ -35,8 +36,12 @@ function App() {
           <Router>
             <Nav />
             <Switch>
-              <Route path={"/login"}>
+            <Route path={"/login"}>
                 <Login/>
+              </Route>
+
+              <Route path={"/pets"}>
+                <Pets/>
               </Route>
 
               <Route path={"/register"}>
