@@ -29,6 +29,12 @@ class UserItemJdbcTemplateRepositoryTest {
     }
 
     @Test
+    void shouldFindFiveBiscuits () {
+        UserItem result = repository.findByIds(new UserItem(1,2,0));
+        assertEquals(5, result.getQuantity());
+    }
+
+    @Test
     void shouldAdd() {
         UserItem toAdd = new UserItem(3,2,1);
         assertTrue(repository.add(toAdd));
@@ -38,6 +44,5 @@ class UserItemJdbcTemplateRepositoryTest {
     void shouldUpdateTo11() {
         UserItem toUpdate = new UserItem(2,2,11);
         assertTrue(repository.update(toUpdate));
-
     }
 }

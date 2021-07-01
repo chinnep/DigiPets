@@ -9,5 +9,4 @@ public interface PetTypeRepository {
     List<PetType> findAll();
 
     PetType findById(int petTypeId);
-
 }

@@ -32,6 +32,17 @@ public class UserItemJdbcTemplateRepository implements UserItemRepository {
     }
 
     @Override
+    public UserItem findByIds(UserItem userItem) {
+        final String sql = "select quantity, user_id, item_id "
+                + "from user_item "
+                + "where user_id = ? "
+                + "and item_id = ?;";
+
+        return jdbcTemplate.query(sql, new UserItemMapper(), userItem.getUserId(), userItem.getItemId())
+                .stream().findAny().orElse(null);
+    }
+
+    @Override
     public boolean add(UserItem userItem) {
 
         final String sql = "insert into user_item (user_id, item_id, quantity) values (?,?,?);";

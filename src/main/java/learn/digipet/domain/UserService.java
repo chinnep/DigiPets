@@ -2,6 +2,7 @@ package learn.digipet.domain;
 
 import learn.digipet.data.UserRepository;
 import learn.digipet.models.User;
+import org.springframework.stereotype.Repository;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -10,6 +11,7 @@ import javax.validation.ValidatorFactory;
 import java.util.List;
 import java.util.Set;
 
+@Repository
 public class UserService {
 
     private final UserRepository repository;
@@ -22,39 +24,39 @@ public class UserService {
 
         Result<User> result = new Result<>();
 
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        Validator validator = factory.getValidator();
-
-        Set<ConstraintViolation<User>> violations = validator.validate(user);
-
-        if(!violations.isEmpty()) {
-            for (ConstraintViolation<User> violation : violations) {
-                result.addMessage(violation.getMessage(), ResultType.INVALID);
-            }
-        }
-        return result;
-
-        result = validate(user);
-
-        if (result.getMessages().size() > 0) {
-            return result;
-        }
-
-        if (user.getUserId() == 0 ) {
-            result.addMessage("User Id must be a valid number.", ResultType.INVALID);
-        }
-
-        for (int i = 0; i < repository.findAll().size(); i++) {
-            if (user.getUserId() == repository.findById(i).getUserId()) {
-                result.addMessage("User Id cannot be a duplicate Id.", ResultType.INVALID);
-            }
-        }
-
-        if (user.getGold() < 0) {
-            result.addMessage("User gold cannot be less than zero.", ResultType.INVALID);
-        }
-
-        result.setPayload(repository.add(user)); // WAT?
+//        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+//        Validator validator = factory.getValidator();
+//
+//        Set<ConstraintViolation<User>> violations = validator.validate(user);
+//
+//        if(!violations.isEmpty()) {
+//            for (ConstraintViolation<User> violation : violations) {
+//                result.addMessage(violation.getMessage(), ResultType.INVALID);
+//            }
+//        }
+//        return result;
+//
+//        result = validate(user);
+//
+//        if (result.getMessages().size() > 0) {
+//            return result;
+//        }
+//
+//        if (user.getUserId() == 0 ) {
+//            result.addMessage("User Id must be a valid number.", ResultType.INVALID);
+//        }
+//
+//        for (int i = 0; i < repository.findAll().size(); i++) {
+//            if (user.getUserId() == repository.findById(i).getUserId()) {
+//                result.addMessage("User Id cannot be a duplicate Id.", ResultType.INVALID);
+//            }
+//        }
+//
+//        if (user.getGold() < 0) {
+//            result.addMessage("User gold cannot be less than zero.", ResultType.INVALID);
+//        }
+//
+//        result.setPayload(repository.add(user)); // WAT?
         return result;
     }
 
