@@ -11,12 +11,21 @@ function Nav() {
     history.push("/");
   }
 
+  const { username, logout } = useContext(LoginContext);
+  const history = useHistory();
+
+  const handleLogout = () => {
+    logout();
+    history.push("/");
+  }
+
   return (
     <>
     <div class="topnav">
         <a class="active" href="/">DigiPet</a>
-        <a href="/login">Login</a>
-        <a href="/register">Register</a>
+        {username ? <button className="nes-btn is-error" onClick={handleLogout}>Logout</button>
+          : <Link to="/login" className="nes-btn is-primary">Login</Link>}
+        <Link to="/register" className="new-btn is-success">Register</Link>
         <a href="/pets">See a pet!</a>
     </div>
     </>

@@ -21,42 +21,40 @@ public class PetController {
     public PetController(PetService service) { this.service = service; }
 
     @GetMapping
-        public List<Pet> findAll() {
-            return service.findAll();
+    public List<Pet> findAll() {
+        return service.findAll();
+    }
+
+    @GetMapping("/{petId}")
+    public Pet findById(@PathVariable int petId) {
+        return service.findById(petId);
+    }
+
+    @PostMapping
+    public ResponseEntity<Object> add(@RequestBody @Valid Pet pet,
+                                      BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         }
 
-        @GetMapping("/{petId}")
-        public Pet findById(@PathVariable int petId) {
-            return service.findById(petId);
+        Result<Pet> result = service.add(pet);
+        if (result.isSuccess()) {
+            return new ResponseEntity<>(result.getPayload(), HttpStatus.CREATED);
+        }
+        return ErrorResponse.build(result);
+    }
+
+    @PutMapping("/{petId}")
+    public ResponseEntity<Object> update(@PathVariable int petId, @RequestBody Pet pet) {
+        if (petId != pet.getPetId()) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
 
-        @PostMapping
-        public ResponseEntity<Object> add(@RequestBody @Valid Pet pet,
-                                          BindingResult bindingResult) {
-            if (bindingResult.hasErrors()) {
-                return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
-            }
-
-            Result<Pet> result = service.add(pet);
-            if (result.isSuccess()) {
-                return new ResponseEntity<>(result.getPayload(), HttpStatus.CREATED);
-            }
-            return ErrorResponse.build(result);
+        Result<Pet> result = service.update(pet);
+        if (result.isSuccess()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-
-        @PutMapping("/{petId}")
-        public ResponseEntity<Object> update(@PathVariable int petId, @RequestBody Pet pet) {
-            if (petId != pet.getPetId()) {
-                return new ResponseEntity<>(HttpStatus.CONFLICT);
-            }
-
-            Result<Pet> result = service.update(pet);
-            if (result.isSuccess()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-
-            return ErrorResponse.build(result);
-        }
-
+        return ErrorResponse.build(result);
+    }
 
 }

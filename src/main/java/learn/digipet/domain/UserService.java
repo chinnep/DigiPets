@@ -19,12 +19,9 @@ public class UserService {
 
     private final UserRepository repository;
 
-
-    // jwt stuff...
     private PasswordEncoder passwordEncoder;
     private HashMap<String, User> users = new HashMap<>();
 
-    // jwt stuff... encoder is angry, but not sure why... everything matches the example on github...
    public UserService(PasswordEncoder encoder, UserRepository repository) {
         passwordEncoder = encoder;
         this.repository = repository;
@@ -32,31 +29,27 @@ public class UserService {
 
    public User findByUsername(String username) { return repository.findByUsername(username); }
 
-    // jwt...
     public boolean add(User user) {
-        // noted as 'bad data, don't care about password complexity...'
+
         if (user == null || user.getUsername() == null || user.getUsername().trim().length() == 0
                 || user.getPassword() == null || user.getPassword().trim().length() == 0) {
             return false;
         }
 
-        // duplicate
         if (users.containsKey(user.getUsername())) {
             return false;
         }
 
-        // hash the password
         user.setPasswordHash(passwordEncoder.encode(user.getPassword()));
-        // get rid of the plaintext password
+
         user.setPassword(null);
 
-        //store in the database
         users.put(user.getUsername(), user);
 
         return true;
     }
 
-    // jwt...
+
     public boolean authenticate(User user) {
         // bad data? says there is no hope to authenticate...
         if (user == null || user.getUsername() == null || user.getUsername().trim().length() == 0

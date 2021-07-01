@@ -8,7 +8,6 @@ public class User {
     private String username;
     private String password;
     private String passwordHash;
-    // private int userId;
     private int gold;
     private List<Pet> pets;
     private List<Item> items;
