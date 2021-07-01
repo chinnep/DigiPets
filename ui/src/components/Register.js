@@ -28,7 +28,6 @@ function Register() {
     }
 
     return(
-        <div className="row" id="login-form">
             <form className="form" onSubmit={onSubmit}>
                 <h1>Register</h1>
                 <div class="nes-field is-inline">
@@ -41,11 +40,10 @@ function Register() {
                 </div>
                 <div class="nes-field is-inline">
                     <label for="inline_field">Confirm Password</label>
-                    <input type="password" id="password" className="nes-input" placeholder="Confirm Password" required="" value={password} onChange={evt => setPassword(evt.target.value)}></input>
+                    <input type="password" id="password" className="nes-input" placeholder="Confirm Password" required="" value={confirmPassword} onChange={evt => setConfirmPassword(evt.target.value)}></input>
                 </div>
                 <button type="button" className="nes-btn is-success">Success</button>
             </form>
-        </div>
     );
 }
 

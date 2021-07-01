@@ -22,7 +22,12 @@ function Home() {
                         <img class="nes-avatar is-rounded is-large" alt="EC Avatar" src="logo.png"/>
                     </div>
                     Eleanor Chinn
-                    <p>about ec</p>
+                    <div>
+                        _
+                    </div>
+                    <p>Hello! I'm from Northern Virginia and I love hiking, travelling, and learning new things.
+                        My favorite games are Settlers of Catan and Clash of Clans, and almost all Nintendo games.
+                    </p>
                 </div>
                 <div className="column">
                 <div className="row">
@@ -35,6 +40,12 @@ function Home() {
                         <img class="nes-avatar is-rounded is-large" alt="EC Avatar" src="logo.png"/>
                     </div>
                 Josh Frey
+                <div>
+                    _
+                </div>
+                <p>I'm a software developer trainee from Prescott, WI. I have a degree in health, 
+                    wellness & would like to open a rec facility someday. I like video games, but 
+                    mainly the older ones... SNES and N64</p>
                 </div>
             </div>
         </div>

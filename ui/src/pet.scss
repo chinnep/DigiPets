@@ -1,0 +1,154 @@
+$background: #efe5bf;
+$egg: #478bed;
+$buttons: #ffc02d;
+$lcd: #dde2b1;
+$lcd-on: #474934;
+
+html {
+  font-size: 1vh;
+  @media screen and (max-aspect-ratio: 1/1) {
+    font-size: 1vw;
+  }
+  // using rem as an easy custom-sized unit that guarantees everything scales correctly to the viewport size
+  margin: 0;
+  padding: 0;
+}
+
+#pet-container {
+  width: 80rem;
+  height: 80rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  * {
+    position: absolute;
+  }
+}
+
+.egg {
+  background: $egg;
+  width: 60rem;
+  height: 75rem;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  bottom: 0;
+  left: 50%;
+  transform: translatex(-50%);
+}
+
+.crack {
+  background: $buttons;
+  width: 35rem;
+  height: 35rem;
+  top: 53%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  clip-path: polygon(
+    3% 5%,
+    15% 6%,
+    28% 0,
+    63% 6%,
+    80% 0,
+    100% 9%,
+    95% 22%,
+    100% 54%,
+    95% 73%,
+    96% 96%,
+    71% 95%,
+    47% 100%,
+    28% 93%,
+    12% 99%,
+    0% 90%,
+    6% 76%,
+    0 57%,
+    5% 28%
+  );
+}
+.display {
+  background: #dde2b1;
+  width: 27rem;
+  height: 27rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 1rem;
+}
+
+#pet-button {
+  width: 100%;
+  text-align: center;
+  top: 80%;
+  display: inline-block;
+  position: relative;
+  background: $buttons;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  &:not(:last-child) {
+    margin-right: 4.5rem;
+  }
+  &:nth-child(2) {
+    top: 2rem;
+  }
+}
+.loop {
+  width: 3rem;
+  height: 3rem;
+  border: 2rem $egg solid;
+  border-radius: 50%;
+  left: 50%;
+  transform: translatex(-50%);
+}
+
+.grid {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  grid-template-rows: repeat(16, 1fr);
+  * {
+    position: relative;
+    background: $lcd-on;
+  }
+  .pixel1 {
+    grid-area: 16 / 5 / span 1 / span 8;
+  }
+  .pixel2 {
+    grid-area: 15 / 6 / span 1 / span 2;
+  }
+  .pixel3 {
+    grid-area: 15 / 10 / span 1 / span 2;
+  }
+  .pixel4 {
+    grid-area: 14 / 5 / span 1 / span 2;
+  }
+  .pixel5 {
+    grid-area: 14 / 10 / span 1 / span 3;
+  }
+  .pixel6 {
+    grid-area: 11 / 5 / span 3 / span 1;
+  }
+  .pixel7 {
+    grid-area: 12 / 8 / span 2 / span 2;
+  }
+  .pixel8 {
+    grid-area: 13 / 11 / span 1 / span 2;
+  }
+  .pixel9 {
+    grid-area: 11 / 12 / span 2 / span 1;
+  }
+  .pixel10 {
+    grid-area: 10 / 6 / span 2 / span 2;
+  }
+  .pixel11 {
+    grid-area: 9 / 6 / span 1 / span 1;
+  }
+  .pixel12 {
+    grid-area: 8 / 7 / span 1 / span 4;
+  }
+  .pixel13 {
+    grid-area: 9 / 10 / span 2 / span 2;
+  }
+}
