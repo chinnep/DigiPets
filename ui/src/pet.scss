@@ -1,0 +1,118 @@
+$background: #efe5bf;
+$egg: #478bed;
+$buttons: #ffc02d;
+$lcd: #dde2b1;
+$lcd-on: #474934;
+
+html {
+  font-size: 1vh;
+  @media screen and (max-aspect-ratio: 1/1) {
+    font-size: 1vw;
+  }
+  // using rem as an easy custom-sized unit that guarantees everything scales correctly to the viewport size
+  margin: 0;
+  padding: 0;
+}
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  background: $background;
+}
+
+#egg-container {
+  width: 80rem;
+  height: 80rem;
+  position: absolute;
+  margin-top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  * {
+    position: absolute;
+  }
+}
+
+.egg {
+  background: $egg;
+  width: 60rem;
+  height: 75rem;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  bottom: 0;
+  left: 50%;
+  transform: translatex(-50%);
+}
+
+.crack {
+  background: $buttons;
+  width: 35rem;
+  height: 35rem;
+  top: 53%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  clip-path: polygon(
+    3% 5%,
+    15% 6%,
+    28% 0,
+    63% 6%,
+    80% 0,
+    100% 9%,
+    95% 22%,
+    100% 54%,
+    95% 73%,
+    96% 96%,
+    71% 95%,
+    47% 100%,
+    28% 93%,
+    12% 99%,
+    0% 90%,
+    6% 76%,
+    0 57%,
+    5% 28%
+  );
+}
+.display {
+  background: $lcd;
+  width: 27rem;
+  height: 27rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 1rem;
+}
+
+#active-image {
+  width: 27rem;
+  margin-top: 6rem;
+}
+
+.buttons {
+  width: 100%;
+  text-align: center;
+  top: 80%;
+}
+#pet-button {
+  width: 100%;
+  text-align: center;
+  top: 80%;
+  display: inline-block;
+  position: relative;
+  background: $buttons;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  &:not(:last-child) {
+    margin-right: 4.5rem;
+  }
+  &:nth-child(2) {
+    top: 2rem;
+  }
+}
+.loop {
+  width: 3rem;
+  height: 3rem;
+  border: 2rem $egg solid;
+  border-radius: 50%;
+  left: 50%;
+  transform: translatex(-50%);
+}

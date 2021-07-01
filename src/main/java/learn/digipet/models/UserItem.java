@@ -1,30 +1,31 @@
 package learn.digipet.models;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PositiveOrZero;
 
 public class UserItem {
 
-    @PositiveOrZero
-    private int userId;
+    @NotBlank
+    private String username;
     @PositiveOrZero
     private int itemId;
     @PositiveOrZero
     private int quantity;
 
-    public UserItem(int userId, int itemId, int quantity) {
-        this.userId = userId;
+    public UserItem(String username, int itemId, int quantity) {
+        this.username = username;
         this.itemId = itemId;
         this.quantity = quantity;
     }
 
     public UserItem(){}
 
-    public int getUserId() {
-        return userId;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public int getItemId() {

@@ -39,6 +39,7 @@ public class PetService {
     2. Last login should be null (can't be in the future or past
     3. Can't be dead, we don't give out dead 8bit pets in this household
     4. No trophies for new pets
+    5. New pets can have null moves but not a list < 1 (because eggs can't have moves)
      */
     public Result<Pet> add(Pet pet) {
 
@@ -58,15 +59,15 @@ public class PetService {
 
         result = validate(pet);
 
-        if(result.getMessages().size() >  0) return result;
-
-        if (pet.getPetId() != 0) {
-            result.addMessage("PetId cannot be set for `add` operation", ResultType.INVALID);
-            return result;
-        }
+        if(result.getMessages().size() > 0) return result;
 
         if (pet.getTimeAtLastLogin() != null) {
             result.addMessage("Last Login must be null for a brand new pet.", ResultType.INVALID);
+            return result;
+        }
+
+        if (pet.getPetId() != 0) {
+            result.addMessage("PetId cannot be set for `add` operation", ResultType.INVALID);
             return result;
         }
 
@@ -100,6 +101,11 @@ public class PetService {
 
         if(result.getMessages().size() > 0) return result;
 
+        if(pet.getTimeAtLastLogin().isAfter(LocalDateTime.now())) {
+            result.addMessage("Time at last login cannot be in the future", ResultType.INVALID);
+            return result;
+        }
+
         if (!repository.update(pet)) {
             result.addMessage(String.format("pet id: %s, not found", pet.getPetId()), ResultType.NOT_FOUND);
         }
@@ -114,9 +120,17 @@ public class PetService {
             return result;
         }
 
-        if(pet.getTimeAtLastLogin().isAfter(LocalDateTime.now())) {
-            result.addMessage("Time at last login cannot be in the future", ResultType.INVALID);
+        if(pet.getName() == null) {
+            result.addMessage("Name cannot be null.", ResultType.INVALID);
         }
+
+        if(pet.getUsername().isBlank()) {
+            result.addMessage("Username cannot be blank.", ResultType.INVALID);
+        }
+        if(pet.getPetType() != null && pet.getPetType().getPetTypeId() < 1) {
+            result.addMessage("Invalid pet type id.", ResultType.INVALID);
+        }
+
         return result;
     }
 }

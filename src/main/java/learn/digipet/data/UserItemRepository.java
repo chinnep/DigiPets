@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface UserItemRepository {
 
-    List<UserItem> findByUserId(int id);
+    List<UserItem> findByUsername(String username);
 
     UserItem findByIds(UserItem userItem);
 

@@ -5,24 +5,42 @@ import java.util.Objects;
 
 public class User {
 
-    private int userId;
+    private String username;
+    private String password;
+    private String passwordHash;
+    // private int userId;
     private int gold;
     private List<Pet> pets;
     private List<Item> items;
 
-    public User(int userId, int gold) {
-        this.userId = userId;
-        this.gold = gold;
+    public User(String username) {
+        this.username = username;
     }
 
     public User() {}
 
-    public int getUserId() {
-        return userId;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
     }
 
     public int getGold() {
@@ -54,11 +72,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return getUserId() == user.getUserId() && getGold() == user.getGold() && Objects.equals(getPets(), user.getPets()) && Objects.equals(getItems(), user.getItems());
+        return Objects.equals(getUsername(), user.getUsername());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getUserId(), getGold(), getPets(), getItems());
+        return Objects.hash(getUsername());
     }
+
 }

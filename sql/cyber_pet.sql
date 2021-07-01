@@ -4,7 +4,9 @@ use cyber_pet;
 
 -- create tables
 create table user(
-	user_id int primary key,
+	username varchar(150) primary key,
+    password varchar(150) not null,
+    password_hash varchar(250) not null,
 	gold int
 );
 
@@ -18,13 +20,13 @@ create table item(
 
 create table user_item(
 	quantity int not null,
-    user_id int not null,
+    username varchar(250) not null,
     item_id int not null,
     constraint pk_user_item
-        primary key (user_id, item_id),
-	constraint fk_user_item_user_id
-        foreign key (user_id)
-        references user(user_id),
+        primary key (username, item_id),
+	constraint fk_user_item_username
+        foreign key (username)
+        references user(username),
 	constraint fk_user_item_item_id
         foreign key (item_id)
         references item(item_id)
@@ -56,13 +58,13 @@ create table pet(
     is_dead boolean not null,
     trophies int not null,
     pet_type_id int not null,
-    user_id int not null,
+    username varchar(250) not null,
 	constraint fk_pet_pet_type_id
         foreign key (pet_type_id)
         references pet_type(pet_type_id),
-	constraint fk_pet_user_id
-        foreign key (user_id)
-        references user(user_id)
+	constraint fk_pet_username
+        foreign key (username)
+        references user(username)
 );
 
 create table move(

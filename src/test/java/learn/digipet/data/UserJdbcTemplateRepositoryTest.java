@@ -22,10 +22,10 @@ class UserJdbcTemplateRepositoryTest {
 
 
     @Test
-    void shouldFindById() {
-        User expected = new User(1, 1000);
-        User actual = repository.findById(1);
-        assertEquals(expected, actual);
+    void shouldFind1ByUsername() {
+        User abc123 = repository.findByUsername("abc123");
+        assertEquals("abc123", abc123.getUsername());
+        assertEquals(1000, abc123.getGold());
     }
 
     @Test
@@ -35,30 +35,23 @@ class UserJdbcTemplateRepositoryTest {
         assertEquals(4, repository.findAll().size());
     }
 
-    @Test
-    void shouldUpdate() {
-        User user = makeUser();
-        user.setUserId(2);
-        assertTrue(repository.update(user));
-
-        user.setUserId(15);
-        assertFalse(repository.update(user));
-
-    }
-
 //    @Test
 //    void shouldUpdate() {
-//        Agent agent = makeAgent();
-//        agent.setAgentId(3);
-//        assertTrue(repository.update(agent));
-//        agent.setAgentId(13);
-//        assertFalse(repository.update(agent));
+//        User user = makeUser();
+//        user.setUsername("existing user...");
+//        assertTrue(repository.update(user));
+//
+//        user.setUsername("non-existing user...");
+//        assertFalse(repository.update(user));
+//
 //    }
 
     private User makeUser() {
         User user = new User();
-        user.setUserId(4);
-        user.setGold(800);
+        user.setUsername("abc12345");
+        user.setPassword("ketchup3000");
+        user.setPasswordHash("$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQd");
+        user.setGold(5000);
         return user;
     }
 

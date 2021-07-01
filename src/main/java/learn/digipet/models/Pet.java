@@ -18,17 +18,15 @@ public class Pet {
     @PositiveOrZero
     private int healthLevel;
     private LocalDateTime timeAtLastLogin;
-    @NotBlank
     private boolean isDead;
     @PositiveOrZero
     private int trophies;
-    @NotBlank
+    @NotNull
     private PetType petType;
     @Size.List(@Size(min = 1, message = "Need at least one move."))
-    //@Size.List(@Size(max = 3, message = "Cannot have more than 3 moves, delete a move first."))
     private List<Move> moves;
-    @PositiveOrZero
-    private int userId;
+    @NotBlank
+    private String username;
 
     public int getPetId() {
         return petId;
@@ -94,12 +92,12 @@ public class Pet {
         this.trophies = trophies;
     }
 
-    public int getUserId() {
-        return userId;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public boolean isDead() {
@@ -140,7 +138,7 @@ public class Pet {
                 ", trophies=" + trophies +
                 ", petType=" + petType +
                 ", moves=" + moves +
-                ", userId=" + userId +
+                ", userId=" + username +
                 '}';
     }
 }

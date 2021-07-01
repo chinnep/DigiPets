@@ -24,7 +24,7 @@ public class PetMapper implements RowMapper<Pet> {
                 DateTimeFormatter.ISO_LOCAL_DATE_TIME));
         pet.setDead(resultSet.getBoolean("is_dead"));
         pet.setTrophies(resultSet.getInt("trophies"));
-        pet.setUserId(resultSet.getInt("user_id"));
+        pet.setUsername(resultSet.getString("username"));
 
         return pet;
     }
