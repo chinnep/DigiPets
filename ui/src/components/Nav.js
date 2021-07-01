@@ -11,14 +11,6 @@ function Nav() {
     history.push("/");
   }
 
-  const { username, logout } = useContext(LoginContext);
-  const history = useHistory();
-
-  const handleLogout = () => {
-    logout();
-    history.push("/");
-  }
-
   return (
     <>
     <div class="topnav">
