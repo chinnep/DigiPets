@@ -28,7 +28,8 @@ public class UserJdbcTemplateRepository implements UserRepository {
     @Override
     public User findByUsername(String username) {
 
-        final String sql = "select password, password_hash, gold from user "
+        final String sql = "select username, password, password_hash, gold "
+                + "from user "
                 + "where username = ?;";
 
         User user = jdbcTemplate.query(sql, new UserMapper(), username).stream()
@@ -40,7 +41,7 @@ public class UserJdbcTemplateRepository implements UserRepository {
     @Override
     public boolean add(User user) {
 
-        final String sql = "insert into user (username, password, passwordHash, gold) values (?,?,?,?);";
+        final String sql = "insert into user (username, password, password_hash, gold) values (?,?,?,?);";
 
         return jdbcTemplate.update(sql,
                 user.getUsername(),

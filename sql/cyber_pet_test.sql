@@ -3,7 +3,7 @@ create database cyber_pet_test;
 use cyber_pet_test;
 
 -- create tables
-create table user(
+create table `user`(
 	username varchar(150) primary key,
     password varchar(150) not null,
     password_hash varchar(250) not null,
@@ -64,7 +64,7 @@ create table pet(
         references pet_type(pet_type_id),
 	constraint fk_pet_username
         foreign key (username)
-        references user(username)
+        references `user`(username)
 );
 
 create table move(

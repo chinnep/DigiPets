@@ -2,6 +2,7 @@ package learn.digipet.domain;
 
 import learn.digipet.data.UserRepository;
 import learn.digipet.models.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -16,19 +17,20 @@ import java.util.Set;
 @Service
 public class UserService {
 
+    private final UserRepository repository;
+
+
     // jwt stuff...
     private PasswordEncoder passwordEncoder;
     private HashMap<String, User> users = new HashMap<>();
 
-    private final UserRepository repository;
-
-    // jwt stuff... encoder is angry, but not sure why... everything matches the example on github
-    public UserService(PasswordEncoder encoder, UserRepository repository) {
+    // jwt stuff... encoder is angry, but not sure why... everything matches the example on github...
+   public UserService(PasswordEncoder encoder, UserRepository repository) {
         passwordEncoder = encoder;
         this.repository = repository;
     }
 
-    public User findByUsername(String username) { return repository.findByUsername(username); }
+   public User findByUsername(String username) { return repository.findByUsername(username); }
 
     // jwt...
     public boolean add(User user) {
@@ -70,7 +72,7 @@ public class UserService {
         return passwordEncoder.matches(user.getPassword(), existing.getPasswordHash());
     }
 
-    // The old UserService is below. I don't believe we need it anymore??
+    // The old UserService (before the security / jwt stuff) is below. I don't believe we need it anymore, but just in case??
 /*
     private final UserRepository repository;
 
@@ -149,6 +151,6 @@ public class UserService {
         }
         return result;
     }
- */
+*/
 
 }

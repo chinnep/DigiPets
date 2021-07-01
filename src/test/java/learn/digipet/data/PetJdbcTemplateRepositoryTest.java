@@ -90,7 +90,7 @@ class PetJdbcTemplateRepositoryTest {
         pet.setDead(false);
         pet.setTrophies(0);
         pet.setPetType(petType);
-        pet.setUsername("abc12345");
+        pet.setUsername("abc123");
 
         return pet;
     }
