@@ -20,6 +20,11 @@ class UserJdbcTemplateRepositoryTest {
     @BeforeEach
     void setup() { knownGoodState.set(); }
 
+    @Test
+    void shouldFindThreeOrMore() {
+        System.out.println(repository.findAll());
+        assertTrue(repository.findAll().size() >= 3);
+    }
 
     @Test
     void shouldFindByUsername() {
@@ -35,16 +40,16 @@ class UserJdbcTemplateRepositoryTest {
         assertEquals(4, repository.findAll().size());
     }
 
-//    @Test
-//    void shouldUpdate() {
-//        User user = makeUser();
-//        user.setUsername("existing user...");
-//        assertTrue(repository.update(user));
-//
-//        user.setUsername("non-existing user...");
-//        assertFalse(repository.update(user));
-//
-//    }
+    @Test
+    void shouldUpdate() {
+        User user = new User("dev10peeps");
+        user.setGold(500);
+        assertTrue(repository.updateGold(user));
+        assertEquals(500, repository.findByUsername("dev10peeps").getGold());
+
+        user.setUsername("bad");
+        assertFalse(repository.updateGold(user));
+    }
 
     private User makeUser() {
         User user = new User();
