@@ -1,5 +1,15 @@
+import { useContext } from "react";
+import { useHistory, Link } from "react-router-dom";
+import LoginContext from "../contexts/LoginContext";
 
 function Nav() {
+  const { username, logout } = useContext(LoginContext);
+  const history = useHistory();
+
+  const handleLogout = () => {
+    logout();
+    history.push("/");
+  }
 
   return (
     <>
