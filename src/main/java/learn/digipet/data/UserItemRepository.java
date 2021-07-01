@@ -14,8 +14,9 @@ public interface UserItemRepository {
 
     List<UserItem> findByUsername(String username);
 
+    UserItem findByIds(UserItem userItem);
+
     boolean add (UserItem userItem);
 
     boolean update(UserItem userItem);
-
 }
