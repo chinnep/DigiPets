@@ -7,6 +7,8 @@ import learn.digipet.models.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 @Repository
@@ -19,10 +21,15 @@ public class UserJdbcTemplateRepository implements UserRepository {
     }
 
     @Override
-    public List<User> findAll() {
+    public HashSet<String> findAll() {
 
-        final String sql = "select username, password, password_hash, gold from user limit 1000;";
-        return jdbcTemplate.query(sql, new UserMapper());
+        final String sql = "select username from user;";
+
+        List<String> result = jdbcTemplate.query(sql,
+                (rs, rowNum) ->
+                    new String(rs.getString("username")));
+
+        return new HashSet<String>(result);
     }
 
     @Override
@@ -55,20 +62,17 @@ public class UserJdbcTemplateRepository implements UserRepository {
                 user.getGold()) > 0;
     }
 
-// Do we need to update?? we won't let users update their gold... username we could change, but it's our identifier,
-// and password we could change but I'm not sure how difficult that would be.
-//    @Override
-//    public boolean update(User user) {
-//
-//        // not allowing user_id updates...
-//        final String sql = "update user set "
-//                + "gold = ? "
-//                + "where username = ?;";
-//
-//        return jdbcTemplate.update(sql,
-//                user.getGold(),
-//                user.getUsername()) > 0;
-//    }
+    @Override
+    public boolean updateGold(User user) {
+
+        final String sql = "update user set "
+                + "gold = ? "
+                + "where username = ?;";
+
+        return jdbcTemplate.update(sql,
+                user.getGold(),
+                user.getUsername()) > 0;
+    }
 
     private void addPets(User user) {
 
