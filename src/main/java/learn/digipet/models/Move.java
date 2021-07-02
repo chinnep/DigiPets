@@ -5,6 +5,7 @@ import javax.validation.constraints.PositiveOrZero;
 
 public class Move {
 
+    @PositiveOrZero
     private int moveId;
     @NotBlank
     private String name;
