@@ -4,10 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import learn.digipet.domain.Battle;
 import learn.digipet.domain.BattleService;
 import learn.digipet.domain.Result;
-import learn.digipet.models.Item;
-import learn.digipet.models.Move;
-import learn.digipet.models.Pet;
-import learn.digipet.models.PetType;
+import learn.digipet.models.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -21,8 +18,7 @@ import java.util.ArrayList;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -80,6 +76,76 @@ class BattleControllerTest {
                 .andExpect(status().isCreated())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(content().json(expectedJson));
+    }
+
+    @Test
+    void shouldNotAddNullPetA() throws Exception {
+        Battle toAdd = new Battle(null, makePet(), makeItem(), makeItem());
+
+        ObjectMapper jsonMapper = new ObjectMapper();
+        String jsonIn = jsonMapper.writeValueAsString(toAdd);
+
+        RequestBuilder requestBuilder = post("/battle")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonIn);
+
+        mvc.perform(requestBuilder)
+                .andExpect(status().isInternalServerError());
+    }
+
+    @Test
+    void shouldNotAddNullPetB() throws Exception {
+        Battle toAdd = new Battle(makePet(), null ,makeItem(), makeItem());
+
+        ObjectMapper jsonMapper = new ObjectMapper();
+        String jsonIn = jsonMapper.writeValueAsString(toAdd);
+
+        RequestBuilder requestBuilder = post("/battle")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonIn);
+
+        mvc.perform(requestBuilder)
+                .andExpect(status().isInternalServerError());
+    }
+
+    @Test
+    void shouldNotAddNullPets() throws Exception {
+        Battle toAdd = new Battle(null, null ,makeItem(), makeItem());
+
+        ObjectMapper jsonMapper = new ObjectMapper();
+        String jsonIn = jsonMapper.writeValueAsString(toAdd);
+
+        RequestBuilder requestBuilder = post("/battle")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonIn);
+
+        mvc.perform(requestBuilder)
+                .andExpect(status().isInternalServerError());
+    }
+
+    @Test
+    //currently doesn't work but I need a break from battles atm
+    void shouldHaveARound() throws Exception {
+        Battle battle = new Battle(makePet(),makePet(),makeItem(),makeItem());
+        battle.setBattleId(0);
+
+        Result<Battle> result = new Result<>();
+
+        RoundRequest req = new RoundRequest(0,new Move(1,"test",100),
+                new Move(1,"test",100));
+
+        when(service.round(req.getBattleId(),req.getMoveA(),req.getMoveB()))
+                .thenReturn(result);
+
+        ObjectMapper jsonMapper = new ObjectMapper();
+        String jsonIn = jsonMapper.writeValueAsString(req);
+
+        RequestBuilder requestBuilder = put("/battle/0/round")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonIn);
+
+        mvc.perform(requestBuilder)
+                .andExpect(status().isNoContent());
     }
 
     Item makeItem() {

@@ -4,6 +4,7 @@ import learn.digipet.domain.Battle;
 import learn.digipet.domain.BattleService;
 import learn.digipet.domain.Result;
 import learn.digipet.models.Move;
+import learn.digipet.models.RoundRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,16 +37,12 @@ public class BattleController {
     }
 
     @PutMapping("/{battleId/round}")
-    public ResponseEntity<Object> round(@PathVariable int battleId, @RequestBody Move moveA, @RequestBody Move moveB) {
+    public ResponseEntity<Object> round(@PathVariable int battleId, @RequestBody RoundRequest req) {
+        Result<Battle> result = service.round(battleId, req.getMoveA(), req.getMoveB());
 
-        if(service.findById(battleId).getPetA().getHealthLevel() <=0 ||
-                service.findById(battleId).getPetB().getHealthLevel() <=0) {
+        if(!result.isSuccess()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
-        Result<Battle> result = service.round(battleId, moveA, moveB);
-
-        if (result.isSuccess()) {
+        }else if (result.isSuccess()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
 

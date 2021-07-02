@@ -21,7 +21,7 @@ public class BattleService {
 
     public Result<Battle> add(Battle battle) {
         Result<Battle> result = validatePets(battle.getPetA(), battle.getPetB());
-        if(result.getMessages().size() > 0) return result;
+        if(!result.isSuccess()) return result;
 
         battle.setBattleId(lastId);
         battles.put(lastId, battle);
