@@ -3,9 +3,8 @@ create database cyber_pet_test;
 use cyber_pet_test;
 
 -- create tables
-create table `user`(
+create table user(
 	username varchar(150) primary key,
-    password varchar(150) not null,
     password_hash varchar(250) not null,
 	gold int
 );
@@ -114,10 +113,10 @@ begin
         ('Sledgehammer','A sledgehammer is a tool with a large, flat, often metal head, attached to a long handle.', true, 200),
         ('Biscuit','A flour-based baked food product. Give your pet this buttery treat for more <3 points', false, 20);
     
-    insert into user(username, password, password_hash, gold) values
-        ('abc123','top-secret','$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa',1000),
-        ('tamagotchi-gang','top-secreter','$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQb',2000),
-        ('dev10peeps','top-secretest','$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQc',3000);
+    insert into user(username, password_hash, gold) values
+        ('abc123','$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa',1000),
+        ('tamagotchi-gang','$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQb',2000),
+        ('dev10peeps','$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQc',3000);
         
 	insert into pet_type (pet_type_name, appetite, care, thirst, health, next_pet_type_id)
 		values

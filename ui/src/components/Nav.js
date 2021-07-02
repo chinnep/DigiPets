@@ -14,7 +14,7 @@ function Nav() {
   return (
     <>
     <div class="topnav">
-        <a class="active" href="/">DigiPet</a>
+        <Link to="/" className="nes-btn">DigiPet</Link>
         {username ? <button className="nes-btn is-error" onClick={handleLogout}>Logout</button>
           : <Link to="/login" className="nes-btn is-primary">Login</Link>}
         <Link to="/register" className="new-btn is-success">Register</Link>

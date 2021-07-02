@@ -1,4 +1,4 @@
-const url = "http://localhost:8080/";
+const url = "http://localhost:8080/users";
 
 export async function findByUsername(username) {
     const response = await fetch(`${url}/${username}`);
@@ -18,11 +18,14 @@ export async function add(user) {
         body: JSON.stringify(user)
     }
 
-    const response = await fetch(url, init);
+    const response = await fetch(`${url}/register`, init);
+
     if (response.status === 201) {
         return await response.json();
     }
 
-    return Promise.reject("not 201 Created");
+    const { messages } = await response.json();
+
+    return Promise.reject(messages);
 }
 

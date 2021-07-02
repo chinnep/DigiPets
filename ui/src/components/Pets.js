@@ -9,7 +9,7 @@ function Pets() {
                 <div class='crack'>
                     <div class='display'>
                         <div class='grid'>
-                            <img id="active-image" src="https://2.bp.blogspot.com/-BwqYts1IQQ8/Txl9ZXaXwFI/AAAAAAAACbg/2b9IMKJ8_H0/s1600/6.gif"/>
+                            <img id="active-image" src="https://2.bp.blogspot.com/-BwqYts1IQQ8/Txl9ZXaXwFI/AAAAAAAACbg/2b9IMKJ8_H0/s1600/6.gif" alt=""/>
                         </div>
                     </div>
                 </div>
