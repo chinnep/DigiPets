@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = {"http://localhost:3000"})
-@RequestMapping("/pets")
+@RequestMapping("/pet")
 public class PetController {
 
     private final PetService service;
@@ -31,8 +31,7 @@ public class PetController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> add(@RequestBody @Valid Pet pet,
-                                      BindingResult bindingResult) {
+    public ResponseEntity<Object> add(@RequestBody @Valid Pet pet, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         }
@@ -57,4 +56,11 @@ public class PetController {
         return ErrorResponse.build(result);
     }
 
+    @DeleteMapping("/{petId}")
+    public ResponseEntity<Void> deleteById(@PathVariable int petId) {
+        if (service.deleteById(petId)) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }
