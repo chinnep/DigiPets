@@ -14,11 +14,11 @@ function Nav() {
   return (
     <>
     <div class="topnav">
-        <Link to="/" className="nes-btn">DigiPet</Link>
+        <Link className="nes-btn is-error" to="/">DigiPet</Link>
         {username ? <button className="nes-btn is-error" onClick={handleLogout}>Logout</button>
           : <Link to="/login" className="nes-btn is-primary">Login</Link>}
-        <Link to="/register" className="new-btn is-success">Register</Link>
-        <a href="/pets">See a pet!</a>
+        <Link to="/register" className="nes-btn is-success">Register</Link>
+        <Link className="nes-btn is-warning" to="/pets">See a pet!</Link>
     </div>
     </>
   );
