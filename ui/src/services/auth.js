@@ -13,7 +13,7 @@ export async function authenticate(user) {
     if(response.status === 200) {
         return response.json();
     } 
-    return Promise.reject("no dice...");
+    return Promise.reject("Login failed");
 }
 
 export async function refresh() {
