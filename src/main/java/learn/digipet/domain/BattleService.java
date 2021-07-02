@@ -27,12 +27,12 @@ public class BattleService {
         return result;
     }
 
-    public Result<Battle> round(int BattleId, Move moveA, Move moveB) {
-        Result<Battle> result = validateMoves(moveA, moveB);
-
-        Battle battle = findByBattleId(battle)
-        return battle;
-    }
+//    public Result<Battle> round(int BattleId, Move moveA, Move moveB) {
+//        Result<Battle> result = validateMoves(moveA, moveB);
+//
+//        Battle battle = findByBattleId(battle);
+//        return battle;
+//    }
 
     //yeah so I'm just going to check for the correct datatypes, not each individual parameter
     //hopefully this doesn't backfire... but if it does here's the friendly warning
