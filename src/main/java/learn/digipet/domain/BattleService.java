@@ -22,12 +22,12 @@ public class BattleService {
         Result<Battle> result = validatePets(battle.getPetA(), battle.getPetB());
         if(result.getMessages().size() > 0) return result;
 
-        battle.setGameId(battles.size());
-        battles.put(battle.getGameId(), battle);
+        battle.setBattleId(battles.size());
+        battles.put(battle.getBattleId(), battle);
         result.setPayload(battle);
         return result;
     }
-    
+
     public Result<Battle> round(int battleId, Move moveA, Move moveB) {
         Result<Battle> result = validateMoves(moveA, moveB);
 
@@ -39,7 +39,11 @@ public class BattleService {
             return result;
         }
 
-        battle.round(moveA, moveB);
+        boolean res = battle.round(moveA, moveB);
+        if(!res) {
+            result.addMessage("Battle round failed.", ResultType.NOT_FOUND);
+        }
+
         return result;
     }
 
