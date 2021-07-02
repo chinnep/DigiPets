@@ -13,13 +13,19 @@ function Nav() {
 
   return (
     <>
-    <div class="topnav">
-        <Link className="nes-btn is-error" to="/">DigiPet</Link>
-        {username ? <button className="nes-btn is-error" onClick={handleLogout}>Logout</button>
-          : <Link to="/login" className="nes-btn is-primary">Login</Link>}
-        <Link to="/register" className="nes-btn is-success">Register</Link>
-        <Link className="nes-btn is-warning" to="/pets">See a pet!</Link>
-    </div>
+      <div className="topnav">
+        <div className="col-left">
+          <Link className="nes-btn is-error" to="/">DigiPet</Link>
+          {username ? <Link className="nes-btn is-warning" to="/shop">Shop!</Link>
+          : <Link className="nes-btn is-warning" to="/pets">See a pet!</Link>}
+          {username && <Link className="nes-btn" to="/battle">Battle!</Link>}
+        </div>
+        <div className="col-right">
+          {username ?<button className="nes-btn is-error" onClick={handleLogout}>Logout</button>
+            : <Link to="/login" className="nes-btn is-primary">Login</Link>}
+          {!username && <Link to="/register" className="nes-btn is-success">Register</Link>}
+        </div>
+      </div>
     </>
   );
 }
