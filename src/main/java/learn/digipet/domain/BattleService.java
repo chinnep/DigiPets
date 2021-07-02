@@ -30,8 +30,8 @@ public class BattleService {
     public Result<Battle> round(int BattleId, Move moveA, Move moveB) {
         Result<Battle> result = validateMoves(moveA, moveB);
 
-        Battle battle = findByBattleId(battle)
-        return battle;
+        //Battle battle = findByBattleId(battle);
+        return null;
     }
 
     //yeah so I'm just going to check for the correct datatypes, not each individual parameter
