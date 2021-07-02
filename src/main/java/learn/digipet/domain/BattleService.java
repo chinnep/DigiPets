@@ -22,16 +22,25 @@ public class BattleService {
         Result<Battle> result = validatePets(battle.getPetA(), battle.getPetB());
         if(result.getMessages().size() > 0) return result;
 
-        battles.put(battles.size(), battle);
+        battle.setGameId(battles.size());
+        battles.put(battle.getGameId(), battle);
         result.setPayload(battle);
         return result;
     }
-
-    public Result<Battle> round(int BattleId, Move moveA, Move moveB) {
+    
+    public Result<Battle> round(int battleId, Move moveA, Move moveB) {
         Result<Battle> result = validateMoves(moveA, moveB);
 
-        //Battle battle = findByBattleId(battle);
-        return null;
+        if(!result.isSuccess()) return result;
+
+        Battle battle = findByBattleId(battleId);
+        if(battle == null) {
+            result.addMessage("Battle is null.", ResultType.INVALID);
+            return result;
+        }
+
+        battle.round(moveA, moveB);
+        return result;
     }
 
     //yeah so I'm just going to check for the correct datatypes, not each individual parameter

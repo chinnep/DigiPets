@@ -6,13 +6,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 
 @RestController
 @CrossOrigin(origins = {"http://localhost:3000"})
 @RequestMapping("/users")
 public class UserController {
 
-    private UserService service;
+    private final UserService service;
 
     public UserController(UserService service) {
         this.service = service;
@@ -24,7 +26,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Void> add(@RequestBody User user) {
+    public ResponseEntity<Void> add(@RequestBody @Valid User user) {
         boolean success = service.add(user);
         return new ResponseEntity<>(success ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST);
     }

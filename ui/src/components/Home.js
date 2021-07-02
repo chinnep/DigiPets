@@ -49,9 +49,9 @@ function Home() {
                         <div>
                             _
                         </div>
-                        <p>I'm a software developer trainee from Prescott, WI. I have a degree in health,
-                            wellness & would like to open a rec facility someday. I like video games, but
-                            mainly the older ones... SNES and N64</p>
+                        <p>Hey all- I'm a software developer trainee from Prescott, WI. I have a degree in health,
+                            wellness & fitness. I enjoy staying active, but also love playing video games (mainly older
+                            Nintendo games).</p>
                     </div>
                 </div>
             </div>
