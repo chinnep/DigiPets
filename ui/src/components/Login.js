@@ -34,7 +34,7 @@ function Login() {
                 </div>
                 <div class="nes-field is-inline">
                     <button type="submit" className="nes-btn is-success">Submit</button>
-                    <Link to="/" className="new-btn is-warning">Cancel</Link>
+                    <Link to="/" className="nes-btn is-warning">Cancel</Link>
                 </div>
             </form>
     );
