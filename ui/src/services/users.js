@@ -21,7 +21,8 @@ export async function add(user) {
     const response = await fetch(`${url}/register`, init);
 
     if (response.status === 201) {
-        return await response.json();
+        // return await response.json();
+        return;
     }
 
     const { messages } = await response.json();

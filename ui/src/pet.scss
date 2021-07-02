@@ -1,7 +1,7 @@
 $background: #efe5bf;
 $egg: #478bed;
 $buttons: #ffc02d;
-$lcd: #dde2b1;
+$lcd: #eeeee2;
 $lcd-on: #474934;
 
 html {
@@ -79,6 +79,68 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 1rem;
+}
+
+.display-name {
+  position: relative;
+  top: 15rem;
+  left: 17rem;
+  height: 2rem;
+  
+}
+
+.display-bars {
+  position: relative;
+  height: 75rem;
+  width: 15rem;
+}
+
+#health-bar {
+  top: 1.5rem;
+  left: 2rem;
+  height: 2rem;
+}
+
+#care-bar {
+  top: 1.5rem;
+  left: 62rem;
+  height: 2rem;
+}
+
+#hunger-bar {
+  top: 72.5rem;
+  left: 2rem;
+  height: 2rem;
+}
+
+#thirst-bar {
+  top: 72.5rem;
+  left: 62rem;
+  height: 2rem;
+}
+
+#health-text {
+  top: 5rem;
+  left: 1.5rem;
+  height: 2rem;
+}
+
+#care-text {
+  top: 5rem;
+  left: 61rem;
+  height: 2rem;
+}
+
+#hunger-text {
+  top: 76rem;
+  left: 1.5rem;
+  height: 2rem;
+}
+
+#thirst-text {
+  top: 76rem;
+  left: 56.5rem;
+  height: 2rem;
 }
 
 #active-image {
