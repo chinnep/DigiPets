@@ -13,12 +13,10 @@ public class UserService {
     private final UserRepository repository;
 
     private PasswordEncoder passwordEncoder;
-    private HashSet<String> users;
 
     public UserService(PasswordEncoder encoder, UserRepository repository) {
         passwordEncoder = encoder;
         this.repository = repository;
-        users = repository.findAll();
     }
 
     public User findByUsername(String username) {
@@ -26,6 +24,8 @@ public class UserService {
     }
 
     public boolean add(User user) {
+
+        HashSet<String> users = repository.findAll();
 
         if (!validateUser(user)) return false;
 
@@ -35,24 +35,20 @@ public class UserService {
 
         user.setPasswordHash(passwordEncoder.encode(user.getPassword()));
         user.setPassword(null);
-        users.add(user.getUsername());
 
         if (!repository.add(user)) {
             return false;
         }
-
         return true;
     }
 
-
     public boolean authenticate(User user) {
+
         if (!validateUser(user)) return false;
 
-        if (users.contains(user.getUsername())) {
-            return false;
-        }
-
         User existing = repository.findByUsername(user.getUsername());
+
+        if (existing == null) return false;
 
         return passwordEncoder.matches(user.getPassword(), existing.getPasswordHash());
     }

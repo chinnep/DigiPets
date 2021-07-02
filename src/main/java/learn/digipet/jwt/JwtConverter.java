@@ -42,7 +42,6 @@ public class JwtConverter {
                     .parseClaimsJws(token);
             Claims claims = jws.getBody();
             String username = claims.getSubject();
-            // String role = (String) claims.get("roles");
 
             return new User(username);
 
@@ -52,5 +51,4 @@ public class JwtConverter {
 
         return null;
     }
-
 }
