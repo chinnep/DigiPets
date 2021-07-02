@@ -11,35 +11,42 @@ import java.util.Map;
 public class BattleService {
 
     private final Map<Integer, Battle> battles = new HashMap<>();
+    private int lastId = 0;
     public BattleService() {
     }
 
-    public Battle findByBattleId(int battleId) {
+    public Battle findById(int battleId) {
         return battles.get(battleId);
     }
 
-    public Result<Battle> addBattle(Battle battle) {
+    public Result<Battle> add(Battle battle) {
         Result<Battle> result = validatePets(battle.getPetA(), battle.getPetB());
-        if(result.getMessages().size() > 0) return result;
+        if(!result.isSuccess()) return result;
 
-        battle.setGameId(battles.size());
-        battles.put(battle.getGameId(), battle);
+        battle.setBattleId(lastId);
+        battles.put(lastId, battle);
+        lastId++;
         result.setPayload(battle);
         return result;
     }
-    
+
     public Result<Battle> round(int battleId, Move moveA, Move moveB) {
         Result<Battle> result = validateMoves(moveA, moveB);
 
         if(!result.isSuccess()) return result;
 
-        Battle battle = findByBattleId(battleId);
+        Battle battle = findById(battleId);
         if(battle == null) {
             result.addMessage("Battle is null.", ResultType.INVALID);
             return result;
         }
 
-        battle.round(moveA, moveB);
+        boolean isOver = battle.round(moveA, moveB);
+        if(isOver) {
+            result.setPayload(findById(battleId));
+            battles.remove(battleId);
+        }
+
         return result;
     }
 
@@ -64,9 +71,9 @@ public class BattleService {
             result.addMessage("Moves cannot be null", ResultType.INVALID);
             return result;
         }
-        if(!moveA.getClass().getName().equals("learn.digipet.models.Pet") ||
-                !moveB.getClass().getName().equals("learn.digipet.models.Pet")) {
-            result.addMessage("Pet is not valid.", ResultType.INVALID);
+        if(!moveA.getClass().getName().equals("learn.digipet.models.Move") ||
+                !moveB.getClass().getName().equals("learn.digipet.models.Move")) {
+            result.addMessage("Move is not valid.", ResultType.INVALID);
             return result;
         }
         if(moveA.getDamage() < 0 || moveB.getDamage() < 0) {

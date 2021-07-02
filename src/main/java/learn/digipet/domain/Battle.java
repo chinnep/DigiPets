@@ -10,10 +10,8 @@ import java.util.Objects;
 
 public class Battle {
 
-    //might be issues with setPetHealth bc I used this...
-
     @PositiveOrZero
-    int GameId;
+    int battleId;
     @NotBlank(message= "Need 2 pets to battle.")
     Pet petA;
     @NotBlank(message= "Need 2 pets to battle.")
@@ -33,11 +31,13 @@ public class Battle {
     }
 
     public boolean round(Move moveA, Move moveB) {
-        setPetAHealth(moveB);
-        if(this.petA.getHealthLevel() <= 0) return true;
 
         setPetBHealth(moveA);
         if(this.petB.getHealthLevel() <= 0) return true;
+
+        setPetAHealth(moveB);
+        if(this.petA.getHealthLevel() <= 0) return true;
+
         //if neither are at or below zero no one has won the battle yet
         return false;
     }
@@ -46,12 +46,12 @@ public class Battle {
         this.petA.setHealthLevel(this.petA.getHealthLevel() - move.getDamage());
     }
 
-    public int getGameId() {
-        return GameId;
+    public int getBattleId() {
+        return battleId;
     }
 
-    public void setGameId(int gameId) {
-        GameId = gameId;
+    public void setBattleId(int battleId) {
+        this.battleId = battleId;
     }
 
     private void setPetBHealth(Move move) {
