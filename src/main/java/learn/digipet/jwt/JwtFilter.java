@@ -35,7 +35,7 @@ public class JwtFilter implements Filter {
         }
 
         // always allow person to register & authenticate if they have the correct credentials...
-        if (request.getServletPath().equalsIgnoreCase("/register")
+        if (request.getServletPath().equalsIgnoreCase("/users/register")
                 || request.getServletPath().equalsIgnoreCase("/authenticate")) {
             chain.doFilter(servletRequest, servletResponse);
             return;

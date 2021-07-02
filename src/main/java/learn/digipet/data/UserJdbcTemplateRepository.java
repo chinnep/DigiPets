@@ -7,7 +7,6 @@ import learn.digipet.models.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
@@ -35,7 +34,7 @@ public class UserJdbcTemplateRepository implements UserRepository {
     @Override
     public User findByUsername(String username) {
 
-        final String sql = "select username, password, password_hash, gold "
+        final String sql = "select username, password_hash, gold "
                 + "from user "
                 + "where username = ?;";
 
@@ -53,11 +52,10 @@ public class UserJdbcTemplateRepository implements UserRepository {
     @Override
     public boolean add(User user) {
 
-        final String sql = "insert into user (username, password, password_hash, gold) values (?,?,?,?);";
+        final String sql = "insert into user (username, password_hash, gold) values (?,?,?);";
 
         return jdbcTemplate.update(sql,
                 user.getUsername(),
-                user.getPassword(),
                 user.getPasswordHash(),
                 user.getGold()) > 0;
     }

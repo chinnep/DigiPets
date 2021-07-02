@@ -1,8 +1,5 @@
 import { createContext } from "react";
 
-const LoginContext = createContext({
-    username: null,
-    setUsername: () => {}
-})
+const LoginContext = createContext()
 
 export default LoginContext;

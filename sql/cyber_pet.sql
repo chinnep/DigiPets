@@ -5,7 +5,6 @@ use cyber_pet;
 -- create tables
 create table user(
 	username varchar(150) primary key,
-    password varchar(150) not null,
     password_hash varchar(250) not null,
 	gold int
 );

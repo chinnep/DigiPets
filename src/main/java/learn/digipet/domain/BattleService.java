@@ -27,7 +27,7 @@ public class BattleService {
         result.setPayload(battle);
         return result;
     }
-
+    
     public Result<Battle> round(int battleId, Move moveA, Move moveB) {
         Result<Battle> result = validateMoves(moveA, moveB);
 
