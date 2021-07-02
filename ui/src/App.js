@@ -4,6 +4,7 @@ import { useState } from "react";
 import Home from './components/Home';
 import Login from './components/Login';
 import LoginContext from "./contexts/LoginContext";
+import MockPet from "./components/MockPet";
 import Nav from './components/Nav';
 import NotFound from "./components/NotFound";
 import Pets from "./components/Pets";
@@ -71,8 +72,8 @@ function App() {
             {username ? <Shop /> : <Home />}
           </Route>
 
-          <Route path="/pets">
-            <Pets />
+          <Route path="/mockpet">
+            <MockPet />
           </Route>
 
           <Route path="/error">
