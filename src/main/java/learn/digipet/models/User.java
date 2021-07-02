@@ -14,9 +14,12 @@ public class User {
 
     public User(String username) {
         this.username = username;
+        this.gold = 0;
     }
 
-    public User() {}
+    public User() {
+        this.gold = 0;
+    }
 
     public String getUsername() {
         return username;
