@@ -25,7 +25,7 @@ function Login() {
     }
 
     return (
-        <form className="form" onSubmit={onSubmit}>
+        <form className="nes-container with-title is-centered form" onSubmit={onSubmit}>
             <h1>Login</h1>
             <div class="nes-field is-inline">
                 <label for="inline_field">Username</label>
@@ -37,7 +37,7 @@ function Login() {
                 <input type="password" id="password" className="nes-input" placeholder="Password"
                     required="" value={password} onChange={evt => setPassword(evt.target.value)} />
             </div>
-            <div class="nes-field is-inline">
+            <div>
                 <button type="submit" className="nes-btn is-success">Submit</button>
                 <Link to="/" className="nes-btn is-warning">Cancel</Link>
             </div>

@@ -9,6 +9,7 @@ import NotFound from "./components/NotFound";
 import Pets from "./components/Pets";
 import { refresh } from "./services/auth";
 import Register from "./components/Register";
+import Shop from "./components/Shop";
 import './style.css';
 import "nes.css/css/nes.min.css";
 
@@ -61,9 +62,16 @@ function App() {
           <Route path="/login">
             <Login />
           </Route>
+          
+          <Route path="/battle">
+            
+          </Route>
+
+          <Route path="/shop">
+            {username ? <Shop /> : <Home />}
+          </Route>
 
           <Route path="/pets">
-            {/* {credentials.username ? <Pets/> : <Redirect to="/" />} */}
             <Pets />
           </Route>
 
@@ -72,7 +80,7 @@ function App() {
           </Route>
 
           <Route path="/">
-            <Home />
+            {username ? <Pets /> : <Home />}
           </Route>
 
         </Switch>
