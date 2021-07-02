@@ -17,7 +17,7 @@ class BattleServiceTest {
     @Test
     void shouldAddBattle() {
         Battle arg = new Battle(makePet(), makePet(), makeItem(), makeItem());
-        Result<Battle> result = service.addBattle(arg);
+        Result<Battle> result = service.add(arg);
         assertEquals(ResultType.SUCCESS, result.getType());
         assertTrue(result.getPayload().getBattleId() >= 0);
     }
@@ -25,11 +25,11 @@ class BattleServiceTest {
     @Test
     void shouldNotCreateBattle() {
         Battle arg = new Battle(null, makePet(), makeItem(), makeItem());
-        Result<Battle> result = service.addBattle(arg);
+        Result<Battle> result = service.add(arg);
         assertEquals(ResultType.INVALID, result.getType());
 
         arg = new Battle(makePet(), null, makeItem(), makeItem());
-        result = service.addBattle(arg);
+        result = service.add(arg);
         assertEquals(ResultType.INVALID, result.getType());
     }
 
@@ -37,12 +37,12 @@ class BattleServiceTest {
     void shouldFindByBattleId() {
         //add and confirm a battle
         Battle arg = new Battle(makePet(), makePet(), makeItem(), makeItem());
-        Result<Battle> result = service.addBattle(arg);
+        Result<Battle> result = service.add(arg);
         assertEquals(ResultType.SUCCESS, result.getType());
         assertTrue(result.getPayload().getBattleId() >= 0);
         arg.setBattleId(0);
 
-        Battle expected = service.findByBattleId(0);
+        Battle expected = service.findById(0);
         assertEquals(arg, expected);
     }
 
@@ -50,11 +50,11 @@ class BattleServiceTest {
     void shouldNotFindByInvalidBattleId() {
         //add and confirm a battle
         Battle arg = new Battle(makePet(), makePet(), makeItem(), makeItem());
-        Result<Battle> result = service.addBattle(arg);
+        Result<Battle> result = service.add(arg);
         assertEquals(ResultType.SUCCESS, result.getType());
         assertTrue(result.getPayload().getBattleId() >= 0);
 
-        Battle expected = service.findByBattleId(-1);
+        Battle expected = service.findById(-1);
         assertNull(expected);
     }
 
@@ -62,43 +62,49 @@ class BattleServiceTest {
     void PetAShouldWinWithSameDamage() {
         //add and confirm a battle
         Battle arg = new Battle(makePet(), makePet(), makeItem(), makeItem());
-        Result<Battle> result = service.addBattle(arg);
+        Result<Battle> result = service.add(arg);
         assertEquals(ResultType.SUCCESS, result.getType());
         assertTrue(result.getPayload().getBattleId() >= 0);
 
         int battleId = result.getPayload().getBattleId();
+        result = new Result<>();
         do {
             result = service.round(battleId,new Move(1, "Cool Move", 100),new Move(1, "Cool Move", 100));
-        }while(result.isSuccess());
+        }while(result.getPayload() == null);
 
-        assertTrue(service.findByBattleId(battleId).getPetA().getHealthLevel() > 0);
+        assertTrue(result.getPayload().getPetA().getHealthLevel() > 0);
+        assertTrue(result.getPayload().getPetB().getHealthLevel() <= 0);
     }
 
     @Test
     void PetBShouldWinHigherDamageMoves() {
         //add and confirm a battle
         Battle arg = new Battle(makePet(), makePet(), makeItem(), makeItem());
-        Result<Battle> result = service.addBattle(arg);
+        Result<Battle> result = service.add(arg);
         assertEquals(ResultType.SUCCESS, result.getType());
         assertTrue(result.getPayload().getBattleId() >= 0);
 
         int battleId = result.getPayload().getBattleId();
+        result = new Result<>();
+
         do {
             result = service.round(battleId,new Move(1, "Cool Move", 10),new Move(1, "Cool Move", 90));
-        }while(result.isSuccess());
+        }while(result.getPayload() == null);
 
-        assertTrue(service.findByBattleId(battleId).getPetA().getHealthLevel() > 0);
+        assertTrue(result.getPayload().getPetB().getHealthLevel() > 0);
+        assertTrue(result.getPayload().getPetA().getHealthLevel() <= 0);
     }
 
     @Test
     void shouldHaveNoRoundsWithNullMoves() {
         //add and confirm a battle
         Battle arg = new Battle(makePet(), makePet(), makeItem(), makeItem());
-        Result<Battle> result = service.addBattle(arg);
+        Result<Battle> result = service.add(arg);
         assertEquals(ResultType.SUCCESS, result.getType());
         assertTrue(result.getPayload().getBattleId() >= 0);
 
         int battleId = result.getPayload().getBattleId();
+        result = new Result<>();
         do {
             result = service.round(battleId,null, new Move(1, "Cool Move", 90));
         }while(result.isSuccess());
