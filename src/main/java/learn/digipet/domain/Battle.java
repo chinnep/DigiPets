@@ -33,13 +33,28 @@ public class Battle {
     public boolean round(Move moveA, Move moveB) {
 
         setPetBHealth(moveA);
-        if(this.petB.getHealthLevel() <= 0) return true;
+        if(this.petB.getHealthLevel() <= 0) {
+            calculateTrophies(1, 0);
+            return true;
+        }
 
         setPetAHealth(moveB);
-        if(this.petA.getHealthLevel() <= 0) return true;
+        if(this.petA.getHealthLevel() <= 0) {
+            calculateTrophies(0, 1);
+            return true;
+        }
 
         //if neither are at or below zero no one has won the battle yet
         return false;
+    }
+
+    //1 is win and 0 is loss
+    private void calculateTrophies(int matchStatusA, int matchStatusB) {
+        double startRankingPetA = (double)this.petA.getTrophies();
+        double startRankingPetB = (double)this.petB.getTrophies();
+
+        this.petA.setTrophies((int)(startRankingPetA + 32 * (matchStatusA - (startRankingPetA/(startRankingPetA + startRankingPetB)))));
+        this.petB.setTrophies((int)(startRankingPetB + 32 * (matchStatusB - (startRankingPetB/(startRankingPetA + startRankingPetB)))));
     }
 
     private void setPetAHealth(Move move) {
