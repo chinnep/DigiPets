@@ -6,23 +6,23 @@ function NotFound() {
 
     return (
         <div>
-            <section class="nes-container is-dark">
-            <section class="message-list">
-                <section class="message -left">
-                    <i class="nes-ash"></i>
-                    <div class="nes-balloon from-left is-dark">
+            <section className="nes-container is-dark">
+            <section className="message-list">
+                <section className="message -left">
+                    <i className="nes-ash"></i>
+                    <div className="nes-balloon from-left is-dark">
                         <p>Oof it looks like you found a page that shouldn't be here</p>
                     </div>
                 </section>
-                <section class="message -right">
-                    <div class="nes-balloon from-right is-dark">
+                <section className="message -right">
+                    <div className="nes-balloon from-right is-dark">
                         <p>oh no what should I do?</p>
                     </div>
-                    <i class="nes-kirby"></i>
+                    <i className="nes-kirby"></i>
                 </section>
-                <section class="message -left">
-                    <i class="nes-ash"></i>
-                    <div class="nes-balloon from-left is-dark">
+                <section className="message -left">
+                    <i className="nes-ash"></i>
+                    <div className="nes-balloon from-left is-dark">
                         <p>Should probably take a step back.</p>
                     </div>
                 </section>

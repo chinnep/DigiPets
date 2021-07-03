@@ -26,17 +26,17 @@ function Register() {
         <form className="nes-container with-title is-centered form" onSubmit={onSubmit}>
             <h1>Register</h1>
             <div className="nes-field is-inline">
-                <label for="inline_field">Username</label>
+                <label htmlFor="inline_field">Username</label>
                 <input type="text" id="username" className="nes-input" placeholder="Username"
                     value={username} onChange={evt => setUsername(evt.target.value)}></input>
             </div>
             <div className="nes-field is-inline">
-                <label for="inline_field">Password</label>
+                <label htmlFor="inline_field">Password</label>
                 <input type="password" id="password" className="nes-input" placeholder="Password" required
                     value={password} onChange={evt => setPassword(evt.target.value)}></input>
             </div>
             <div className="nes-field is-inline">
-                <label for="inline_field">Confirm Password</label>
+                <label htmlFor="inline_field">Confirm Password</label>
                 <input type="password" id="password-confirm" className="nes-input" placeholder="Confirm Password" required
                     value={confirmPassword} onChange={evt => setConfirmPassword(evt.target.value)}></input>
             </div>

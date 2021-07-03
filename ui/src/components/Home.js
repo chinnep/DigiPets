@@ -3,7 +3,7 @@ function Home() {
     return (
         <>
             <div className="container">
-                <div id="title-container" class="nes-container">
+                <div id="title-container" className="nes-container">
                     <p>DigiPets</p>
                     <p className="caption">a dev10 production</p>
                 </div>
@@ -18,19 +18,19 @@ function Home() {
                 <div id="profiles" className="row">
                     <div className="column">
                         <div className="row">
-                            <img class="nes-avatar is-rounded is-large" alt="EC Avatar" src="logo.png" />
+                            <img className="nes-avatar is-rounded is-large" alt="EC Avatar" src="logo.png" />
                         </div>
                         Eleanor Chinn
                         <div>
                             _
                         </div>
-                        <p>Hello! I'm from Northern Virginia and I love hiking, travelling, and learning new things.
+                        <p>Hello! I'm a software engineer from Northern Virginia and I love hiking, travelling, and learning new things.
                             My favorite games are Settlers of Catan, Clash of Clans, and almost all Nintendo games.
                         </p>
                     </div>
                     <div className="column">
                         <div className="row">
-                            <img class="nes-avatar is-rounded is-large" alt="EC Avatar" src="logo.png" />
+                            <img className="nes-avatar is-rounded is-large" alt="EC Avatar" src="logo.png" />
                         </div>
                         Tim Warren
                         <div>
@@ -43,7 +43,7 @@ function Home() {
                     </div>
                     <div className="column">
                         <div className="row">
-                            <img class="nes-avatar is-rounded is-large" alt="EC Avatar" src="logo.png" />
+                            <img className="nes-avatar is-rounded is-large" alt="EC Avatar" src="logo.png" />
                         </div>
                         Josh Frey
                         <div>

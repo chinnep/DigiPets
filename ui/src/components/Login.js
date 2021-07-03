@@ -18,7 +18,6 @@ function Login() {
         authenticate({ username: name, password })
             .then(body => {
                 const { jwt_token } = body;
-                console.log(jwt_token);
                 afterAuth(jwt_token);
                 history.push("/");
             }).catch(() => setHasError(true));
@@ -27,13 +26,13 @@ function Login() {
     return (
         <form className="nes-container with-title is-centered form" onSubmit={onSubmit}>
             <h1>Login</h1>
-            <div class="nes-field is-inline">
-                <label for="inline_field">Username</label>
+            <div className="nes-field is-inline">
+                <label htmlFor="inline_field">Username</label>
                 <input type="text" id="username" className="nes-input" placeholder="Username"
                     value={name} onChange={evt => setName(evt.target.value)} />
             </div>
-            <div class="nes-field is-inline">
-                <label for="inline_field">Password</label>
+            <div className="nes-field is-inline">
+                <label htmlFor="inline_field">Password</label>
                 <input type="password" id="password" className="nes-input" placeholder="Password"
                     required="" value={password} onChange={evt => setPassword(evt.target.value)} />
             </div>

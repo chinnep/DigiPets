@@ -17,31 +17,31 @@ function Pets() {
     return (
         <div className="row row-cols-4 g-2">
             {pets && pets.map(p =>
-                <div class='container' id="egg-container" key={p.petId}>
-                    <div class='display-bars'>
-                        <progress id="health-bar" class="nes-progress is-error" value={`${p.healthLevel}`} max="1000"/>
-                        <text id="health-text" class="text">health_lvl</text>
-                        <progress id="care-bar" class="nes-progress is-warning" value="20" max="100" />
-                        <text id="care-text" class="text">care_lvl</text>
-                        <progress id="hunger-bar" class="nes-progress is-success" value="50" max="100" />
-                        <text id="hunger-text" class="text">hunger_lvl</text>
-                        <progress id="thirst-bar" class="nes-progress is-primary" value="50" max="100" />
-                        <text id="thirst-text" class="text">thirst_lvl</text>
+                <div className='container' id="egg-container" key={p.petId}>
+                    <div className='display-bars'>
+                        <progress id="health-bar" className="nes-progress is-error" value={p.healthLevel} max="1000"/>
+                        <text id="health-text" className="text">health_lvl</text>
+                        <progress id="care-bar" className="nes-progress is-warning" value={p.careLevel} max="100" />
+                        <text id="care-text" className="text">care_lvl</text>
+                        <progress id="hunger-bar" className="nes-progress is-success" value={p.hungerLevel} max="100" />
+                        <text id="hunger-text" className="text">hunger_lvl</text>
+                        <progress id="thirst-bar" className="nes-progress is-primary" value={p.thirstLevel} max="100" />
+                        <text id="thirst-text" className="text">thirst_lvl</text>
                     </div>
-                    <div class='loop'></div>
-                    <div class='egg'>
-                        <text class="display-name">{p.name}</text>
-                        <div class='crack'>
-                            <div class='display'>
-                                <div class='grid'>
+                    <div className='loop'></div>
+                    <div className='egg'>
+                        <text className="display-name">{p.name}</text>
+                        <div className='crack'>
+                            <div className='display'>
+                                <div className='grid'>
                                     <img id="active-image" src="https://2.bp.blogspot.com/-BwqYts1IQQ8/Txl9ZXaXwFI/AAAAAAAACbg/2b9IMKJ8_H0/s1600/6.gif" alt=""/>
                                 </div>
                             </div>
                         </div>
-                        <div class='buttons'>
-                            <div id="pet-button" class='button'></div>
-                            <div id="pet-button" class='button'></div>
-                            <div id="pet-button" class='button'></div>
+                        <div className='buttons'>
+                            <div id="pet-button" className='button'></div>
+                            <div id="pet-button" className='button'></div>
+                            <div id="pet-button" className='button'></div>
                         </div>
                     </div>
                 </div>

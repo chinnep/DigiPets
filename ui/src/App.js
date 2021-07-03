@@ -8,6 +8,7 @@ import MockPet from "./components/MockPet";
 import Nav from './components/Nav';
 import NotFound from "./components/NotFound";
 import Pets from "./components/Pets";
+import Pet from './components/Pet';
 import { refresh } from "./services/auth";
 import Register from "./components/Register";
 import Shop from "./components/Shop";
@@ -69,11 +70,15 @@ function App() {
           </Route>
 
           <Route path="/shop">
-            {username ? <Shop /> : <Home />}
+            {username ? <Shop /> : <Redirect to="/"/>}
           </Route>
 
           <Route path="/mockpet">
             <MockPet />
+          </Route>
+
+          <Route path="/pet/:id">
+            <Pet />
           </Route>
 
           <Route path="/error">

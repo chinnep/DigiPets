@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import learn.digipet.domain.Battle;
 import learn.digipet.domain.BattleService;
 import learn.digipet.domain.Result;
+import learn.digipet.domain.ResultType;
 import learn.digipet.models.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,6 +82,10 @@ class BattleControllerTest {
     @Test
     void shouldNotAddNullPetA() throws Exception {
         Battle toAdd = new Battle(null, makePet(), makeItem(), makeItem());
+        Result<Battle> result = new Result<>();
+        result.addMessage("Test", ResultType.INVALID);
+
+        when(service.add(any())).thenReturn(result);
 
         ObjectMapper jsonMapper = new ObjectMapper();
         String jsonIn = jsonMapper.writeValueAsString(toAdd);
@@ -90,12 +95,16 @@ class BattleControllerTest {
                 .content(jsonIn);
 
         mvc.perform(requestBuilder)
-                .andExpect(status().isInternalServerError());
+                .andExpect(status().isBadRequest());
     }
 
     @Test
     void shouldNotAddNullPetB() throws Exception {
         Battle toAdd = new Battle(makePet(), null ,makeItem(), makeItem());
+        Result<Battle> result = new Result<>();
+        result.addMessage("Test", ResultType.INVALID);
+
+        when(service.add(any())).thenReturn(result);
 
         ObjectMapper jsonMapper = new ObjectMapper();
         String jsonIn = jsonMapper.writeValueAsString(toAdd);
@@ -105,12 +114,16 @@ class BattleControllerTest {
                 .content(jsonIn);
 
         mvc.perform(requestBuilder)
-                .andExpect(status().isInternalServerError());
+                .andExpect(status().isBadRequest());
     }
 
     @Test
     void shouldNotAddNullPets() throws Exception {
         Battle toAdd = new Battle(null, null ,makeItem(), makeItem());
+        Result<Battle> result = new Result<>();
+        result.addMessage("Test", ResultType.INVALID);
+
+        when(service.add(any())).thenReturn(result);
 
         ObjectMapper jsonMapper = new ObjectMapper();
         String jsonIn = jsonMapper.writeValueAsString(toAdd);
@@ -120,7 +133,7 @@ class BattleControllerTest {
                 .content(jsonIn);
 
         mvc.perform(requestBuilder)
-                .andExpect(status().isInternalServerError());
+                .andExpect(status().isBadRequest());
     }
 
     @Test
