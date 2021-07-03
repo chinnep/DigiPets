@@ -17,6 +17,7 @@ class BattleTest {
         boolean result = battle.round(new Move(1, "Cool Move", 100), new Move(1, "Cool Move", 100));
         assertTrue(result);
         assertTrue(battle.getPetB().getHealthLevel() <= 0);
+        assertTrue(battle.getPetB().getTrophies() < 1000);
     }
 
     @Test
@@ -25,6 +26,7 @@ class BattleTest {
         boolean result = battle.round(new Move(1, "Cool Move", 90), new Move(1, "Cool Move", 100));
         assertTrue(result);
         assertTrue(battle.getPetA().getHealthLevel() <= 0);
+        assertTrue(battle.getPetA().getTrophies() < 1000);
     }
 
     private Pet makePet() {
@@ -50,7 +52,7 @@ class BattleTest {
         pet.setThirstLevel(100);
         pet.setHealthLevel(100);
         pet.setDead(false);
-        pet.setTrophies(0);
+        pet.setTrophies(1000);
         pet.setPetType(petType);
         pet.setUsername("abc123");
 

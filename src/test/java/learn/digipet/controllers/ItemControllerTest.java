@@ -16,7 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-@AutoConfigureMockMvc
+@AutoConfigureMockMvc(addFilters = false)
 class ItemControllerTest {
 
     @MockBean
@@ -44,7 +44,7 @@ class ItemControllerTest {
 
     @Test
     void shouldNotFindMissingId() throws Exception {
-        mvc.perform(get("/api/securityclearance/36"))
+        mvc.perform(get("/items/0"))
                 .andExpect(status().isNotFound());
     }
 
