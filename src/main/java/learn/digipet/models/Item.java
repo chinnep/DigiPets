@@ -10,15 +10,24 @@ public class Item {
     private String name;
     private String description;
     private boolean forBattle;
+    private boolean forFood;
+    private boolean forWater;
+    private boolean forCare;
+    private boolean forHealth;
     private int price;
 
     public Item() {
     }
-    public Item(int itemId, String name, String description, boolean forBattle, int price) {
+
+    public Item(int itemId, String name, String description, boolean forBattle, boolean forFood, boolean forWater, boolean forCare, boolean forHealth, int price) {
         this.itemId = itemId;
         this.name = name;
         this.description = description;
         this.forBattle = forBattle;
+        this.forFood = forFood;
+        this.forWater = forWater;
+        this.forCare = forCare;
+        this.forHealth = forHealth;
         this.price = price;
     }
 
@@ -52,6 +61,38 @@ public class Item {
 
     public void setForBattle(boolean forBattle) {
         this.forBattle = forBattle;
+    }
+
+    public boolean isForFood() {
+        return forFood;
+    }
+
+    public void setForFood(boolean forFood) {
+        this.forFood = forFood;
+    }
+
+    public boolean isForWater() {
+        return forWater;
+    }
+
+    public void setForWater(boolean forWater) {
+        this.forWater = forWater;
+    }
+
+    public boolean isForCare() {
+        return forCare;
+    }
+
+    public void setForCare(boolean forCare) {
+        this.forCare = forCare;
+    }
+
+    public boolean isForHealth() {
+        return forHealth;
+    }
+
+    public void setForHealth(boolean forHealth) {
+        this.forHealth = forHealth;
     }
 
     public int getPrice() {

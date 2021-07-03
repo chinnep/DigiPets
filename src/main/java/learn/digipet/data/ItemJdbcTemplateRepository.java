@@ -18,14 +18,16 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
 
     @Override
     public List<Item> findAll(){
-        final String sql = "select item_id, item_name, description, for_battle, price from item limit 1000;";
+        final String sql = "select item_id, item_name, description, for_battle, for_food, "
+                + "for_water, for_care, for_health, price from item limit 1000;";
         return jdbcTemplate.query(sql, new ItemMapper());
     }
 
     @Override
     public Item findById(int itemId) {
 
-        final String sql = "select item_id, item_name, description, for_battle, price from item "
+        final String sql = "select item_id, item_name, description, for_battle, for_food, "
+                + "for_water, for_care, for_health, price from item "
                 + "where item_id = ?;";
 
         Item item = jdbcTemplate.query(sql, new ItemMapper(), itemId).stream()

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 class ItemServiceTest {
@@ -19,8 +20,9 @@ class ItemServiceTest {
 
     @Test
     void findById() {
-        Item expected = new Item(1, "wrench","A description of a wrench.", true, 200);
-        when(repository.findById(1)).thenReturn(expected);
+        Item expected = new Item(1, "wrench","A description of a wrench.",
+                true, false, false, false, false, 200);
+        when(repository.findById(any())).thenReturn(expected);
         Item actual = service.findById(1);
         assertEquals(expected, actual);
     }

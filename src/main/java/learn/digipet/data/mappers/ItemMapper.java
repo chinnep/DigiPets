@@ -16,6 +16,10 @@ public class ItemMapper implements RowMapper<Item> {
         item.setName(resultSet.getString("item_name"));
         item.setDescription(resultSet.getString("description"));
         item.setForBattle(resultSet.getBoolean("for_battle"));
+        item.setForFood(resultSet.getBoolean("for_food"));
+        item.setForWater(resultSet.getBoolean("for_water"));
+        item.setForCare(resultSet.getBoolean("for_care"));
+        item.setForHealth(resultSet.getBoolean("for_health"));
         item.setPrice(resultSet.getInt("price"));
 
         return item;

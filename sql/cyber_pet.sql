@@ -14,7 +14,11 @@ create table item(
 	item_name varchar(150) not null,
 	description varchar(250),
 	price int not null,
-    for_battle boolean
+    for_battle boolean,
+    for_food boolean,
+    for_water boolean,
+    for_care boolean,
+    for_health boolean
 );
 
 create table user_item(

@@ -14,7 +14,11 @@ create table item(
 	item_name varchar(150) not null,
 	description varchar(250),
 	price int not null,
-    for_battle boolean
+    for_battle boolean,
+    for_food boolean,
+    for_water boolean,
+    for_care boolean,
+    for_health boolean
 );
 
 create table user_item(
@@ -109,9 +113,9 @@ begin
     delete from move;
     alter table move auto_increment = 1;
     
-    insert into item(item_name, description, for_battle, price) values
-        ('Sledgehammer','A sledgehammer is a tool with a large, flat, often metal head, attached to a long handle.', true, 200),
-        ('Biscuit','A flour-based baked food product. Give your pet this buttery treat for more <3 points', false, 20);
+    insert into item(item_name, description, for_battle, for_food, for_water, for_care, for_health, price) values
+        ('Sledgehammer','A sledgehammer is a tool with a large, flat, often metal head, attached to a long handle.', true, false, false, false, false, 200),
+        ('Biscuit','A flour-based baked food product. Give your pet this buttery treat for more <3 points', false, true, false, false, false, 20);
     
     insert into user(username, password_hash, gold) values
         ('abc123','$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa',1000),
@@ -159,3 +163,5 @@ end //
 delimiter ;
 
 call set_known_good_state();
+
+select * from user;
