@@ -44,7 +44,7 @@ class ItemControllerTest {
 
     @Test
     void shouldNotFindMissingId() throws Exception {
-        mvc.perform(get("/api/securityclearance/36"))
+        mvc.perform(get("/items/0"))
                 .andExpect(status().isNotFound());
     }
 
