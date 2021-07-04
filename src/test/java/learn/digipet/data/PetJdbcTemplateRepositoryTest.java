@@ -39,7 +39,6 @@ class PetJdbcTemplateRepositoryTest {
         assertNotNull(pet);
         assertEquals(1, pet.getPetId());
         assertEquals("Rick Sanchez", pet.getName());
-        assertEquals(2, pet.getMoves().size());
         assertEquals(pet.getPetType().getClass().getName(), "learn.digipet.models.PetType");
     }
 
