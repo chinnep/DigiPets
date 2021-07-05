@@ -15,11 +15,13 @@ public class Item {
     private boolean forCare;
     private boolean forHealth;
     private int price;
+    private String imgUrl;
 
     public Item() {
     }
 
-    public Item(int itemId, String name, String description, boolean forBattle, boolean forFood, boolean forWater, boolean forCare, boolean forHealth, int price) {
+    public Item(int itemId, String name, String description, boolean forBattle, boolean forFood, boolean forWater,
+                boolean forCare, boolean forHealth, int price, String imgUrl) {
         this.itemId = itemId;
         this.name = name;
         this.description = description;
@@ -29,6 +31,15 @@ public class Item {
         this.forCare = forCare;
         this.forHealth = forHealth;
         this.price = price;
+        this.imgUrl = imgUrl;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public int getItemId() {

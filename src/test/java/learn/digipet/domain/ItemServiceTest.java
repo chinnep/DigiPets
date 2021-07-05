@@ -23,7 +23,7 @@ class ItemServiceTest {
     @Test
     void findById() {
         Item expected = new Item(1, "wrench","A description of a wrench.",
-                true, false, false, false, false, 200);
+                true, false, false, false, false, 200, "");
         when(repository.findById(1)).thenReturn(expected);
         Item actual = service.findById(1);
         assertEquals(expected, actual);

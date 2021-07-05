@@ -163,7 +163,7 @@ class BattleControllerTest {
 
     Item makeItem() {
         return new Item(1, "wrench","A description of a wrench.",
-                true, false, false, false, false, 200);
+                true, false, false, false, false, 200, "");
     }
 
     private Pet makePet() {
