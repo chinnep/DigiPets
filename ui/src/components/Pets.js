@@ -8,6 +8,9 @@ function Pets() {
     const [pets, setPets] = useState();
     const history = useHistory();
 
+    const thirstMonitor = 1000 * 60 * 60 * 3;
+    const currentDate = new Date();
+
     useEffect(() => {
         findAll()
             .then(setPets)
@@ -26,10 +29,13 @@ function Pets() {
                         <progress id="hunger-bar" className="nes-progress is-success" value={p.hungerLevel} max="100" />
                         <text id="hunger-text" className="text">hunger_lvl</text>
                         <progress id="thirst-bar" className="nes-progress is-primary" value={p.thirstLevel} max="100" />
+                            {//p.thirstLevel - (Math.abs(currentDate.toLocaleString() - p.timeAtLastLogin) / thirstMonitor)
+                            // ^^ trying to get thirst to deplete over time... 1 point every 3 hours is what it should equate to
+                            }
                         <text id="thirst-text" className="text">thirst_lvl</text>
                     </div>
-                    <div className='loop'></div>
-                    <div className='egg'>
+                    <div className='loops'></div>
+                    <div className='eggs'>
                         <text className="display-name">{p.name}</text>
                         <div className='crack'>
                             <div className='display'>

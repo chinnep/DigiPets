@@ -18,7 +18,7 @@ html {
   width: 80rem;
   height: 80rem;
   position: relative;
-  margin-top: 50%;
+  margin-top: 41.4%;
   left: 50%;
   transform: translate(-50%, -50%);
   * {
@@ -33,6 +33,18 @@ html {
   border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
   bottom: 0;
   left: 50%;
+  transform: translatex(-50%);
+  position: relative;
+}
+
+.eggs {
+  background: $egg;
+  width: 60rem;
+  height: 75rem;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  bottom: 0;
+  left: 50%;
+  top: -93.5%;
   transform: translatex(-50%);
   position: relative;
 }
@@ -93,49 +105,49 @@ html {
 }
 
 #health-bar {
-  top: 1.5rem;
+  top: 2rem;
   left: 2rem;
   height: 2rem;
 }
 
 #care-bar {
-  top: 1.5rem;
+  top: -5rem;
   left: 62rem;
   height: 2rem;
 }
 
 #hunger-bar {
-  top: 72.5rem;
+  top: 58rem;
   left: 2rem;
   height: 2rem;
 }
 
 #thirst-bar {
-  top: 72.5rem;
+  top: 51rem;
   left: 62rem;
   height: 2rem;
 }
 
 #health-text {
-  top: 5rem;
+  top: 2rem;
   left: 1.5rem;
   height: 2rem;
 }
 
 #care-text {
-  top: 5rem;
+  top: -5rem;
   left: 61rem;
   height: 2rem;
 }
 
 #hunger-text {
-  top: 76rem;
+  top: 58rem;
   left: 1.5rem;
   height: 2rem;
 }
 
 #thirst-text {
-  top: 76rem;
+  top: 51rem;
   left: 56.5rem;
   height: 2rem;
 }
@@ -176,5 +188,16 @@ html {
   border: 2rem $egg solid;
   border-radius: 50%;
   left: 50%;
+  transform: translatex(-50%);
+}
+
+.loops {
+  width: 3rem;
+  height: 3rem;
+  position: relative;
+  border: 2rem $egg solid;
+  border-radius: 50%;
+  left: 50%;
+  top: -93.5%;
   transform: translatex(-50%);
 }
