@@ -29,7 +29,7 @@ class ItemControllerTest {
     void shouldFindById() throws Exception {
 
         Item expected = new Item(1, "wrench","A description of a wrench.",
-                true, false, false, false, false, 200);
+                true, false, false, false, false, 200, "");
 
         ObjectMapper jsonMapper = new ObjectMapper();
         String expectedJson = jsonMapper.writeValueAsString(expected);

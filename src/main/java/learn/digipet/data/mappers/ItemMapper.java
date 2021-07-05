@@ -21,6 +21,7 @@ public class ItemMapper implements RowMapper<Item> {
         item.setForCare(resultSet.getBoolean("for_care"));
         item.setForHealth(resultSet.getBoolean("for_health"));
         item.setPrice(resultSet.getInt("price"));
+        item.setImgUrl(resultSet.getString("img_url"));
 
         return item;
     }
