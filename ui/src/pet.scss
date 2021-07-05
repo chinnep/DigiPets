@@ -73,13 +73,13 @@ html {
   height: 27rem;
   top: 50%;
   left: 50%;
-  position: relative;
+  position: absolute;
   transform: translate(-50%, -50%);
   border-radius: 1rem;
 }
 
 .display-name {
-  position: relative;
+  position: absolute;
   top: 15rem;
   left: 17rem;
   height: 2rem;
@@ -178,3 +178,22 @@ html {
   left: 50%;
   transform: translatex(-50%);
 }
+
+.nes-progress {
+  position: relative;
+  max-height: 2rem;
+}
+
+#bars text {
+  width: 25rem;
+}
+
+Card {
+  width: 50%;
+}
+
+button {
+  padding: 5px;
+}
+
+
