@@ -17,12 +17,12 @@ html {
 #egg-container {
   width: 80rem;
   height: 80rem;
-  position: absolute;
+  position: relative;
   margin-top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   * {
-    position: absolute;
+    position: relative;
   }
 }
 
@@ -34,13 +34,15 @@ html {
   bottom: 0;
   left: 50%;
   transform: translatex(-50%);
+  position: relative;
 }
 
 .crack {
   background: $buttons;
+  position: relative;
   width: 35rem;
   height: 35rem;
-  top: 53%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   clip-path: polygon(
@@ -64,12 +66,14 @@ html {
     5% 28%
   );
 }
+
 .display {
   background: $lcd;
   width: 27rem;
   height: 27rem;
   top: 50%;
   left: 50%;
+  position: relative;
   transform: translate(-50%, -50%);
   border-radius: 1rem;
 }
@@ -139,12 +143,14 @@ html {
 #active-image {
   width: 27rem;
   margin-top: 6rem;
+  position: relative;
 }
 
 .buttons {
   width: 100%;
   text-align: center;
-  top: 80%;
+  top: 30%;
+  position: relative;
 }
 #pet-button {
   width: 100%;
@@ -166,6 +172,7 @@ html {
 .loop {
   width: 3rem;
   height: 3rem;
+  position: relative;
   border: 2rem $egg solid;
   border-radius: 50%;
   left: 50%;
