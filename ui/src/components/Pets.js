@@ -8,6 +8,9 @@ function Pets() {
     const [pets, setPets] = useState();
     const history = useHistory();
 
+    const thirstMonitor = 1000 * 60 * 60 * 3;
+    const currentDate = new Date();
+
     useEffect(() => {
         findAll()
             .then(setPets)
@@ -25,7 +28,8 @@ function Pets() {
                         <text id="care-text" className="text">care_lvl</text>
                         <progress id="hunger-bar" className="nes-progress is-success" value={p.hungerLevel} max="100" />
                         <text id="hunger-text" className="text">hunger_lvl</text>
-                        <progress id="thirst-bar" className="nes-progress is-primary" value={p.thirstLevel} max="100" />
+                        <progress id="thirst-bar" className="nes-progress is-primary" value={
+                            p.thirstLevel - (Math.abs(currentDate.toLocaleString() - p.timeAtLastLogin) / thirstMonitor)} max="100" />
                         <text id="thirst-text" className="text">thirst_lvl</text>
                     </div>
                     <div className='loop'></div>
