@@ -19,8 +19,6 @@
 
 .shop {
   background-color: #EAF47C;
-  padding-left: 20%;
-  padding-right: 20%;
 }
 
 .ghost-shop {
@@ -28,6 +26,19 @@
   margin-left: auto;
   margin-right: auto;
   width: 25%;
+}
+
+.shop-egg {
+  margin-left: auto;
+  margin-right: auto;
+  width: 25%;
+}
+
+.shop-item {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 15%;
 }
 
 #title-container {
