@@ -21,14 +21,6 @@ function Pet() {
     return (
         <div className="row">
                 <div className='container' id="egg-container" key={pet.petId}>
-                    <style>
-                        width:"80rem";
-                        height:"80rem";
-                        position:"absolute";
-                        margin-top:"50%";
-                        left:"50%";
-                        transform:"translate(-50%, -50%)";
-                    </style>
                     <div className='display-bars'>
                         <progress id="health-bar" className="nes-progress is-error" value={pet.healthLevel} max="1000"/>
                         <text id="health-text" className="text">health_lvl</text>

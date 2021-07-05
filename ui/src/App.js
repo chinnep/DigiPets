@@ -12,7 +12,9 @@ import Pet from './components/Pet';
 import { refresh } from "./services/auth";
 import Register from "./components/Register";
 import Shop from "./components/Shop";
+import BattlePrep from "./components/BattlePrep";
 import './style.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import "nes.css/css/nes.min.css";
 
 const wait = 1000 * 60 * 55;
@@ -67,6 +69,10 @@ function App() {
           
           <Route path="/battle">
             
+          </Route>
+
+          <Route path="/battleprep/:id">
+            <BattlePrep/>
           </Route>
 
           <Route path="/shop">
