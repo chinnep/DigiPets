@@ -182,7 +182,7 @@ class BattleControllerTest {
         move.setDamage(10);
         ArrayList<Move> moves = new ArrayList<>();
         moves.add(move);
-        pet.setMoves(moves);
+        petType.setMoves(moves);
         pet.setName("test pet");
         pet.setHungerLevel(100);
         pet.setCareLevel(100);

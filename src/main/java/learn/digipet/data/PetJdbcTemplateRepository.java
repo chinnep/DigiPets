@@ -1,6 +1,5 @@
 package learn.digipet.data;
 
-import learn.digipet.data.mappers.MoveMapper;
 import learn.digipet.data.mappers.PetMapper;
 import learn.digipet.data.mappers.PetTypeMapper;
 import learn.digipet.models.Pet;
@@ -44,7 +43,6 @@ public class PetJdbcTemplateRepository implements PetRepository {
 
         if (result != null) {
             addPetType(result);
-            addMoves(result);
         }
 
         return result;
@@ -129,15 +127,4 @@ public class PetJdbcTemplateRepository implements PetRepository {
         pet.setPetType(petType);
     }
 
-    private void addMoves(Pet pet) {
-
-        final String sql = "select m.move_id, m.move_name, m.damage "
-                + "from move m "
-                + "inner join pet_move pm on m.move_id = pm.move_id "
-                + "inner join pet p on p.pet_id = pm.pet_id "
-                + "where p.pet_id = ?";
-
-        var moves = jdbcTemplate.query(sql, new MoveMapper(), pet.getPetId());
-        pet.setMoves(moves);
-    }
 }

@@ -179,13 +179,6 @@ class PetControllerTest {
         petType.setThirst(10);
         petType.setHealth(10);
         petType.setNextPetTypeId(2);
-        Move move = new Move();
-        move.setName("test move");
-        move.setMoveId(1);
-        move.setDamage(10);
-        ArrayList<Move> moves = new ArrayList<>();
-        moves.add(move);
-        pet.setMoves(moves);
         pet.setName("test pet");
         pet.setHungerLevel(100);
         pet.setCareLevel(100);

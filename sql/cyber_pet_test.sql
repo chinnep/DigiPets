@@ -67,7 +67,7 @@ create table pet(
         references pet_type(pet_type_id),
 	constraint fk_pet_username
         foreign key (username)
-        references `user`(username)
+        references user(username)
 );
 
 create table move(
@@ -76,13 +76,15 @@ create table move(
     damage int not null
 );
 
-create table pet_move(
+create table pet_type_move(
 	move_id int not null,
-    pet_id int not null,
-    constraint fk_pet_move_pet_id
-		foreign key (pet_id)
-        references pet(pet_id),
-	constraint fk_pet_move_move_id
+    pet_type_id int not null,
+    constraint pk_move_pet_type
+        primary key (move_id, pet_type_id),
+    constraint fk_pet_type_move_pet_id
+		foreign key (pet_type_id)
+        references pet_type(pet_type_id),
+	constraint fk_pet_type_move_move_id
 		foreign key (move_id)
         references move(move_id)
 );
@@ -103,7 +105,7 @@ begin
     SET FOREIGN_KEY_CHECKS = 1;
 
 	delete from user_item;
-    delete from pet_move;
+    delete from pet_type_move;
     delete from pet;
 	alter table pet auto_increment = 1;
 	delete from item;
@@ -122,17 +124,23 @@ begin
         ('tamagotchi-gang','$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQb',2000),
         ('dev10peeps','$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQc',3000);
         
-	insert into pet_type (pet_type_name, appetite, care, thirst, health, next_pet_type_id)
+	insert into move(move_name, damage) values
+		('Knuckle Sandwich',15),
+        ('Wet willy',20);
+        
+	insert into pet_type(pet_type_name, appetite, care, thirst, health, next_pet_type_id)
 		values
 	('adult',100,100,100,100,null),
     ('teen', 50,50,50,50,1),
     ('child',10,10,10,10,2),
 	('egg', 0,0,0,10,3);
-        
-	insert into move(move_name, damage) 
-	values
-		('Knuckle Sandwich',15),
-        ('Wet willy',20);
+    
+    insert into pet_type_move(move_id, pet_type_id) values
+    (1,1),
+    (1,2),
+    (1,3),
+    (2,1),
+    (2,2);
         
 	insert into pet 
     (pet_name, hunger_lvl, care_lvl, thirst_lvl, health_lvl, time_at_last_login, is_dead, trophies, pet_type_id, username)
@@ -147,14 +155,6 @@ begin
     ('abc123',2,5),
     ('tamagotchi-gang',1,3),
     ('tamagotchi-gang',2,19);
-            
-	insert into pet_move(move_id, pet_id) 
-    values
-    (1,1),
-    (1,2),
-    (1,3),
-    (2,1),
-    (2,2);
     
     SET SQL_SAFE_UPDATES = 1;
 
@@ -164,4 +164,4 @@ delimiter ;
 
 call set_known_good_state();
 
-select * from user;
+select * from pet_type_move;

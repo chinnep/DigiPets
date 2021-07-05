@@ -2,6 +2,8 @@ package learn.digipet.models;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Size;
+import java.util.List;
 import java.util.Objects;
 
 public class PetType {
@@ -17,15 +19,17 @@ public class PetType {
     private double health;
     @PositiveOrZero
     private double thirst;
+    private List<Move> moves;
     private int nextPetTypeId;
 
-    public PetType(int petTypeId, String name, double appetite, double care, double health, double thirst, int nextPetTypeId) {
+    public PetType(int petTypeId, String name, double appetite, double care, double health, double thirst, List<Move> moves, int nextPetTypeId) {
         this.petTypeId = petTypeId;
         this.name = name;
         this.appetite = appetite;
         this.care = care;
         this.health = health;
         this.thirst = thirst;
+        this.moves = moves;
         this.nextPetTypeId = nextPetTypeId;
     }
 
@@ -85,6 +89,14 @@ public class PetType {
 
     public void setNextPetTypeId(int nextPetTypeId) {
         this.nextPetTypeId = nextPetTypeId;
+    }
+
+    public List<Move> getMoves() {
+        return moves;
+    }
+
+    public void setMoves(List<Move> moves) {
+        this.moves = moves;
     }
 
     @Override

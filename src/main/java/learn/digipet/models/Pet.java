@@ -23,8 +23,6 @@ public class Pet {
     private int trophies;
     @NotNull
     private PetType petType;
-    @Size.List(@Size(min = 1, message = "Need at least one move."))
-    private List<Move> moves;
     @NotBlank
     private String username;
 
@@ -116,14 +114,6 @@ public class Pet {
         this.petType = petType;
     }
 
-    public List<Move> getMoves() {
-        return moves;
-    }
-
-    public void setMoves(List<Move> moves) {
-        this.moves = moves;
-    }
-
     @Override
     public String toString() {
         return "Pet{" +
@@ -137,7 +127,6 @@ public class Pet {
                 ", isDead=" + isDead +
                 ", trophies=" + trophies +
                 ", petType=" + petType +
-                ", moves=" + moves +
                 ", userId=" + username +
                 '}';
     }

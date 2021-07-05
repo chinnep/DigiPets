@@ -76,13 +76,15 @@ create table move(
     damage int not null
 );
 
-create table pet_move(
+create table pet_type_move(
 	move_id int not null,
-    pet_id int not null,
-    constraint fk_pet_move_pet_id
-		foreign key (pet_id)
-        references pet(pet_id),
-	constraint fk_pet_move_move_id
+    pet_type_id int not null,
+    constraint pk_move_pet_type
+        primary key (move_id, pet_type_id),
+    constraint fk_pet_type_move_pet_id
+		foreign key (pet_type_id)
+        references pet_type(pet_type_id),
+	constraint fk_pet_type_move_move_id
 		foreign key (move_id)
         references move(move_id)
 );

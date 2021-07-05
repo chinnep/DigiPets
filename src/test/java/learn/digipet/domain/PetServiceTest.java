@@ -87,23 +87,23 @@ class PetServiceTest {
         Result<Pet> result = service.add(pet);
         assertEquals(ResultType.INVALID, result.getType());
     }
-
-    @Test
-    void shouldNotAddWithNoMoves() {
-        Pet pet = makePet();
-        pet.setMoves(new ArrayList<>());
-        Result<Pet> result = service.add(pet);
-        assertEquals(ResultType.INVALID, result.getType());
-
-    }
-
-    @Test
-    void shouldNotAddWithNullMoves() {
-        Pet pet = makePet();
-        pet.setMoves(null);
-        Result<Pet> result = service.add(pet);
-        assertEquals(ResultType.SUCCESS, result.getType());
-    }
+//
+//    @Test
+//    void shouldNotAddWithNoMoves() {
+//        Pet pet = makePet();
+//        pet.setMoves(new ArrayList<>());
+//        Result<Pet> result = service.add(pet);
+//        assertEquals(ResultType.INVALID, result.getType());
+//
+//    }
+//
+//    @Test
+//    void shouldNotAddWithNullMoves() {
+//        Pet pet = makePet();
+//        pet.setMoves(null);
+//        Result<Pet> result = service.add(pet);
+//        assertEquals(ResultType.SUCCESS, result.getType());
+//    }
 
     @Test
     void shouldNotAddWithInvalidUserId() {
@@ -173,7 +173,6 @@ class PetServiceTest {
         move.setDamage(10);
         ArrayList<Move> moves = new ArrayList<>();
         moves.add(move);
-        pet.setMoves(moves);
         pet.setName("test pet");
         pet.setHungerLevel(100);
         pet.setCareLevel(100);
