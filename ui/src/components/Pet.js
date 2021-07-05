@@ -1,3 +1,4 @@
+import '../pet.scss';
 import { useState, useEffect } from "react";
 import {useHistory, useParams} from 'react-router-dom';
 import{findById} from '../services/pets.js';
