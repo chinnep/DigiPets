@@ -17,6 +17,8 @@ function Pets() {
             .catch(() => history.push("/error"))
     }, [history]);
 
+    
+
     return (
         <div className="row row-cols-4 g-2">
             {pets && pets.map(p =>
@@ -45,10 +47,11 @@ function Pets() {
                             </div>
                         </div>
                         <div className='buttons'>
-                            <div id="pet-button" className='button'></div>
-                            <div id="pet-button" className='button'></div>
-                            <div id="pet-button" className='button'></div>
+                            <button id="pet-button" className='button' onClick="" />
+                            <button id="pet-button" className='button' onClick="" />
+                            <button id="pet-button" className='button' onClick="" />
                         </div>
+                        <button id='item-button' className='nes-btn is-normal' onClick="">item</button>
                     </div>
                 </div>
             )}

@@ -9,6 +9,9 @@ function Pet() {
     const { id } = useParams();
     const history = useHistory();
 
+    const thirstMonitor = 1000 * 60 * 60 * 3;
+    const currentDate = new Date();
+
     useEffect(() => {
         if (id) {
             findById(id)
@@ -19,22 +22,29 @@ function Pet() {
         }
     }, [id]);
 
+    // const petThirst = useSate({thirstLevel});
+
+    // giveWater = () => {
+    //     this.setState(petThirst + 10);
+    // }
+
     return (
         <div className="row">
-            <div className='container' id="egg-container" key={pet.petId}>
+            {}
+            <div className='container' id="egg-container">
                 <div className='display-bars'>
-                    <progress id="health-bar" className="nes-progress is-error" value={pet.healthLevel} max="1000" />
+                    <progress id="health-bar" className="nes-progress is-error" value="1000" max="1000" />
                     <text id="health-text" className="text">health_lvl</text>
-                    <progress id="care-bar" className="nes-progress is-warning" value={pet.careLevel} max="100" />
+                    <progress id="care-bar" className="nes-progress is-warning" value="20" max="100" />
                     <text id="care-text" className="text">care_lvl</text>
-                    <progress id="hunger-bar" className="nes-progress is-success" value={pet.hungerLevel} max="100" />
+                    <progress id="hunger-bar" className="nes-progress is-success" value="20" max="100" />
                     <text id="hunger-text" className="text">hunger_lvl</text>
-                    <progress id="thirst-bar" className="nes-progress is-primary" value={pet.thirstLevel} max="100" />
+                    <progress id="thirst-bar" className="nes-progress is-primary" value="20" max="100" />
                     <text id="thirst-text" className="text">thirst_lvl</text>
                 </div>
-                <div className='loop'></div>
-                <div className='egg'>
-                    <text className="display-name">{pet.name}</text>
+                <div className='loops'></div>
+                <div className='eggs'>
+                    <text className="display-name">Pet Name...</text>
                     <div className='crack'>
                         <div className='display'>
                             <div className='grid'>
@@ -43,10 +53,10 @@ function Pet() {
                         </div>
                     </div>
                 </div>
-                <div className='buttons'>
-                    <div id="pet-button" className='button'></div>
-                    <div id="pet-button" className='button'></div>
-                    <div id="pet-button" className='button'></div>
+                <div className='buttons-pet'>
+                    <button id="pet-buttons" className='button' onClick=""/>
+                    <button id="pet-buttons" className='button' onClick=""/>
+                    <button id="pet-buttons" className='button' onclick=""/>
                 </div>
             </div>
         </div>

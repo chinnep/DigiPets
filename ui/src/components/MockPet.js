@@ -14,9 +14,9 @@ function MockPet() {
                     </div>
                 </div>
                 <div class='buttons'>
-                    <div id="pet-button" class='button'></div>
-                    <div id="pet-button" class='button'></div>
-                    <div id="pet-button" class='button'></div>
+                    <button id="pet-button" class='button' />
+                    <button id="pet-button" class='button' />
+                    <button id="pet-button" class='button' />
                 </div>
             </div>
         </div>
