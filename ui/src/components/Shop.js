@@ -10,6 +10,10 @@ function Shop() {
     const { username } = useContext(LoginContext);
     const [user, setUser] = useState();
 
+    const purchaseItem = i => {
+        console.log(i.price);
+    }
+
     useEffect(() => {
         if (username) {
             findByUsername(username)
@@ -18,9 +22,6 @@ function Shop() {
         }
     }, [history])
 
-    // console.log(user);
-    // console.log(user.items);
-    // console.log(Object.keys(user));
 
 
     return (
@@ -54,9 +55,9 @@ function Shop() {
                         <p className="card-text">This excitable little egg is hopping all about! What pet awaits inside??!</p>
                     </div>
                     <button type="button" class="nes-btn is-warning">
-                            <i class="nes-icon coin" />
-                            <p>100</p>
-                        </button>
+                        <i class="nes-icon coin" />
+                        <p>100</p>
+                    </button>
                 </div>
                 {user && user.items.map(i =>
                     <div className="nes-container is-rounded" key={i.itemId}>
@@ -65,10 +66,12 @@ function Shop() {
                             <h2 className="card-title nes-text is-warning">{i.name}</h2>
                             <p className="card-text">{i.description}</p>
                         </div>
-                        <button type="button" class="nes-btn is-warning">
+                    
+                        <button type="button" class={`nes-btn ${(user.gold >= i.price ? "is-warning" : "is-disabled")}`} onClick={() => purchaseItem(i)}>
                             <i class="nes-icon coin" />
                             <p>{i.price}</p>
                         </button>
+                        
                         <div class="card-body">
                             <p class="nes-text is-warning">Owned: {i.quantity}</p>
                         </div>

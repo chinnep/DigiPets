@@ -45,7 +45,7 @@ function Register() {
                 <Link to="/" className="nes-btn is-warning">Cancel</Link>
             </div>
             <br></br>
-            <ErrorSummary errors={errors} />
+            {errors && <ErrorSummary errors={errors} />}
         </form>
     );
 }

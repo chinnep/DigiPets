@@ -20,28 +20,17 @@ import java.util.stream.Collectors;
 public class Shop {
 
     private final ItemService itemService;
+    private final PetService petService;
     private final UserService userService;
     private final UserItemService userItemService;
     private static final int EGG_PRICE = 100;
 
-    public Shop (UserService userService, ItemService itemService, UserItemService userItemService) {
-        this.itemService = itemService;
+    public Shop (UserService userService, PetService petService,
+                 ItemService itemService, UserItemService userItemService) {
+        this.petService = petService;
         this.userService = userService;
         this.userItemService = userItemService;
-    }
-
-    public List<Item> generateItemsList() {
-        List<Item> all = itemService.findAll();
-
-        List<Item> result = new ArrayList<Item>();
-
-        for (int i = 0; i < all.size(); i++) {
-            if (all.get(i).isForBattle() == true) {
-                result.add(all.get(i));
-            }
-        }
-
-        return result;
+        this.itemService = itemService;
     }
 
     public Result<User> purchaseEgg(User user) {
@@ -52,10 +41,11 @@ public class Shop {
         return null;
     }
 
-    // Todo
     @Transactional
     public boolean purchaseItem(User user, Item item) {
 
+        item = itemService.findById(item.getItemId());
+//        user.setGold(user.getGold() - );
         return false;
     }
 

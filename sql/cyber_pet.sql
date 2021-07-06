@@ -111,8 +111,8 @@ insert into pet_type(pet_type_name, appetite, care, thirst, health, next_pet_typ
 insert into move(move_name, damage) values
 		('Crack',0),
         ('Roll',1),
-        ('Goo',2),
         ('Gum',2),
+        ('Goo',2),
         ('Roll',3);
         
 	insert into pet_type_move(pet_type_id, move_id) values
