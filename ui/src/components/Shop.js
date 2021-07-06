@@ -69,7 +69,7 @@ function Shop() {
                     
                         <button type="button" class={`nes-btn ${(user.gold >= i.price ? "is-warning" : "is-disabled")}`} onClick={() => purchaseItem(i)}>
                             <i class="nes-icon coin" />
-                            <p>{i.price}</p>
+                            <p>{user && i.price}</p>
                         </button>
                         
                         <div class="card-body">

@@ -73,7 +73,7 @@ function App() {
             <Battle/>
           </Route>
 
-          <Route path="/battleprep/:id">
+          <Route path="/battleprep">
             <BattlePrep/>
           </Route>
 

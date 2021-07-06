@@ -1,9 +1,7 @@
 package learn.digipet.data;
 
-import learn.digipet.data.mappers.ItemMapper;
-import learn.digipet.data.mappers.ItemQuantityMapper;
-import learn.digipet.data.mappers.PetMapper;
-import learn.digipet.data.mappers.UserMapper;
+import learn.digipet.data.mappers.*;
+import learn.digipet.models.Pet;
 import learn.digipet.models.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -76,12 +74,26 @@ public class UserJdbcTemplateRepository implements UserRepository {
     private void addPets(User user) {
 
         final String sql = "select pet_id, pet_name, hunger_lvl, care_lvl, "
-                + "thirst_lvl, health_lvl, time_at_last_login, is_dead, trophies, username "
+                + "thirst_lvl, health_lvl, time_at_last_login, is_dead, trophies, pet_type_id, username "
                 + "from pet "
                 + "where username = ?";
 
         var pets = jdbcTemplate.query(sql, new PetMapper(), user.getUsername());
+        pets.stream().forEach(p -> addPetType(p));
         user.setPets(pets);
+    }
+
+    private void addPetType(Pet pet) {
+
+        final String sql = "select pet_type_id, pet_type_name, appetite, care, thirst, health, next_pet_type_id "
+                + "from pet_type "
+                + "where pet_type_id = ?";
+
+        var petType = jdbcTemplate.query(sql, new PetTypeMapper(), pet.getPetId())
+                .stream()
+                .findFirst()
+                .orElse(null);
+        pet.setPetType(petType);
     }
 
     private void addItems(User user) {
