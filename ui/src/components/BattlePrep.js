@@ -1,9 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import {useHistory, useParams, Link} from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import{findById} from '../services/pets.js';
 import LoginContext from "../contexts/LoginContext";
-import { findAll as findItems } from "../services/items";
 import { findByUsername } from "../services/users";
 
 
@@ -16,6 +14,7 @@ function BattlePrep() {
     const [user, setUser] = useState();
     const {id} = useParams();
     const history = useHistory();
+    const element = document.getElementById("pet-select");
 
     useEffect(() => {
         if (username) {
@@ -27,9 +26,22 @@ function BattlePrep() {
 
     console.log(user);
 
-    if(user && document.getElementById("pet-select") != null) {
-        setPet(user.pets[document.getElementById("pet-select").selectedIndex]);
-    };
+    if(element) {
+        console.log("inside element thingy");
+        element.addEventListener("change", (e) => {
+            const index = e.target.value;
+            const text = element.options[element.selectedIndex];
+
+            console.log("index: " + index);
+        
+            if (index && user) {
+            setPet(user.pets[index]);
+            console.log(user.pets);
+            }
+        });
+    }
+
+    console.log(pet);
 
     const enterQueue = () =>
     {//things should happen here I think related to the Websocket
@@ -39,12 +51,11 @@ function BattlePrep() {
         <>
         {!user? <h3>big error oof</h3>:
             <>
-            <label for="success_select">Choose a DigiPet to Battle:</label>
-            <div class="nes-select is-success" name="pet-select">
+            <label htmlFor="success_select">Choose a DigiPet to Battle:</label>
+            <div className="nes-select is-success" name="pet-select">
             <select required id="pet-select">
-                <option value="" disabled selected hidden>Select...</option>
                 {user.pets? user.pets.map((p, index) =>
-                <option value={index}>{p.name}</option>):<></>}
+                <option value={index} key={p.petId}>{p.name}</option>):<></>}
             </select>
             </div>
             {pet? 
