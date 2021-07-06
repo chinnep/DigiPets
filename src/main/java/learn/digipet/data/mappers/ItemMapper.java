@@ -22,7 +22,7 @@ public class ItemMapper implements RowMapper<Item> {
         item.setForHealth(resultSet.getBoolean("for_health"));
         item.setPrice(resultSet.getInt("price"));
         item.setImgUrl(resultSet.getString("img_url"));
-        item.setQuantity(resultSet.getInt("quantity"));
+        //item.setQuantity(resultSet.getInt("quantity"));
 
         return item;
     }

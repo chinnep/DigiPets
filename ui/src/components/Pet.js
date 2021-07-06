@@ -33,13 +33,13 @@ function Pet() {
             {}
             <div className='container' id="egg-container">
                 <div className='display-bars'>
-                    <progress id="health-bar" className="nes-progress is-error" value="1000" max="1000" />
+                <progress id="health-bar" className="nes-progress is-error" value={pet.healthLevel} max={pet.petType.health} />
                     <text id="health-text" className="text">health_lvl</text>
-                    <progress id="care-bar" className="nes-progress is-warning" value="20" max="100" />
+                    <progress id="care-bar" className="nes-progress is-warning" value={pet.careLevel} max="100" />
                     <text id="care-text" className="text">care_lvl</text>
-                    <progress id="hunger-bar" className="nes-progress is-success" value="20" max="100" />
+                    <progress id="hunger-bar" className="nes-progress is-success" value={pet.hungerLevel} max="100" />
                     <text id="hunger-text" className="text">hunger_lvl</text>
-                    <progress id="thirst-bar" className="nes-progress is-primary" value="20" max="100" />
+                    <progress id="thirst-bar" className="nes-progress is-primary" value={pet.thirstLevel} max="100" />
                     <text id="thirst-text" className="text">thirst_lvl</text>
                 </div>
                 <div className='loops'></div>

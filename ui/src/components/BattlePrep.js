@@ -23,15 +23,13 @@ function BattlePrep() {
             .then(setUser)
             .catch(() => history.push("/error"))
         }
-      }, [id]);
-
-      useEffect(() => {
-        findItems()
-            .then(setItems)
-            .catch(() => history.push("/error"))
-    }, [history]);
+      }, [history]);
 
     console.log(user);
+
+    if(user && document.getElementById("pet-select") != null) {
+        setPet(user.pets[document.getElementById("pet-select").selectedIndex]);
+    };
 
     const enterQueue = () =>
     {//things should happen here I think related to the Websocket
@@ -42,13 +40,14 @@ function BattlePrep() {
         {!user? <h3>big error oof</h3>:
             <>
             <label for="success_select">Choose a DigiPet to Battle:</label>
-            <div class="nes-select is-success">
-            <select required id="success_select">
+            <div class="nes-select is-success" name="pet-select">
+            <select required id="pet-select">
                 <option value="" disabled selected hidden>Select...</option>
                 {user.pets? user.pets.map((p, index) =>
                 <option value={index}>{p.name}</option>):<></>}
             </select>
             </div>
+            {pet? 
                 <Card id="battleprep-card" className="nes-container with-title is-centered">
                     <text id="battleprep-display-name" className="title">{pet.name}</text>
                         <div  id="battleprep-egg" className='egg'>
@@ -94,7 +93,7 @@ function BattlePrep() {
                         </div>
                         <button onClick={enterQueue} type="button" className="nes-btn is-success">Enter the Queue</button>
                     </div>
-                </Card>
+                </Card> :<>select a pet above</>}
             </>}
         </>
     );
