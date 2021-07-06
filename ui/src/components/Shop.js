@@ -8,7 +8,7 @@ function Shop() {
 
     const history = useHistory();
     const { username } = useContext(LoginContext);
-    const [user, setUser] = useState(findByUsername(username));
+    const [user, setUser] = useState();
 
     useEffect(() => {
         if (username) {
@@ -18,9 +18,9 @@ function Shop() {
         }
     }, [history])
 
-    console.log(user);
-    console.log(user.items);
-    console.log(Object.keys(user));
+    // console.log(user);
+    // console.log(user.items);
+    // console.log(Object.keys(user));
 
 
     return (
@@ -38,7 +38,7 @@ function Shop() {
                 <h1 class="nes-text is-warning">{username}</h1>
 
                 <h2 className="nes-text is-warning">
-                    Current Gold: {user.gold}
+                    Current Gold: {user && user.gold}
                 </h2>
                 <i class="nes-icon coin is-large"></i>
                 <i class="nes-icon coin is-large"></i>
