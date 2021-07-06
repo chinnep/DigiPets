@@ -6,7 +6,7 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ItemMapper implements RowMapper<Item> {
+public class ItemQuantityMapper implements RowMapper<Item> {
 
     @Override
     public Item mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -22,6 +22,7 @@ public class ItemMapper implements RowMapper<Item> {
         item.setForHealth(resultSet.getBoolean("for_health"));
         item.setPrice(resultSet.getInt("price"));
         item.setImgUrl(resultSet.getString("img_url"));
+        item.setQuantity(resultSet.getInt("quantity"));
 
         return item;
     }

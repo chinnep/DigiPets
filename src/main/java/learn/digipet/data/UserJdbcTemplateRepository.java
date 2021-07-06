@@ -1,6 +1,7 @@
 package learn.digipet.data;
 
 import learn.digipet.data.mappers.ItemMapper;
+import learn.digipet.data.mappers.ItemQuantityMapper;
 import learn.digipet.data.mappers.PetMapper;
 import learn.digipet.data.mappers.UserMapper;
 import learn.digipet.models.User;
@@ -92,7 +93,7 @@ public class UserJdbcTemplateRepository implements UserRepository {
                 + "inner join item i on ui.item_id = i.item_id "
                 + "where ui.username = ?";
 
-        var userItems = jdbcTemplate.query(sql, new ItemMapper(), user.getUsername());
+        var userItems = jdbcTemplate.query(sql, new ItemQuantityMapper(), user.getUsername());
         user.setItems(userItems);
     }
 
