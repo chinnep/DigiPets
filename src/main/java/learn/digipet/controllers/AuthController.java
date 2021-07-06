@@ -29,6 +29,7 @@ public class AuthController {
     public ResponseEntity<Object> authenticate(@RequestBody User user) {
         if (service.authenticate(user)) {
             String token = jwtConverter.getTokenFromUser(user);
+            System.out.println(user);
 
             HashMap<String, String> values = new HashMap<>();
             values.put("jwt_token", token);

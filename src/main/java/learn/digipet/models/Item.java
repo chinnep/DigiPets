@@ -16,6 +16,7 @@ public class Item {
     private boolean forHealth;
     private int price;
     private String imgUrl;
+    private int quantity;
 
     public Item() {
     }
@@ -112,6 +113,14 @@ public class Item {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     @Override

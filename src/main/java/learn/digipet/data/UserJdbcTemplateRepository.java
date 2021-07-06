@@ -86,7 +86,8 @@ public class UserJdbcTemplateRepository implements UserRepository {
     private void addItems(User user) {
 
         final String sql = "select ui.username, ui.item_id, ui.quantity, "
-                + "i.item_name, i.description, i.for_battle, i.price "
+                + "i.item_name, i.description, i.price, "
+                + "i.for_battle, i.for_food, i.for_water, i.for_care, i.for_health, i.img_url "
                 + "from user_item ui "
                 + "inner join item i on ui.item_id = i.item_id "
                 + "where ui.username = ?";
