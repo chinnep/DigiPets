@@ -8,8 +8,8 @@ export async function findAll() {
     return Promise.reject("not 200 Ok");
 }
 
-export async function findById(id) {
-    const response = await fetch(`${url}/${id}`);
+export async function findById(petId) {
+    const response = await fetch(`${url}/${petId}`);
     if (response.status !== 200) {
         return Promise.reject("not 200 ok");
     }

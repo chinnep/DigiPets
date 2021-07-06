@@ -17,6 +17,8 @@ function Pets() {
             .catch(() => history.push("/error"))
     }, [history]);
 
+    
+
     return (
         <div className="row row-cols-4 g-2">
             {pets && pets.map(p =>
@@ -24,7 +26,7 @@ function Pets() {
                     <div className='display-bars'>
                         <progress id="health-bar" className="nes-progress is-error" value={p.healthLevel} max="1000"/>
                         <text id="health-text" className="text">health_lvl</text>
-                        <progress id="care-bar" className="nes-progress is-warning" value={p.careLevel} max="100" />
+                        <progress id="care-bar" className="nes-progress is-warning" value="100" max="100" />
                         <text id="care-text" className="text">care_lvl</text>
                         <progress id="hunger-bar" className="nes-progress is-success" value={p.hungerLevel} max="100" />
                         <text id="hunger-text" className="text">hunger_lvl</text>
@@ -45,10 +47,11 @@ function Pets() {
                             </div>
                         </div>
                         <div className='buttons'>
-                            <div id="pet-button" className='button'></div>
-                            <div id="pet-button" className='button'></div>
-                            <div id="pet-button" className='button'></div>
+                            <button id="pet-button" className='button' onClick="" />
+                            <button id="pet-button" className='button' onClick="" />
+                            <button id="pet-button" className='button' onClick="" />
                         </div>
+                        <button id='item-button' className='nes-btn is-normal' onClick="">item</button>
                     </div>
                 </div>
             )}
