@@ -31,8 +31,24 @@ export async function add(pet) {
     if (response.status !== 201) {
         return Promise.reject("not 201 Created");
     }
-
     return response.json();
+}
+
+export async function update(pet) {
+
+    const init = {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+        },
+        body: JSON.stringify(pet)
+    }
+
+    const response = await fetch(`${url}/${pet.petId}`, init);
+    if (response.status !== 204) {
+        return Promise.reject("not 204 No Content");
+    }
 }
 
 export async function deleteById(id) {

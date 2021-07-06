@@ -67,7 +67,7 @@ function Shop() {
                         </div>
                         <button type="button" class="nes-btn is-warning">
                             <i class="nes-icon coin" />
-                            <p>{i.price}</p>
+                            <p>{user && i.price}</p>
                         </button>
                         <div class="card-body">
                             <p class="nes-text is-warning">Owned: {i.quantity}</p>

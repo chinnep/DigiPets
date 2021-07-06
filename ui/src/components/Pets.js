@@ -1,32 +1,34 @@
 import '../pet.scss';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router";
-import { findAll } from '../services/pets';
+import LoginContext from "../contexts/LoginContext";
+import { findByUsername } from '../services/users';
 
 function Pets() {
 
-    const [pets, setPets] = useState();
+    const { username } = useContext(LoginContext);
+    const [user, setUser] = useState();
     const history = useHistory();
 
     const thirstMonitor = 1000 * 60 * 60 * 3;
     const currentDate = new Date();
 
     useEffect(() => {
-        findAll()
-            .then(setPets)
+        if (username) {
+            findByUsername(username)
+            .then(setUser)
             .catch(() => history.push("/error"))
-    }, [history]);
-
-    
+        }
+    }, [history])
 
     return (
-        <div className="row row-cols-4 g-2">
-            {pets && pets.map(p =>
+        <div className="row row-cols-4 g-2" >
+            {user && user.pets.map(p =>
                 <div className='container' id="egg-container" key={p.petId}>
                     <div className='display-bars'>
                         <progress id="health-bar" className="nes-progress is-error" value={p.healthLevel} max="1000"/>
                         <text id="health-text" className="text">health_lvl</text>
-                        <progress id="care-bar" className="nes-progress is-warning" value="100" max="100" />
+                        <progress id="care-bar" className="nes-progress is-warning" value={p.careLevel} max="100" />
                         <text id="care-text" className="text">care_lvl</text>
                         <progress id="hunger-bar" className="nes-progress is-success" value={p.hungerLevel} max="100" />
                         <text id="hunger-text" className="text">hunger_lvl</text>
