@@ -110,7 +110,6 @@ public class PetJdbcTemplateRepository implements PetRepository {
     @Override
     @Transactional
     public boolean deleteById(int petId) {
-        jdbcTemplate.update("delete from pet_move where pet_id = ?", petId);
         return jdbcTemplate.update("delete from pet where pet_id = ?", petId) > 0;
     }
 

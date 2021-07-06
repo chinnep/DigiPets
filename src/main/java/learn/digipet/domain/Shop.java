@@ -30,7 +30,7 @@ public class Shop {
         this.userItemService = userItemService;
     }
 
-    public List<Item> generateWeaponsList() {
+    public List<Item> generateItemsList() {
         List<Item> all = itemService.findAll();
 
         List<Item> result = new ArrayList<Item>();
@@ -44,13 +44,7 @@ public class Shop {
         return result;
     }
 
-    public List<Item> generateItemsList() {
-        return itemService.findAll().stream()
-                .filter(i -> i.isForBattle() == false)
-                .collect(Collectors.toList());
-    }
-
-    public Result<User> purchasePet(User user) {
+    public Result<User> purchaseEgg(User user) {
         //user.setGold(user.getGold() - EGG_PRICE);
 
         //Result<User> result = userService.update(user); // No update currently

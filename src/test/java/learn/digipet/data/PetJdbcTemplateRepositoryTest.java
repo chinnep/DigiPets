@@ -43,6 +43,12 @@ class PetJdbcTemplateRepositoryTest {
     }
 
     @Test
+    void shouldNotFindInvalidId() {
+        Pet pet = repository.findById(0);
+        assertNull(pet);
+    }
+
+    @Test
     void shouldDeleteById() {
         assertTrue(repository.deleteById(3));
     }
@@ -62,12 +68,6 @@ class PetJdbcTemplateRepositoryTest {
         pet.setPetId(1);
 
         assertTrue(repository.update(pet));
-    }
-
-    @Test
-    void shouldDeleteAgency() {
-        assertTrue(repository.deleteById(2));
-        assertFalse(repository.deleteById(2));
     }
 
     private Pet makePet() {

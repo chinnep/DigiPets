@@ -1,3 +1,4 @@
+import '../pet.scss';
 import { useState, useEffect } from "react";
 import { useHistory, useParams } from 'react-router-dom';
 import { findById } from '../services/pets.js';
@@ -22,7 +23,7 @@ function Pet() {
         <div className="row">
             <div className='container' id="egg-container" key={pet.petId}>
                 <div className='display-bars'>
-                    <progress id="health-bar" className="nes-progress is-error" value={pet.healthLevel} max="1000" />
+                    <progress id="health-bar" className="nes-progress is-error" value={pet.healthLevel} max={pet.petType.health} />
                     <text id="health-text" className="text">health_lvl</text>
                     <progress id="care-bar" className="nes-progress is-warning" value={pet.careLevel} max="100" />
                     <text id="care-text" className="text">care_lvl</text>

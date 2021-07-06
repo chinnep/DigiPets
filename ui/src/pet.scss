@@ -18,7 +18,7 @@ html {
   width: 80rem;
   height: 80rem;
   position: relative;
-  margin-top: 50%;
+  margin-top: 41.4%;
   left: 50%;
   transform: translate(-50%, -50%);
   * {
@@ -33,6 +33,18 @@ html {
   border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
   bottom: 0;
   left: 50%;
+  transform: translatex(-50%);
+  position: relative;
+}
+
+.eggs {
+  background: $egg;
+  width: 60rem;
+  height: 75rem;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  bottom: 0;
+  left: 50%;
+  top: -93.5%;
   transform: translatex(-50%);
   position: relative;
 }
@@ -93,49 +105,49 @@ html {
 }
 
 #health-bar {
-  top: 1.5rem;
+  top: 2rem;
   left: 2rem;
   height: 2rem;
 }
 
 #care-bar {
-  top: 1.5rem;
+  top: -5rem;
   left: 62rem;
   height: 2rem;
 }
 
 #hunger-bar {
-  top: 72.5rem;
+  top: 58rem;
   left: 2rem;
   height: 2rem;
 }
 
 #thirst-bar {
-  top: 72.5rem;
+  top: 51rem;
   left: 62rem;
   height: 2rem;
 }
 
 #health-text {
-  top: 5rem;
+  top: 2rem;
   left: 1.5rem;
   height: 2rem;
 }
 
 #care-text {
-  top: 5rem;
+  top: -5rem;
   left: 61rem;
   height: 2rem;
 }
 
 #hunger-text {
-  top: 76rem;
+  top: 58rem;
   left: 1.5rem;
   height: 2rem;
 }
 
 #thirst-text {
-  top: 76rem;
+  top: 51rem;
   left: 56.5rem;
   height: 2rem;
 }
@@ -152,6 +164,7 @@ html {
   top: 30%;
   position: relative;
 }
+
 #pet-button {
   width: 100%;
   text-align: center;
@@ -179,15 +192,6 @@ html {
   transform: translatex(-50%);
 }
 
-.nes-progress {
-  position: relative;
-  max-height: 2rem;
-}
-
-#bars text {
-  width: 25rem;
-}
-
 Card {
   width: 50%;
 }
@@ -197,3 +201,111 @@ button {
 }
 
 
+.loops {
+  width: 3rem;
+  height: 3rem;
+  position: relative;
+  border: 2rem $egg solid;
+  border-radius: 50%;
+  left: 50%;
+  top: -93.5%;
+  transform: translatex(-50%);
+}
+
+#battleprep-egg {
+  background: $egg;
+  width: 30rem;
+  height: 37.5rem;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  bottom: 0;
+  left: 50%;
+  transform: translatex(-50%);
+  position: relative;
+}
+
+#battleprep-crack {
+  background: $buttons;
+  position: relative;
+  width: 17.5rem;
+  height: 17.5rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  clip-path: polygon(
+    3% 5%,
+    15% 6%,
+    28% 0,
+    63% 6%,
+    80% 0,
+    100% 9%,
+    95% 22%,
+    100% 54%,
+    95% 73%,
+    96% 96%,
+    71% 95%,
+    47% 100%,
+    28% 93%,
+    12% 99%,
+    0% 90%,
+    6% 76%,
+    0 57%,
+    5% 28%
+  );
+}
+
+#battleprep-display {
+  background: $lcd;
+  width: 13.5rem;
+  height: 13.5rem;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  border-radius: 1rem;
+}
+
+#battleprep-image {
+  width: 13.5rem;
+  margin-top: 3rem;
+  position: relative;
+}
+
+.nes-field progress {
+  max-height: 2rem;
+}
+
+.nes-field text{
+  min-width: 20rem;
+}
+
+//currently doesn't work but I just want the buttons to be smaller
+#battleprep-button {
+  width: 100%;
+  text-align: center;
+  top: 80%;
+  display: inline-block;
+  position: relative;
+  background: $buttons;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  &:not(:last-child) {
+    margin-right: 4.5rem;
+  }
+  &:nth-child(2) {
+    top: 2rem;
+  }
+}
+
+#battleprep-display-name {
+  font-size: large;
+}
+
+//battlewaitingroom
+#loading {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15rem;
+  width: 50%;
+}

@@ -2,10 +2,12 @@ import { useState, useEffect } from "react";
 import {useHistory, useParams, Link} from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import{findById} from '../services/pets.js';
+import { findAll as findItems } from "../services/items";
 
 function BattlePrep() {
 
     const [pet, setPet] = useState();
+    const [items, setItems] = useState();
     const {id} = useParams();
     const history = useHistory();
 
@@ -19,62 +21,62 @@ function BattlePrep() {
         }
       }, [id]);
 
-      console.log(pet);
+      useEffect(() => {
+        findItems()
+            .then(setItems)
+            .catch(() => history.push("/error"))
+    }, [history]);
 
     return (
-        <div className="row">
-            <div className="col">
-                <Card className="nes-conatiner is-rounded">hello</Card>
-            </div>
-            <div className="col">
-            <Card className="nes-container is-rounded">
+        <>
+        {pet?
+            <Card className="nes-container with-title is-centered">
+                <text id="battleprep-display-name" className="title">{pet.name}</text>
                     <div  id="battleprep-egg" className='egg'>
-                        <text className="display-name">{pet.name}</text>
-                        <div className='crack'>
-                            <div className='display'>
+                        <div id="battleprep-crack" className='crack'>
+                            <div id="battleprep-display" className='display'>
                                 <div className='grid'>
-                                    <img id="active-image" src="https://2.bp.blogspot.com/-BwqYts1IQQ8/Txl9ZXaXwFI/AAAAAAAACbg/2b9IMKJ8_H0/s1600/6.gif" alt=""/>
+                                    <img id="battleprep-image" src="https://2.bp.blogspot.com/-BwqYts1IQQ8/Txl9ZXaXwFI/AAAAAAAACbg/2b9IMKJ8_H0/s1600/6.gif" alt=""/>
                                 </div>
                             </div>
                         </div>
-                        <div className='buttons'>
-                            <div id="pet-button" className='button'></div>
-                            <div id="pet-button" className='button'></div>
-                            <div id="pet-button" className='button'></div>
+                        <div id="battleprep-buttons" className='buttons'>
+                            <div id="battleprep-button" className='button'></div>
+                            <div id="battleprep-button" className='button'></div>
+                            <div id="battleprep-button" className='button'></div>
                         </div>
                     </div>
-                <Card.Body>
-                    <Card.Text id="bars">
+                <div>
+                    <div id="bars">
                         <div className="nes-field is-inline">
                             <text className="text">health_lvl</text>
                             <progress className="nes-progress is-error" value={pet.healthLevel} max={pet.petType.health}/>
                         </div>
                         <div className="nes-field is-inline">
                             <text className="text">care_lvl </text>
-                            <progress className="nes-progress is-warning" value={pet.petType.care} max="100" />
+                            <progress className="nes-progress is-warning" value={pet.careLevel} max={pet.petType.care}/>
                         </div>
                         <div className="nes-field is-inline">
                             <text className="text">hunger_lvl</text>
-                            <progress className="nes-progress is-success" value={pet.petType.appetite} max="100" />
+                            <progress className="nes-progress is-success" value={pet.hungerLevel} max={pet.petType.appetite}/>
                         </div>
                         <div className="nes-field is-inline">
                             <text className="text">thirst_lvl</text>
-                            <progress className="nes-progress is-primary" value={pet.petType.thirst} max="100" />
+                            <progress className="nes-progress is-primary" value={pet.thirstLevel} max={pet.petType.thirst}/>
                         </div>
-                    </Card.Text>
+                    </div>
                     //select an item here to take with you into the battle
-                    <div class="nes-select">
+                    <div className="nes-select">
                         <select required id="default_select">
-                            <option value="" disabled selected hidden>Select...</option>
-                            <option value="0">To be</option>
-                            <option value="1">Not to be</option>
+                            <option value="" disabled selected hidden>Select an item</option>
+                            {items? items.map((i, index) => 
+                                <option value={index} key={i.name}>{i.name}</option>):<></>}
                         </select>
                     </div>
-                    <Link to="/battle" type="button" class="nes-btn is-success">Battle!</Link>
-                </Card.Body>
-            </Card>
-            </div>
-        </div>        
+                    <button type="button" className="nes-btn is-success">Enter the Queue</button>
+                </div>
+            </Card> : <>error</>}
+        </>
     );
 }
 
