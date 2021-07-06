@@ -26,7 +26,7 @@ function Pets() {
                     <div className='display-bars'>
                         <progress id="health-bar" className="nes-progress is-error" value={p.healthLevel} max="1000"/>
                         <text id="health-text" className="text">health_lvl</text>
-                        <progress id="care-bar" className="nes-progress is-warning" value={p.careLevel} max="100" />
+                        <progress id="care-bar" className="nes-progress is-warning" value="100" max="100" />
                         <text id="care-text" className="text">care_lvl</text>
                         <progress id="hunger-bar" className="nes-progress is-success" value={p.hungerLevel} max="100" />
                         <text id="hunger-text" className="text">hunger_lvl</text>

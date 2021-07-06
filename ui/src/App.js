@@ -13,6 +13,8 @@ import { refresh } from "./services/auth";
 import Register from "./components/Register";
 import Shop from "./components/Shop";
 import BattlePrep from "./components/BattlePrep";
+import Battle from "./components/Battle";
+import BattleWaitingRoom from "./components/BattleWaitingRoom";
 import './style.css';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import "nes.css/css/nes.min.css";
@@ -67,12 +69,16 @@ function App() {
             <Login />
           </Route>
           
-          <Route path="/battle">
-            
+          <Route path="/battle/:petAId/:petBId">
+            <Battle/>
           </Route>
 
           <Route path="/battleprep/:id">
             <BattlePrep/>
+          </Route>
+
+          <Route path="/waitingroom/:id">
+            <BattleWaitingRoom />
           </Route>
 
           <Route path="/shop">
