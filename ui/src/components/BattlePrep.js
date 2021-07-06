@@ -31,7 +31,7 @@ function BattlePrep() {
         <>
         {pet?
             <Card className="nes-container with-title is-centered">
-                <text id="battleprep-display-name" className="title">{pet.name}</text>
+                <text id="battleprep-display-name" className="title">{pet && pet.name}</text>
                     <div  id="battleprep-egg" className='egg'>
                         <div id="battleprep-crack" className='crack'>
                             <div id="battleprep-display" className='display'>
@@ -50,19 +50,19 @@ function BattlePrep() {
                     <div id="bars">
                         <div className="nes-field is-inline">
                             <text className="text">health_lvl</text>
-                            <progress className="nes-progress is-error" value={pet.healthLevel} max={pet.petType.health}/>
+                            <progress className="nes-progress is-error" value={pet && pet.healthLevel} max={pet && pet.petType.health}/>
                         </div>
                         <div className="nes-field is-inline">
                             <text className="text">care_lvl </text>
-                            <progress className="nes-progress is-warning" value={pet.careLevel} max={pet.petType.care}/>
+                            <progress className="nes-progress is-warning" value={pet && pet.careLevel} max={pet && pet.petType.care}/>
                         </div>
                         <div className="nes-field is-inline">
                             <text className="text">hunger_lvl</text>
-                            <progress className="nes-progress is-success" value={pet.hungerLevel} max={pet.petType.appetite}/>
+                            <progress className="nes-progress is-success" value={pet && pet.hungerLevel} max={pet && pet.petType.appetite}/>
                         </div>
                         <div className="nes-field is-inline">
                             <text className="text">thirst_lvl</text>
-                            <progress className="nes-progress is-primary" value={pet.thirstLevel} max={pet.petType.thirst}/>
+                            <progress className="nes-progress is-primary" value={pet && pet.thirstLevel} max={pet && pet.petType.thirst}/>
                         </div>
                     </div>
                     //select an item here to take with you into the battle
@@ -70,7 +70,7 @@ function BattlePrep() {
                         <select required id="default_select">
                             <option value="" disabled selected hidden>Select an item</option>
                             {items? items.map((i, index) => 
-                                <option value={index} key={i.name}>{i.name}</option>):<></>}
+                                <option value={index} key={i && i.name}>{i && i.name}</option>):<></>}
                         </select>
                     </div>
                     <button type="button" className="nes-btn is-success">Enter the Queue</button>
