@@ -33,6 +33,10 @@ public class PetType {
         this.nextPetTypeId = nextPetTypeId;
     }
 
+    public PetType(int petTypeId) {
+        this.petTypeId = petTypeId;
+    }
+
     public PetType() {}
 
     public int getPetTypeId() {

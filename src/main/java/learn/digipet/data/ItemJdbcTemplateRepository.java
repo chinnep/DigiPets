@@ -19,7 +19,7 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
     @Override
     public List<Item> findAll(){
         final String sql = "select item_id, item_name, description, for_battle, for_food, "
-                + "for_water, for_care, for_health, price, img_url from item limit 1000;";
+                + "for_water, for_care, for_health, price, img_url from item;";
         return jdbcTemplate.query(sql, new ItemMapper());
     }
 

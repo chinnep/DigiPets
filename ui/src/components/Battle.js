@@ -27,6 +27,9 @@ function Battle() {
         }
       }, [petAId, petBId]);
 
+      console.log(petA);
+      console.log(petB);
+
     return (
         <>
         <div className="container">
