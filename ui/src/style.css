@@ -30,6 +30,26 @@
   width: 25%;
 }
 
+.user-coin {
+  float:none;
+  display: block;
+  background-color: #08B2E3;
+  text-align: center;
+}
+
+.shop-egg {
+  margin-left: auto;
+  margin-right: auto;
+  width: 25%;
+}
+
+.shop-item {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 15%;
+}
+
 #title-container {
   margin-left:10%;
   margin-right:10%;

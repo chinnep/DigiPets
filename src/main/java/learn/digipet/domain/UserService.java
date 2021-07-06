@@ -53,12 +53,6 @@ public class UserService {
         return passwordEncoder.matches(user.getPassword(), existing.getPasswordHash());
     }
 
-    private boolean populateUserItemBridge() {
-        //List<int> itemIds =
-
-        return false;
-    }
-
     private boolean validateUser(User user) {
         if (user == null || user.getUsername() == null || user.getUsername().trim().length() == 0
                 || user.getPassword() == null || user.getPassword().trim().length() == 0) {
