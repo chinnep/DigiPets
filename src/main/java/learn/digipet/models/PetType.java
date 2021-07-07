@@ -115,4 +115,18 @@ public class PetType {
     public int hashCode() {
         return Objects.hash(petTypeId, name, appetite, care, health, thirst, nextPetTypeId);
     }
+
+    @Override
+    public String toString() {
+        return "PetType{" +
+                "petTypeId=" + petTypeId +
+                ", name='" + name + '\'' +
+                ", appetite=" + appetite +
+                ", care=" + care +
+                ", health=" + health +
+                ", thirst=" + thirst +
+                ", moves=" + moves +
+                ", nextPetTypeId=" + nextPetTypeId +
+                '}';
+    }
 }
