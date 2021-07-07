@@ -25,11 +25,11 @@ function Shop() {
             .catch(() => history.push("/error"))
     }
 
-    // const buyEgg = evt => {
-    //     purchaseItem(username, i.itemId)
-    //         .then(setUser)
-    //         .catch(() => history.push("/error"))
-    // }
+    const buyEgg = evt => {
+        purchaseEgg(username)
+            .then(setUser)
+            .catch(() => history.push("/error"))
+    }
 
     return (
         <>
@@ -61,7 +61,7 @@ function Shop() {
                         <h2 className="card-title nes-text is-warning">DigiPet Egg</h2>
                         <p className="card-text">This excitable little egg is hopping all about! What pet awaits inside??!</p>
                     </div>
-                    <button type="button" class={`nes-btn ${(user && user.gold >= 100 ? "is-warning" : "is-disabled")}`}>
+                    <button type="button" class={`nes-btn ${(user && user.gold >= 100 ? "is-warning" : "is-disabled")}`} onClick={() => buyEgg()}>
                         <i class="nes-icon coin" />
                         <p>100</p>
                     </button>

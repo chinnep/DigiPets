@@ -19,9 +19,15 @@ public class ShopController {
         this.service = service;
     }
 
-    @PostMapping("/egg/{username}/{petName}")
-    public User purchaseEgg(@PathVariable("username") String username, @PathVariable("petName") String petName) {
-        return service.purchaseEgg(username, petName);
+    @PostMapping("/egg/{username}")
+    public ResponseEntity<Object> purchaseEgg(@PathVariable("username") String username) {
+        User user = service.purchaseEgg(username);
+
+        if(user == null) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @PostMapping("/item/{username}/{itemId}")
