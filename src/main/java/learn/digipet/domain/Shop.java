@@ -29,10 +29,13 @@ public class Shop {
     }
 
     @Transactional
-    public User purchaseEgg(String username, String petName) {
+    public User purchaseEgg(String username) {
+        System.out.println(username);
 
-        Result<Pet> adding = petService.add(new Pet(petName,100, 100, 100,
+        Result<Pet> adding = petService.add(new Pet("Eggy",100, 100, 100,
                 100, LocalDateTime.now(), false, 1500, new PetType(3), username));
+
+        System.out.println(adding.getPayload().toString());
 
         if (!adding.isSuccess()) {
             return null;
