@@ -3,7 +3,6 @@ package learn.digipet.controllers;
 import learn.digipet.domain.Battle;
 import learn.digipet.domain.BattleService;
 import learn.digipet.domain.Result;
-import learn.digipet.models.Move;
 import learn.digipet.models.RoundRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

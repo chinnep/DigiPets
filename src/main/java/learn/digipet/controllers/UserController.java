@@ -50,11 +50,8 @@ public class UserController {
         }
 
         if (success) {
-            System.out.println("in add pets");
             Result<Pet> adding = petService.add(new Pet(username + " Jr.",100,100,100,100, LocalDateTime.now(),false,1500,
                     new PetType(3), username));
-
-            System.out.println(adding.getMessages());
         }
 
         return new ResponseEntity<>(success ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST);

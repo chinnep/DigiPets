@@ -98,10 +98,9 @@ insert into item(item_name, description, for_battle, for_food, for_water, for_ca
     ('Meaty Vegetable', 'It looks kind of weird... but all the pets seem to be salivating over it.', false, true, false, false, false, 200, '/meaty veg.jpg'),
     ('Magical Fountain', "This fountain seems to create water out of nowhere! Don't leave it inside unless you want a flooded basement.", false, false, true, false, false, 200, '/fountain.jpg'),
     ('Precious Caterpillar', 'Uh oh... Your pet already seems attached to this cute plush caterpillar.', false, false, false, true, false, 200, '/caterpillar.jpg'),
-	('Sledgehammer','A sledgehammer is a tool with a large, flat, often metal head, attached to a long handle.', true, false, false, false, false, 200, '/sledgehammer.png');
+	('Sledgehammer','A sledgehammer is a tool with a large, flat, often metal head, attached to a long handle.', true, false, false, false, false, 22000, '/sledgehammer.png');
 
 -- petType
-
 insert into pet_type(pet_type_name, appetite, care, thirst, health, next_pet_type_id)
 		values
 	('young',2.0,2.0,1.0,30,null),
@@ -111,8 +110,8 @@ insert into pet_type(pet_type_name, appetite, care, thirst, health, next_pet_typ
 insert into move(move_name, damage) values
 		('Crack',0),
         ('Roll',1),
-        ('Goo',2),
         ('Gum',2),
+        ('Goo',2),
         ('Roll',3);
         
 	insert into pet_type_move(pet_type_id, move_id) values
