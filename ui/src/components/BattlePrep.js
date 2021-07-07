@@ -30,7 +30,6 @@ function BattlePrep() {
 
           if (index && user) {
             setPet(user.pets[index]);
-            console.log(user.pets);
         }
       };
 
@@ -49,16 +48,17 @@ function BattlePrep() {
     const enterQueue = () => {
         const request = {pet,item}
 
-        console.log(request);
-
         requestBattle(request)
         .then((result)=> {
             if(result) {
-                setBattleId(result);
-                history.push(`./battle/${battleId}`);
+                setBattleId(result.battleId);
+                history.push(`./battle/${result.battleId}`);
             } else {history.push(`/waitingroom/${pet.petId}`)}
         })
-        .catch(() =>history.push("/error"))
+        .catch((err) => {
+            console.error(err);
+            history.push("/error")
+        })
     };
 
     return (
@@ -69,7 +69,7 @@ function BattlePrep() {
                 <h2 htmlFor="success_select">Choose a DigiPet to Battle:</h2>
                 <div className="nes-select is-warning" name="pet-select">
                 <select required id="pet-select" onChange={selectPet}>
-                    <option key="default">Select...</option>
+                    <option defaultValue={null} key="default">Select...</option>
                     {user.pets? user.pets.map((p, index) =>
                     <option value={index} key={p.petId}>{p.name}</option>):<></>}
                 </select>
@@ -113,7 +113,7 @@ function BattlePrep() {
                         </div>
                         <div className="nes-select">
                             <select required id="default_select" onChange={selectItem}>
-                                <option value="" disabled selected hidden>Select an item</option>
+                                <option deafultvalue="" disabled selected hidden>Select an item</option>
                                 {user.items? user.items.forEach(i => {(i.quantity > 0) ?
                                     <option value={i.itemId} key={i.name}>{i.name}</option>:<></>}):<></>}
                             </select>

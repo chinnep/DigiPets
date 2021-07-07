@@ -70,7 +70,7 @@ function App() {
             <Login />
           </Route>
           
-          <Route path="/battle/:id">
+          <Route path="/battle/:battleId">
             <Battle/>
           </Route>
 

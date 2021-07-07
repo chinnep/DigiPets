@@ -1,5 +1,7 @@
 package learn.digipet.domain;
 
+import learn.digipet.data.PetJdbcTemplateRepository;
+import learn.digipet.data.PetRepository;
 import learn.digipet.models.Item;
 import learn.digipet.models.Move;
 import learn.digipet.models.Pet;
@@ -12,9 +14,7 @@ public class Battle {
 
     @PositiveOrZero
     int battleId;
-    @NotBlank(message= "Need 2 pets to battle.")
     Pet petA;
-    @NotBlank(message= "Need 2 pets to battle.")
     Pet petB;
     //currently not requiring items to battle
     Item itemA;

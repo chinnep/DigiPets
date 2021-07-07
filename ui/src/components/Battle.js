@@ -13,10 +13,10 @@ function Battle() {
         const interval = setInterval(() => {
             if(battleId) {
                 findById(battleId)
-                .then((battle) => setBattle(battle))
-                .catch(() => history.pushState("/error"));
+                .then(b => setBattle(b))
+                .catch(() => history.push("/error"));
             }
-        }, 77);
+        }, 4000);
     }, [history, battleId])
 
     console.log(battle);
@@ -25,13 +25,23 @@ function Battle() {
 
     return (
         <>
-        {battle?
+        {battle && battle.petB?
+        <>
         <div className="container">
             <div id="title-container" className="nes-container">
                 <p>Battle</p>
-                <p className="caption">{battle.petA} versus {battle.petB}</p>
+                <p className="caption">petA versus petB</p>
             </div>
         </div>
+        <div className="row">
+            <div className="column">
+                column 1
+            </div>
+            <div className="column">
+                column 2
+            </div>
+        </div>
+        </>
         :
         <div className="cat-container">
             <img alt="jumping cat" id="loading" src={process.env.PUBLIC_URL + '/img/loading_cat.gif'} />
