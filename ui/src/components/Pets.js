@@ -1,6 +1,6 @@
 import '../pet.scss';
 import { useState, useEffect, useContext } from "react";
-import { useHistory } from "react-router";
+import { useHistory, Link } from "react-router-dom";
 import LoginContext from "../contexts/LoginContext";
 import { findByUsername } from '../services/users';
 import { findById } from '../services/pets';
@@ -25,7 +25,6 @@ function Pets() {
     }, [history]);
 
     if(element) {
-        console.log("inside element thingy");
         element.addEventListener("change", (e) => {
             const index = e.target.value;
             const text = element.options[element.selectedIndex];
@@ -39,12 +38,6 @@ function Pets() {
         });
     }
 
-    useEffect(() => {
-        findById(pet.petId)
-        .then(setPet)
-        .catch(() => history.push("/error"))
-    }, [history]);
-
     return (
         <div className="row" >
             <label for="success_select">Select a Digipet:</label>
@@ -54,7 +47,7 @@ function Pets() {
                 {user && user.pets.map((p, index) =>
                 <option value={index}>{p.name}</option>)}
             </select>
-            <button onClick={navPet} type="button" className="nes-btn is-success">Care for Pet</button>
+            <Link className="nes-btn is-success" to={`/pet/${pet && pet.petId}`}>Care for Pet</Link>
             </div>
             {user && user.pets.map(p =>
                 <div className='container' id="egg-container" key={p.petId}>

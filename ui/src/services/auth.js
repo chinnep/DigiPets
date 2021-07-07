@@ -42,21 +42,3 @@ export async function refresh() {
 
     return Promise.reject("Token failed to refresh");
 }
-
-
-// -- if we keep things as is and need authorization in order to update/PUT
-// export async function updatePet(pet) {
-//     const init = {
-//         method: "PUT",
-//         headers: {
-//             "Content-Type": "application/json",
-//             "Accept": "application/json"
-//         },
-//         body: JSON.stringify(pet)
-//     }
-//     const response = await fetch(`${url}/pet/:id`, init);
-//     if(response.status === 204) {
-//         return response.json();
-//     } 
-//     return Promise.reject("Pet not updated");
-// }
