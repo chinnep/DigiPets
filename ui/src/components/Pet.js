@@ -2,6 +2,7 @@ import '../pet.scss';
 import { useState, useEffect } from "react";
 import { useHistory, useParams } from 'react-router-dom';
 import { findById, update } from '../services/pets.js';
+import { updatePet } from '../services/auth.js';
 
 function Pet() {
 
@@ -59,6 +60,7 @@ function Pet() {
                     <button id="pet-buttons" className='button' onClick={pet && pet.careLevel + 10} />
                     <button id="pet-buttons" className='button' onclick={pet && pet.thirstLevel + 10} />
                 </div>
+                <div id='item-button' className='nes-btn is-normal' >item</div>
             </div>
         </form>
     );

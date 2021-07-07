@@ -8,6 +8,7 @@ function Pets() {
 
     const { username } = useContext(LoginContext);
     const [user, setUser] = useState();
+    const [pet, setPet] = useState();
     const history = useHistory();
 
     const thirstMonitor = 1000 * 60 * 60 * 3;
@@ -19,10 +20,18 @@ function Pets() {
             .then(setUser)
             .catch(() => history.push("/error"))
         }
-    }, [history])
+    }, [history]);
 
     return (
-        <div className="row row-cols-4 g-2" >
+        <div className="row" >
+            <label for="success_select">Select a Digipet:</label>
+            <div class="nes-select is-success" name="pet-select">
+            <select required id="pet-select">
+                <option value="" disabled selected hidden>Select...</option>
+                {user && user.pets.map((p, index) =>
+                <option value={index}>{p.name}</option>)}
+            </select>
+            </div>
             {user && user.pets.map(p =>
                 <div className='container' id="egg-container" key={p.petId}>
                     <div className='display-bars'>
@@ -49,11 +58,10 @@ function Pets() {
                             </div>
                         </div>
                         <div className='buttons'>
-                            <button id="pet-button" className='button' onClick="" />
-                            <button id="pet-button" className='button' onClick="" />
-                            <button id="pet-button" className='button' onClick="" />
+                            <div id="pet-button" class='button' />
+                            <div id="pet-button" class='button' />
+                            <div id="pet-button" class='button' />
                         </div>
-                        <button id='item-button' className='nes-btn is-normal' onClick="">item</button>
                     </div>
                 </div>
             )}
