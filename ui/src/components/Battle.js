@@ -31,18 +31,10 @@ function Battle() {
                 <p>Battle</p>
                 <p className="caption">{battle.petA} versus {battle.petB}</p>
             </div>
-            <div class="nes-field">
-                <label for="name_field">please work</label>
-                <input value={msg} type="text" id="msg" class="nes-input"/>
-                <button type="button" className="nes-btn is-success" id="btnSend" onClick={send}>Send Message</button>
-            </div>
-            <div>
-                <p id="messages">chat area here:</p>
-            </div>
         </div>
         :
         <div className="cat-container">
-            <img id="loading" src={process.env.PUBLIC_URL + '/img/loading_cat.gif'} />
+            <img alt="jumping cat" id="loading" src={process.env.PUBLIC_URL + '/img/loading_cat.gif'} />
             <div className="nes-container is-rounded is-dark">
                 <p>Loading...</p>
             </div>

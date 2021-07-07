@@ -57,7 +57,7 @@ function Rankings() {
         {pets && sortByTrophies(pets).map(p =>
             <div className="row"> 
                 <div className="column">
-                    <i class="nes-icon trophy is-small"></i>
+                    <i className="nes-icon trophy is-small"></i>
                     {p.trophies}
                     </div>
                 <div className="column">{p.name}</div>

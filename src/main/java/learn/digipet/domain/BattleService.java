@@ -78,6 +78,12 @@ public class BattleService {
             return result;
         }
         if(queue.size() > 0) {
+            for(BattleRequest b : queue.values()) {
+                if(b.getPet().getUsername() == req.getPet().getUsername()) {
+                    result.addMessage("User has already made a request", ResultType.INVALID);
+                    return result;
+                }
+            }
             //I'm just going to give the first one waiting that PetA advantage...
             int firstInLine = queue.keySet().stream().sorted().findFirst().orElse(-1);
             Battle battle = new Battle(queue.get(firstInLine).getPet(), req.getPet(),

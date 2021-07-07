@@ -30,6 +30,7 @@ function BattlePrep() {
 
           if (index && user) {
             setPet(user.pets[index]);
+            console.log(user.pets);
         }
       };
 
@@ -46,10 +47,9 @@ function BattlePrep() {
     };
 
     const enterQueue = () => {
-        const request = {
-            "pet": pet,
-            "item": item
-        }
+        const request = {pet,item}
+
+        console.log(request);
 
         requestBattle(request)
         .then((result)=> {
@@ -75,7 +75,7 @@ function BattlePrep() {
                 </select>
                 </div>
             </div>
-            {pet? 
+            {pet?
                 <Card id="battleprep-card" className="nes-container with-title is-centered">
                     <text id="battleprep-display-name" className="title">{pet.name}</text>
                         <div  id="battleprep-egg" className='egg'>

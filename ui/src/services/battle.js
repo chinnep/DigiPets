@@ -17,12 +17,18 @@ export async function findById(battleId) {
 }
 
 export async function add(battle) {
+    const jwt = localStorage.getItem("jwt");
+
+    if (!jwt) {
+        return Promise.reject("forbidden");
+    }
 
     const init = {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Accept": "application/json"
+            "Accept": "application/json",
+            "Authorization": `bearer ${jwt}`
         },
         body: JSON.stringify(battle)
     }
@@ -35,12 +41,18 @@ export async function add(battle) {
 }
 
 export async function round(round) {
+    const jwt = localStorage.getItem("jwt");
+
+    if (!jwt) {
+        return Promise.reject("forbidden");
+    }
 
     const init = {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
             "Accept": "application/json",
+            "Authorization": `bearer ${jwt}`
         },
         body: JSON.stringify(round)
     }
@@ -52,12 +64,18 @@ export async function round(round) {
 }
 
 export async function requestBattle(battleReqest) {
+    const jwt = localStorage.getItem("jwt");
+
+    if (!jwt) {
+        return Promise.reject("forbidden");
+    }
 
     const init = {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Accept": "application/json"
+            "Accept": "application/json",
+            "Authorization": `bearer ${jwt}`
         },
         body: JSON.stringify(battleReqest)
     }
