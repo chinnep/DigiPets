@@ -3,11 +3,13 @@ package learn.digipet.controllers;
 import learn.digipet.domain.Battle;
 import learn.digipet.domain.BattleService;
 import learn.digipet.domain.Result;
-import learn.digipet.models.Move;
+import learn.digipet.models.BattleRequest;
 import learn.digipet.models.RoundRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = {"http://localhost:3000"})
@@ -27,6 +29,11 @@ public class BattleController {
         return ResponseEntity.ok(battle);
     }
 
+    @GetMapping
+    public List<Battle> findAll() {
+        return service.findAll();
+    }
+
     @PostMapping
     public ResponseEntity<Object> add(@RequestBody Battle battle) {
         Result<Battle> result = service.add(battle);
@@ -36,7 +43,16 @@ public class BattleController {
         return ErrorResponse.build(result);
     }
 
-    @PutMapping("/{battleId/round}")
+    @PostMapping("/request")
+    public ResponseEntity<Object> requestBattle(@RequestBody BattleRequest request) {
+        Result<Battle> result = service.requestBattle(request);
+        if (result.isSuccess()) {
+            return new ResponseEntity<>(result.getPayload(), HttpStatus.CREATED);
+        }
+        return ErrorResponse.build(result);
+    }
+
+    @PutMapping("/{battleId}")
     public ResponseEntity<Object> round(@PathVariable int battleId, @RequestBody RoundRequest req) {
         Result<Battle> result = service.round(battleId, req.getMoveA(), req.getMoveB());
 
