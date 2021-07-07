@@ -37,12 +37,13 @@ public class UserJdbcTemplateRepository implements UserRepository {
                 + "from user "
                 + "where username = ?;";
 
+
         User user = jdbcTemplate.query(sql, new UserMapper(), username).stream()
                 .findFirst().orElse(null);
 
         if (user != null) {
-            addPets(user);
             addItems(user);
+            addPets(user);
         }
 
         return user;
@@ -79,6 +80,7 @@ public class UserJdbcTemplateRepository implements UserRepository {
                 + "where username = ?";
 
         var pets = jdbcTemplate.query(sql, new PetMapper(), user.getUsername());
+        
         pets.stream().forEach(p -> addPetType(p));
         user.setPets(pets);
     }
@@ -89,7 +91,7 @@ public class UserJdbcTemplateRepository implements UserRepository {
                 + "from pet_type "
                 + "where pet_type_id = ?";
 
-        var petType = jdbcTemplate.query(sql, new PetTypeMapper(), pet.getPetId())
+        var petType = jdbcTemplate.query(sql, new PetTypeMapper(), pet.getPetType().getPetTypeId())
                 .stream()
                 .findFirst()
                 .orElse(null);

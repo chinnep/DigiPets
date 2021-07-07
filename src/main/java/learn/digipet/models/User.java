@@ -82,4 +82,15 @@ public class User {
         return Objects.hash(getUsername());
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", passwordHash='" + passwordHash + '\'' +
+                ", gold=" + gold +
+                ", pets=" + pets +
+                ", items=" + items +
+                '}';
+    }
 }

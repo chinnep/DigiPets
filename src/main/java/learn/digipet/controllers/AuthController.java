@@ -27,6 +27,7 @@ public class AuthController {
 
     @PostMapping("/authenticate")
     public ResponseEntity<Object> authenticate(@RequestBody User user) {
+
         if (service.authenticate(user)) {
             String token = jwtConverter.getTokenFromUser(user);
 

@@ -32,7 +32,12 @@ public class UserController {
 
     @GetMapping("/{username}")
     public User findByUsername(@PathVariable String username) {
-        return service.findByUsername(username);
+        User result = service.findByUsername(username);
+
+        System.out.println(result);
+        System.out.println(result.getPets());
+
+        return result;
     }
 
     @PostMapping("/register")
@@ -50,7 +55,8 @@ public class UserController {
         }
 
         if (success) {
-            Result<Pet> adding = petService.add(new Pet(username + " Jr.",100,100,100,100, LocalDateTime.now(),false,1500,
+            Result<Pet> adding = petService.add(new Pet(username + " Jr.",100,100,100,
+                    100, LocalDateTime.now(),false,1500,
                     new PetType(3), username));
         }
 

@@ -57,8 +57,55 @@ public class Battle {
         this.petB.setTrophies((int)(startRankingPetB + 32 * (matchStatusB - (startRankingPetB/(startRankingPetA + startRankingPetB)))));
     }
 
+    //If the attacking pet has health < 10% their damage is 2 times as strong
+    //if hunger/thirst/care are below 30% their attack will be 80%
+    //if care is low their attack will be at 20%
     private void setPetAHealth(Move move) {
-        this.petA.setHealthLevel(this.petA.getHealthLevel() - move.getDamage());
+        double healthPercentage = ((double)this.petB.getHealthLevel())/((double)this.petB.getPetType().getHealth());
+        double hungerPercentage = ((double)this.petB.getHungerLevel())/((double)this.petB.getPetType().getAppetite());
+        double thirstPercentage = ((double)this.petB.getCareLevel())/((double)this.petB.getPetType().getCare());
+        double carePercentage = ((double)this.petB.getCareLevel())/((double)this.petB.getPetType().getCare());
+        double damage = move.getDamage();
+        if(healthPercentage <= 0.1) {
+            damage *=2;
+        }
+
+        //with this order, if care is high but hunger/thirst are low, then the damage will still be cut 20%
+        //if hunger/thirst are low we still get only the cut based on care because care > hunger/thirst
+        if(carePercentage <= 0.1) {
+            damage*=0.1;
+        } else if (carePercentage <= 0.3) {
+            damage *=0.8;
+        } else if(hungerPercentage <= 0.3 || thirstPercentage <= 0.3) {
+            damage=0.8;
+        } else if (carePercentage > 0.8) {
+            damage *= 1.2;
+        }
+        this.petA.setHealthLevel((int)((double)this.petA.getHealthLevel() - damage));
+    }
+
+    private void setPetBHealth(Move move) {
+        double healthPercentage = ((double)this.petA.getHealthLevel())/((double)this.petA.getPetType().getHealth());
+        double hungerPercentage = ((double)this.petA.getHungerLevel())/((double)this.petA.getPetType().getAppetite());
+        double thirstPercentage = ((double)this.petA.getCareLevel())/((double)this.petA.getPetType().getCare());
+        double carePercentage = ((double)this.petA.getCareLevel())/((double)this.petA.getPetType().getCare());
+        double damage = move.getDamage();
+        if(healthPercentage <= 0.1) {
+            damage *=2;
+        }
+
+        //with this order, if care is high but hunger/thirst are low, then the damage will still be cut 20%
+        //if hunger/thirst are low we still get only the cut based on care because care > hunger/thirst
+        if(carePercentage <= 0.1) {
+            damage*=0.1;
+        } else if (carePercentage <= 0.3) {
+            damage *=0.8;
+        } else if(hungerPercentage <= 0.3 || thirstPercentage <= 0.3) {
+            damage=0.8;
+        } else if (carePercentage > 0.8) {
+            damage *= 1.2;
+        }
+        this.petB.setHealthLevel((int)((double)this.petB.getHealthLevel() - damage));
     }
 
     public int getBattleId() {
@@ -67,10 +114,6 @@ public class Battle {
 
     public void setBattleId(int battleId) {
         this.battleId = battleId;
-    }
-
-    private void setPetBHealth(Move move) {
-        this.petB.setHealthLevel(this.petB.getHealthLevel() - move.getDamage());
     }
 
     public Pet getPetA() {

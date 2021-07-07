@@ -141,8 +141,7 @@ public class Pet {
                 ", isDead=" + isDead +
                 ", trophies=" + trophies +
                 ", petType=" + petType +
-                ", userId=" + username +
+                ", username='" + username + '\'' +
                 '}';
     }
-
 }

@@ -1,6 +1,7 @@
 package learn.digipet.data.mappers;
 
 import learn.digipet.models.Pet;
+import learn.digipet.models.PetType;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -25,6 +26,7 @@ public class PetMapper implements RowMapper<Pet> {
         pet.setDead(resultSet.getBoolean("is_dead"));
         pet.setTrophies(resultSet.getInt("trophies"));
         pet.setUsername(resultSet.getString("username"));
+        pet.setPetType(new PetType(resultSet.getInt("pet_type_id")));
 
         return pet;
     }
