@@ -1,15 +1,10 @@
 package learn.digipet.domain;
 
-import learn.digipet.models.PetType;
-import learn.digipet.models.User;
-import learn.digipet.models.Item;
-import learn.digipet.models.UserItem;
+import learn.digipet.models.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.time.LocalDateTime;
 
 /**
  * The shop offers the ability to spend gold (UserService) won in battles on:
@@ -25,28 +20,58 @@ public class Shop {
     private final UserItemService userItemService;
     private static final int EGG_PRICE = 100;
 
-    public Shop (UserService userService, PetService petService,
-                 ItemService itemService, UserItemService userItemService) {
+    public Shop(UserService userService, PetService petService,
+                ItemService itemService, UserItemService userItemService) {
         this.petService = petService;
         this.userService = userService;
         this.userItemService = userItemService;
         this.itemService = itemService;
     }
 
-    public Result<User> purchaseEgg(User user) {
-        //user.setGold(user.getGold() - EGG_PRICE);
+    @Transactional
+    public User purchaseEgg(String username) {
+        System.out.println(username);
 
-        //Result<User> result = userService.update(user); // No update currently
+        Result<Pet> adding = petService.add(new Pet("Eggy",100, 100, 100,
+                100, LocalDateTime.now(), false, 1500, new PetType(3), username));
 
-        return null;
+        System.out.println(adding.getPayload().toString());
+
+        if (!adding.isSuccess()) {
+            return null;
+        }
+
+        User result = userService.findByUsername(username);
+        result.setGold(result.getGold() - EGG_PRICE);
+
+        if (!userService.updateGold(result)) {
+            return null;
+        }
+
+        return result;
     }
 
     @Transactional
-    public boolean purchaseItem(User user, Item item) {
+    public User purchaseItem(String username, int itemId) {
 
-        item = itemService.findById(item.getItemId());
-//        user.setGold(user.getGold() - );
-        return false;
+        Item purchase = itemService.findById(itemId);
+
+        UserItem userItem = new UserItem(username, itemId);
+        userItem = userItemService.findByIds(userItem);
+        userItem.setQuantity(userItem.getQuantity() + 1);
+
+        Result<Void> userItemResult = userItemService.update(userItem);
+
+        if (!userItemResult.isSuccess()) return null;
+
+        User result = userService.findByUsername(username);
+        result.setGold(result.getGold() - purchase.getPrice());
+
+        if (!userService.updateGold(result)) {
+            return null;
+        }
+
+        return result;
     }
 
 }

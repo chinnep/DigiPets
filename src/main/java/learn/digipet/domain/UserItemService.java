@@ -13,6 +13,9 @@ public class UserItemService {
         this.repository = repository;
     }
 
+    public UserItem findByIds(UserItem userItem) {
+        return repository.findByIds(userItem);
+    }
 
     public Result<Void> add (UserItem userItem) {
         Result<Void> result = validate(userItem);

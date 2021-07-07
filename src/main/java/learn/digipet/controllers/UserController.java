@@ -56,6 +56,4 @@ public class UserController {
 
         return new ResponseEntity<>(success ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST);
     }
-
-
 }
