@@ -80,7 +80,7 @@ public class UserJdbcTemplateRepository implements UserRepository {
                 + "where username = ?";
 
         var pets = jdbcTemplate.query(sql, new PetMapper(), user.getUsername());
-        
+
         pets.stream().forEach(p -> addPetType(p));
         user.setPets(pets);
     }

@@ -34,9 +34,6 @@ public class UserController {
     public User findByUsername(@PathVariable String username) {
         User result = service.findByUsername(username);
 
-        System.out.println(result);
-        System.out.println(result.getPets());
-
         return result;
     }
 

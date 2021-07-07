@@ -26,7 +26,7 @@ public class PetJdbcTemplateRepository implements PetRepository {
     @Override
     public List<Pet> findAll() {
         final String sql = "select pet_id, pet_name, hunger_lvl, care_lvl, thirst_lvl, health_lvl, " +
-                "time_at_last_login, is_dead, trophies, username from pet;";
+                "time_at_last_login, is_dead, trophies, username, pet_type_id from pet;";
         return jdbcTemplate.query(sql, new PetMapper());
     }
 
@@ -34,7 +34,7 @@ public class PetJdbcTemplateRepository implements PetRepository {
     @Transactional
     public Pet findById(int petId) {
         final String sql = "select pet_id, pet_name, hunger_lvl, care_lvl, thirst_lvl, health_lvl, " +
-                "time_at_last_login, is_dead, trophies, username "
+                "time_at_last_login, is_dead, trophies, username, pet_type_id "
                 + "from pet "
                 + "where pet_id = ?";
 
