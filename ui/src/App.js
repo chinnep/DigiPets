@@ -11,6 +11,7 @@ import Pets from "./components/Pets";
 import Pet from './components/Pet';
 import { refresh } from "./services/auth";
 import Register from "./components/Register";
+import Rankings from './components/Rankings';
 import Shop from "./components/Shop";
 import BattlePrep from "./components/BattlePrep";
 import Battle from "./components/Battle";
@@ -69,7 +70,7 @@ function App() {
             <Login />
           </Route>
           
-          <Route path="/battle/:petAId/:petBId">
+          <Route path="/battle/:id">
             <Battle/>
           </Route>
 
@@ -77,8 +78,12 @@ function App() {
             <BattlePrep/>
           </Route>
 
-          <Route path="/waitingroom/:id">
+          <Route path="/waitingroom/:petId">
             <BattleWaitingRoom />
+          </Route>
+
+          <Route path="/rankings">
+            <Rankings />
           </Route>
 
           <Route path="/shop">

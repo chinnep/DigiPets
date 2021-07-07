@@ -77,9 +77,23 @@
   padding: 50px;
 }
 
+#rankings-about-section {
+  margin-top: 50px;
+  background-color: #28965A;
+  width:100%;
+  padding: 30px;
+}
+
 #devs-section {
   margin-top: 200px;
   background-color: #EE6352;
+  width:100%;
+  padding: 50px;
+}
+
+#rankings-section {
+  margin-top: 100px;
+  background-color: #08B2E3;
   width:100%;
   padding: 50px;
 }
