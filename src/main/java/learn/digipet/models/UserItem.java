@@ -18,6 +18,11 @@ public class UserItem {
         this.quantity = quantity;
     }
 
+    public UserItem(String username, int itemId) {
+        this.username = username;
+        this.itemId = itemId;
+    }
+
     public UserItem(){}
 
     public String getUsername() {

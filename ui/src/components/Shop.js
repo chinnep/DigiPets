@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router";
 import LoginContext from "../contexts/LoginContext";
 import { findByUsername } from "../services/users";
+import { purchaseItem, purchaseEgg } from "../services/shop";
 
 
 function Shop() {
@@ -9,10 +10,6 @@ function Shop() {
     const history = useHistory();
     const { username } = useContext(LoginContext);
     const [user, setUser] = useState();
-
-    const purchaseItem = i => {
-        console.log(i.price);
-    }
 
     useEffect(() => {
         if (username) {
@@ -22,7 +19,17 @@ function Shop() {
         }
     }, [history])
 
+    const buyItem = i => {
+        purchaseItem(username, i.itemId)
+            .then(setUser)
+            .catch(() => history.push("/error"))
+    }
 
+    // const buyEgg = evt => {
+    //     purchaseItem(username, i.itemId)
+    //         .then(setUser)
+    //         .catch(() => history.push("/error"))
+    // }
 
     return (
         <>
@@ -54,7 +61,7 @@ function Shop() {
                         <h2 className="card-title nes-text is-warning">DigiPet Egg</h2>
                         <p className="card-text">This excitable little egg is hopping all about! What pet awaits inside??!</p>
                     </div>
-                    <button type="button" class="nes-btn is-warning">
+                    <button type="button" class={`nes-btn ${(user && user.gold >= 100 ? "is-warning" : "is-disabled")}`}>
                         <i class="nes-icon coin" />
                         <p>100</p>
                     </button>
@@ -66,12 +73,12 @@ function Shop() {
                             <h2 className="card-title nes-text is-warning">{i.name}</h2>
                             <p className="card-text">{i.description}</p>
                         </div>
-                    
-                        <button type="button" class={`nes-btn ${(user.gold >= i.price ? "is-warning" : "is-disabled")}`} onClick={() => purchaseItem(i)}>
+
+                        <button type="button" class={`nes-btn ${(user.gold >= i.price ? "is-warning" : "is-disabled")}`} onClick={() => buyItem(i)}>
                             <i class="nes-icon coin" />
-                            <p>{user && i.price}</p>
+                            <p>{i.price}</p>
                         </button>
-                        
+
                         <div class="card-body">
                             <p class="nes-text is-warning">Owned: {i.quantity}</p>
                         </div>

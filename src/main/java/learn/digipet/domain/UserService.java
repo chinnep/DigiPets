@@ -42,6 +42,14 @@ public class UserService {
         return true;
     }
 
+    public boolean updateGold(User user) {
+        if (user.getGold() < 0) return false;
+        if (!repository.updateGold(user)) {
+            return false;
+        }
+        return true;
+    }
+
     public boolean authenticate(User user) {
 
         if (!validateUser(user)) return false;
