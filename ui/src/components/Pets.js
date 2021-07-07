@@ -52,7 +52,7 @@ function Pets() {
             {user && user.pets.map(p =>
                 <div className='container' id="egg-container" key={p.petId}>
                     <div className='display-bars'>
-                        <progress id="health-bar" className="nes-progress is-error" value={p.healthLevel} max="1000"/>
+                        <progress id="health-bar" className="nes-progress is-error" value={p.healthLevel} max="100"/>
                         <text id="health-text" className="text">health_lvl</text>
                         <progress id="care-bar" className="nes-progress is-warning" value={p.careLevel} max="100" />
                         <text id="care-text" className="text">care_lvl</text>

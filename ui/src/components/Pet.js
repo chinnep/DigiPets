@@ -64,9 +64,9 @@ function Pet() {
                 </div>
             </div>
             <div className='buttons-pet'>
-                <button id="pet-buttons" class={`buttons-pet ${(pet && pet.hungerLevel >= 100 ? "is-warning" : "is-disabled")}`} onClick={pet && pet.hungerLevel + 100} />
-                <button id="pet-buttons" class={`buttons-pet ${(pet && pet.careLevel >= 100 ? "is-warning" : "is-disabled")}`} onClick={pet && pet.careLevel + 100} />
-                <button id="pet-buttons" class={`buttons-pet ${(pet && pet.thirstLevel >= 100 ? "is-warning" : "is-disabled")}`} onclick={pet && pet.thirstLevel + 100} />
+                <button id="pet-buttons" class={`buttons-pet ${(pet && pet.hungerLevel >= 100 ? "is-warning" : "is-disabled")}`} onClick={updatePetHunger} />
+                <button id="pet-buttons" class={`buttons-pet ${(pet && pet.careLevel >= 100 ? "is-warning" : "is-disabled")}`} onClick={updatePetCare} />
+                <button id="pet-buttons" class={`buttons-pet ${(pet && pet.thirstLevel >= 100 ? "is-warning" : "is-disabled")}`} onclick={updatePetThirst} />
             </div>
             <button id='item-button' className='nes-btn is-normal' >item</button>
         </div>
