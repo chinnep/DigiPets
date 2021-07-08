@@ -83,7 +83,7 @@ export async function requestBattle(battleReqest) {
     }
 
     const response = await fetch(`${url}/request`, init);
-    if (response.status == 201) {
+    if (response.status === 201) {
         return response.json();
     } else if(response.status === 200) {
         return;
