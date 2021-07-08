@@ -72,6 +72,7 @@ public class Battle {
         double thirstPercentage = ((double)this.petB.getCareLevel())/((double)this.petB.getPetType().getCare());
         double carePercentage = ((double)this.petB.getCareLevel())/((double)this.petB.getPetType().getCare());
         double damage = move.getDamage();
+
         if(healthPercentage <= 0.1) {
             damage *=2;
         }

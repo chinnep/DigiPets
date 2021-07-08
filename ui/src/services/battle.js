@@ -50,7 +50,7 @@ export async function round(round) {
     }
 
     const init = {
-        method: "PUT",
+        method: "POST",
         headers: {
             "Content-Type": "application/json",
             "Accept": "application/json",
@@ -60,8 +60,8 @@ export async function round(round) {
     }
 
     const response = await fetch(`${url}/${round.battleId}`, init);
-    if (response.status !== 204) {
-        return Promise.reject("not 204 No Content");
+    if (response.status !== 200) {
+        return Promise.reject("not 200 No Content");
     }
 }
 

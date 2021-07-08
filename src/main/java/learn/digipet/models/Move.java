@@ -43,5 +43,14 @@ public class Move {
     public void setDamage(int damage) {
         this.damage = damage;
     }
+
+    @Override
+    public String toString() {
+        return "Move{" +
+                "moveId=" + moveId +
+                ", name='" + name + '\'' +
+                ", damage=" + damage +
+                '}';
+    }
 }
 

@@ -13,7 +13,6 @@ function BattlePrep() {
     const[item, setItem] = useState();
     const { username } = useContext(LoginContext);
     const [user, setUser] = useState();
-    const [battleId, setBattleId] = useState();
     const history = useHistory();
     
 
@@ -42,7 +41,7 @@ function BattlePrep() {
                     setItem(user.item[i])
                 }
             }
-      }
+        }
     };
 
     const enterQueue = () => {
@@ -51,7 +50,6 @@ function BattlePrep() {
         requestBattle(request)
         .then((result)=> {
             if(result) {
-                setBattleId(result.battleId);
                 history.push(`./battle/${result.battleId}`);
             } else {history.push(`/waitingroom/${pet.petId}`)}
         })
@@ -82,7 +80,7 @@ function BattlePrep() {
                             <div id="battleprep-crack" className='crack'>
                                 <div id="battleprep-display" className='display'>
                                     <div className='grid'>
-                                        <img id="battleprep-image" src={process.env.PUBLIC_URL + "/img/" + `${pet && pet.petType.name}` + '/default.gif'} alt=""/>
+                                        <img id="battleprep-image" src={process.env.PUBLIC_URL + "/img/" + pet.petType.name + '/default.gif'} alt=""/>
                                     </div>
                                 </div>
                             </div>

@@ -17,6 +17,7 @@ function Pet() {
             findById(id)
                 .then(p => {
                     setPet(p)
+                    console.log(p);
                 })
                 .catch(() => history.push("/error"))
         }
@@ -61,7 +62,7 @@ function Pet() {
                 <div className='crack'>
                     <div className='display'>
                         <div className='grid'>
-                            <img id="active-image" src={process.env.PUBLIC_URL + "/img/" + `${pet && pet.petType.name}` + '/default.gif'} alt="" />
+                            {pet && <img id="active-image" src={process.env.PUBLIC_URL + "/img/" + pet.petType.name + '/default.gif'} alt="" />}
                         </div>
                     </div>
                 </div>
