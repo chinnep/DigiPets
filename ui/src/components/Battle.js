@@ -11,11 +11,11 @@ function Battle() {
     const [user, setUser] = useState();
     const[moveA, setMoveA] = useState();
     const[moveB, setMoveB] = useState();
+    const[readyA, setReadyA] = useState();
+    const[readyB, setReadyB] = useState();
     const {battleId} = useParams();
     const { username } = useContext(LoginContext);
     const history = useHistory();
-    let readyA=false;
-    let readyB=false;
 
     useEffect(() => {
 
@@ -25,19 +25,27 @@ function Battle() {
                 .then(b => setBattle(b))
                 .catch(() => history.push("/error"));
             }
-            if(readyA && readyB) {
-                round(battleId, moveA, moveB)
-                .then(result => {
-                    if(result) {
-                        //isover
-                    }
-                })
-                .catch(() => history.push("/error"));
-            }
-        }, 40000);
+        }, 4000000);
     }, [history, battleId]);
 
-    console.log(battle.petA.petType.moves[0]);
+    console.log("readyA: " + readyA + ", moveA: "+ moveA.name);
+    console.log("readyB: " + readyB + ", moveB: "+ moveB.name);
+
+    const checkAndSendRoundRequest = () => {
+        if(readyA && readyB && moveA && moveB) {
+            round(battleId, moveA, moveB)
+            .then(result => {
+                if(result) {
+                    //isover
+                } else {
+                    setReadyA(false);
+                    setReadyB(false);
+                }
+            })
+            .catch(() => history.push("/error"));
+        }
+    }
+
     
     return (
         <>
@@ -65,9 +73,9 @@ function Battle() {
                                 </div>
                             </div>
                             <div id="battleprep-buttons" className='buttons'>
-                                <button id="battleprep-button" value={0} onClick={() => setMoveA(battle.petA.petType.moves[0])} className={username !== battle.petA.username ? 'is-disabled' : 'is-warning'}/>
-                                <button id="battleprep-button" value={1} onClick={() => setMoveA(battle.petA.petType.moves[1])} className={username !== battle.petA.username ? 'is-disabled' : 'is-warning'}/>
-                                <button id="battleprep-button" className='button'/>
+                                <input type="radio" name="petA-move" id="battleprep-button" value={0} onClick={() => setMoveA(battle.petA.petType.moves[0])} className={username !== battle.petA.username ? 'is-disabled' : 'is-warning'}/>
+                                <input type="radio" name="petA-move" id="battleprep-button" value={1} onClick={() => setMoveA(battle.petA.petType.moves[1])} className={username !== battle.petA.username ? 'is-disabled' : 'is-warning'}/>
+                                <input type="radio" name="petA-move" id="battleprep-button" className='button'/>
                             </div>
                         </div>
                     <div>
@@ -80,7 +88,7 @@ function Battle() {
                         {/* {username === battle.petA.username ?
                         <button type="button" className="nes-btn is-success">ready</button>
                         :<></>} */}
-                        <button type="button" onClick={readyA=true} className={readyB?"nes-btn is-success": "nes-btn is-disabled"}>ready</button>
+                        <button type="button" onClick={() => setReadyA(true)} className={!readyA?"nes-btn is-success": "nes-btn is-disabled"}>ready</button>
                     </div>
                 </Card> :<></>}
             {battle.petB?
@@ -95,9 +103,9 @@ function Battle() {
                                 </div>
                             </div>
                             <div id="battleprep-buttons" className='buttons'>
-                                <button id="battleprep-button" value={0} onClick={() => setMoveB(battle.petB.petType.moves[0])} className={username !== battle.petB.username ? 'is-disabled' : 'is-warning'}/>
-                                <button id="battleprep-button" value={1} onClick={() => setMoveB(battle.petB.petType.moves[1])} className={username !== battle.petB.username ? 'is-disabled' : 'is-warning'}/>
-                                <button id="battleprep-button" className='button'/>
+                                <input type="radio" name="petB-move" id="battleprep-button" value={0} onClick={() => setMoveB(battle.petB.petType.moves[0])} className={username !== battle.petB.username ? 'is-disabled' : 'is-warning'}/>
+                                <input type="radio" name="petB-move" id="battleprep-button" value={1} onClick={() => setMoveB(battle.petB.petType.moves[1])} className={username !== battle.petB.username ? 'is-disabled' : 'is-warning'}/>
+                                <input type="radio" name="petB-move" id="battleprep-button" className='button'/>
                             </div>
                         </div>
                     <div>
@@ -110,7 +118,7 @@ function Battle() {
                         {/* {username === battle.petB.username ?
                         <button type="button" onClick={readyB=true} className={readyB?"nes-btn is-success": "nes-btn is-disabled"}>ready</button>
                         :<></>} */}
-                        <button type="button" onClick={readyB=true} className={readyB?"nes-btn is-success": "nes-btn is-disabled"}>ready</button>
+                        <button type="button" onClick={() => (setReadyB(true))} className={!readyB?"nes-btn is-success": "nes-btn is-disabled"}>ready</button>
                     </div>
                 </Card> :<></>}
                 <div>

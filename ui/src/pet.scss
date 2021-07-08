@@ -312,7 +312,6 @@ button {
   min-width: 26rem;
 }
 
-//currently doesn't work but I just want the buttons to be smaller
 #battleprep-button {
   width: 100%;
   text-align: center;
@@ -323,6 +322,7 @@ button {
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
+  color:#ffc02d;
   &:not(:last-child) {
     margin-right: 4.5rem;
   }
