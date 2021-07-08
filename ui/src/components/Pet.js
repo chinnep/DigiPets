@@ -35,20 +35,22 @@ function Pet() {
     const updatePetHunger = evt => {
         pet.hungerLevel = pet.hungerLevel + 10;
         update(pet)
-            .catch(() => history.push(`/pet/${pet && pet.petId}`));
+            .then(() => history.push(`/pet/${pet && pet.petId}`))
+            .catch(() => history.push("/error"));
     }
 
     const updatePetCare = evt => {
         pet.careLevel = pet.careLevel + 10;
         update(pet)
-            .catch(() => history.push(`/pet/${pet && pet.petId}`));
+            .then(() => history.push(`/pet/${pet && pet.petId}`))
+            .catch(() => history.push("/error"));
     }
 
     const updatePetThirst = evt => {
         pet.thirstLevel = pet.thirstLevel + 10;
         update(pet)
-            .catch(() => history.push(`/pet/${pet && pet.petId}`));
-
+            .then(() => history.push(`/pet/${pet && pet.petId}`))
+            .catch(() => history.push("/error"));
     }
 
     console.log(pet);
@@ -81,7 +83,7 @@ function Pet() {
                 <div className='crack'>
                     <div className='display'>
                         <div className='grid'>
-                            <img id="active-image" src="https://2.bp.blogspot.com/-BwqYts1IQQ8/Txl9ZXaXwFI/AAAAAAAACbg/2b9IMKJ8_H0/s1600/6.gif" alt="" />
+                            {pet && <img id="active-image" src={process.env.PUBLIC_URL + "/img/" + pet.petType.name + '/default.gif'} alt="" />}
                         </div>
                     </div>
                 </div>

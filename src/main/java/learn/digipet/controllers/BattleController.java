@@ -1,6 +1,7 @@
 package learn.digipet.controllers;
 
 import learn.digipet.domain.Battle;
+import learn.digipet.domain.BattleMoveHandler;
 import learn.digipet.domain.BattleService;
 import learn.digipet.domain.Result;
 import learn.digipet.models.BattleRequest;
@@ -17,8 +18,12 @@ import java.util.List;
 public class BattleController {
 
     private final BattleService service;
+    private final BattleMoveHandler moveHandler;
 
-    public BattleController(BattleService service) { this.service = service; }
+    public BattleController(BattleService service, BattleMoveHandler moveHandler) {
+        this.service = service;
+        this.moveHandler = moveHandler;
+    }
 
     @GetMapping("/{battleId}")
     public ResponseEntity<Battle> findById(@PathVariable int battleId) {
@@ -58,7 +63,11 @@ public class BattleController {
 
     @PostMapping("/{battleId}")
     public ResponseEntity<Object> round(@PathVariable int battleId, @RequestBody RoundRequest req) {
-        Result<Battle> result = service.round(battleId, req.getMoveA(), req.getMoveB());
+
+        Result<Battle> result = moveHandler.enterMove(battleId, req.getMoveA(), req.getIsPlayerA());
+
+
+//        Result<Battle> result = service.round(battleId, req.getMoveA(), req.getMoveB());
 
         if(!result.isSuccess()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
