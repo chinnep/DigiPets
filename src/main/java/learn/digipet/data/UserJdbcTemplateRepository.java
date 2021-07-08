@@ -2,6 +2,7 @@ package learn.digipet.data;
 
 import learn.digipet.data.mappers.*;
 import learn.digipet.models.Pet;
+import learn.digipet.models.PetType;
 import learn.digipet.models.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -95,7 +96,20 @@ public class UserJdbcTemplateRepository implements UserRepository {
                 .stream()
                 .findFirst()
                 .orElse(null);
+
+        addMoves(petType);
+
         pet.setPetType(petType);
+    }
+
+    private void addMoves(PetType petType) {
+        final String sql = "select pet_type_move.move_id, move_name, damage from pet_type_move "
+                + "inner join move on move.move_id = pet_type_move.move_id "
+                + "where pet_type_id = ?;";
+
+        var move = jdbcTemplate.query(sql, new MoveMapper(), petType.getPetTypeId());
+
+        petType.setMoves(move);
     }
 
     private void addItems(User user) {
