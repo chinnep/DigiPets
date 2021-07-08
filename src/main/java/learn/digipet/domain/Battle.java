@@ -163,4 +163,15 @@ public class Battle {
     public int hashCode() {
         return Objects.hash(petA, petB, itemA, itemB);
     }
+
+    @Override
+    public String toString() {
+        return "Battle{" +
+                "battleId=" + battleId +
+                ", petA=" + petA +
+                ", petB=" + petB +
+                ", itemA=" + itemA +
+                ", itemB=" + itemB +
+                '}';
+    }
 }

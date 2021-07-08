@@ -25,6 +25,7 @@ public class BattleMoveHandler {
 
             moves[isPetA ? 0 : 1] = move;
 
+
             if (moves[0] != null && moves[1] != null) {
                 moveStorage.remove(battleId);
                 return service.round(battleId, moves[0], moves[1]);

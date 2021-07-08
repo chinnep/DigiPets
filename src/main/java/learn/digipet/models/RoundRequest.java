@@ -8,13 +8,13 @@ public class RoundRequest {
     @PositiveOrZero(message = "battle id must be an integer greater than or equal to 0.")
     private final int battleId;
     @NotBlank(message = "PetA must send in a valid move.")
-    private final Move moveA;
+    private final Move move;
     @NotBlank(message = "PetB must send in a valid move.")
     private final boolean isPlayerA;
 
-    public RoundRequest(int battleId, Move moveA, boolean isPlayerA) {
+    public RoundRequest(int battleId, Move move, boolean isPlayerA) {
         this.battleId = battleId;
-        this.moveA = moveA;
+        this.move = move;
         this.isPlayerA = isPlayerA;
     }
 
@@ -23,10 +23,19 @@ public class RoundRequest {
     }
 
     public Move getMoveA() {
-        return moveA;
+        return move;
     }
 
     public boolean getIsPlayerA() {
         return isPlayerA;
+    }
+
+    @Override
+    public String toString() {
+        return "RoundRequest{" +
+                "battleId=" + battleId +
+                ", move=" + move +
+                ", isPlayerA=" + isPlayerA +
+                '}';
     }
 }

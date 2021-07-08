@@ -87,7 +87,7 @@ function Battle() {
                                     <div id="bars">
                                         <div className="nes-field is-inline">
                                             <text className="text">health_lvl</text>
-                                            <progress className="nes-progress is-error" value={battle.petA.healthLevel} max={battle.petA.petType.health} />
+                                            <progress className="nes-progress is-error" value={battle.petA.healthLevel} max={100} />
                                         </div>
                                     </div>
                                     {/* {username === battle.petA.username ?
@@ -117,7 +117,7 @@ function Battle() {
                                     <div id="bars">
                                         <div className="nes-field is-inline">
                                             <text className="text">health_lvl</text>
-                                            <progress className="nes-progress is-error" value={battle.petB.healthLevel} max={battle.petB.petType.health} />
+                                            <progress className="nes-progress is-error" value={battle.petB.healthLevel} max={100} />
                                         </div>
                                     </div>
                                     {/* {username === battle.petB.username ?

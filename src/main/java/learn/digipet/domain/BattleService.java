@@ -46,9 +46,18 @@ public class BattleService {
     }
 
     public Result<Battle> round(int battleId, Move moveA, Move moveB) {
+        System.out.println("in round in BattleService");
+        System.out.println(moveA);
+        System.out.println(moveB);
+        System.out.println(battleId);
+
         Result<Battle> result = validateMoves(moveA, moveB);
 
+        System.out.println(result.getPayload());
+
         if(!result.isSuccess()) return result;
+
+        System.out.println("made it through");
 
         Battle battle = findById(battleId);
         if(battle == null) {
