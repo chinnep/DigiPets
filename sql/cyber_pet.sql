@@ -148,7 +148,7 @@ insert into user_item(quantity, username, item_id) values
 insert into pet (pet_name, hunger_lvl, care_lvl, thirst_lvl, health_lvl,time_at_last_login,is_dead,trophies,pet_type_id,username) values
 	('Eggy',50,73,100,100,'2021-07-07T10:15:30',false,1500,3,'Ash'),
     ('Baby',30,25,44,100,'2021-07-07T10:15:30',false,1500,2,'Ash'),
-    ('Youngin',100,100,100,100,'2021-07-07T10:15:30',false,1500,1,'Ash'),
+    ('Youngin',50,50,50,50,'2021-07-07T10:15:30',false,1500,1,'Ash'),
     ('Bob',0,0,0,0,'2021-07-07T10:15:30',true,1320,6,'Ash'),
     ('ET',100,100,100,100,'2021-07-07T10:15:30',false,1772,5,'Ash'),
     ('Stomper',100,100,100,100,'2021-07-07T10:15:30',false,1821,4,'Nemesis');
