@@ -101,8 +101,7 @@ insert into item(item_name, description, for_battle, for_food, for_water, for_ca
 	('Sledgehammer','A sledgehammer is a tool with a large, flat, often metal head, attached to a long handle.', true, false, false, false, false, 22000, '/sledgehammer.png');
 
 -- petType
-insert into pet_type(pet_type_name, appetite, care, thirst, health, next_pet_type_id)
-		values
+insert into pet_type(pet_type_name, appetite, care, thirst, health, next_pet_type_id) values
 	('young',2.0,2.0,1.0,30,null),
 	('baby',2.0,3.0,1.0,20,1),
 	('egg',0,3.0,0,10,2),

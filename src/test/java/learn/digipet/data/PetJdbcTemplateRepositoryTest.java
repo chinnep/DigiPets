@@ -34,7 +34,7 @@ class PetJdbcTemplateRepositoryTest {
     }
 
     @Test
-    void shouldFindRick() {
+    void shouldFindEggy() {
         Pet pet = repository.findById(1);
         assertNotNull(pet);
         assertEquals(1, pet.getPetId());
