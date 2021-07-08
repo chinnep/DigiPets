@@ -9,21 +9,21 @@ function NotFound() {
             <section className="nes-container is-dark">
             <section className="message-list">
                 <section id="top-message" className="message -left">
-                    <i className="nes-mario"></i>
+                    <i className="nes-logo is-large"></i>
                     <div className="nes-balloon from-left is-dark">
-                        <p>Oof it looks like you found a page that shouldn't be here</p>
+                        <p>Oof, it looks like you found a page that shouldn't be here</p>
                     </div>
                 </section>
                 <section className="message -right">
                     <div className="nes-balloon from-right is-dark">
-                        <p>oh no what should I do?</p>
+                        <p>Oh no... what should I do?</p>
                     </div>
                     <i className="nes-kirby"></i>
                 </section>
                 <section className="message -left">
                     <i className="nes-ash"></i>
                     <div className="nes-balloon from-left is-dark">
-                        <p>Should probably take a step back.</p>
+                        <p>You should probably take a step back.</p>
                     </div>
                 </section>
             </section>

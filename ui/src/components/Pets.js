@@ -24,7 +24,7 @@ function Pets() {
         }
     }, [history]);
 
-    if(element) {
+    if (element) {
         element.addEventListener("change", (e) => {
             const index = e.target.value;
             const text = element.options[element.selectedIndex];
@@ -47,7 +47,7 @@ function Pets() {
                 {user && user.pets.map((p, index) =>
                 <option value={index}>{p.name}</option>)}
             </select>
-            <Link className="nes-btn is-success" to={`/pet/${pet && pet.petId}`}>Care for Pet</Link>
+            <Link className="nes-btn is-primary" to={`/pet/${pet && pet.petId}`}>Care for Pet</Link>
             </div>
             {user && user.pets.map(p =>
                 <div className='container' id="egg-container" key={p.petId}>

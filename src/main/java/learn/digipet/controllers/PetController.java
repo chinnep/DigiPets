@@ -45,6 +45,7 @@ public class PetController {
 
     @PutMapping("/{petId}")
     public ResponseEntity<Object> update(@PathVariable int petId, @RequestBody Pet pet) {
+
         if (petId != pet.getPetId()) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
@@ -53,7 +54,7 @@ public class PetController {
         if (result.isSuccess()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return ErrorResponse.build(result);
+        return new ResponseEntity<>(pet, HttpStatus.OK);
     }
 
     @DeleteMapping("/{petId}")

@@ -49,15 +49,15 @@ export async function update(pet) {
             "Content-Type": "application/json",
             "Accept": "application/json",
             "Authorization": `bearer ${jwt}`
-        }
+        },
+        body: JSON.stringify(pet)
     }
 
     const response = await fetch(`${url}/${pet.petId}`, init);
 
     if (response.status !== 204) {
-        return Promise.reject("not 204 No Content");
+        return Promise.reject("not 204 ok");
     }
-
     return response.json();
 }
 

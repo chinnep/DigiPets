@@ -25,25 +25,26 @@ function Pet() {
     const updatePetHunger = evt => {
         pet.hungerLevel = pet.hungerLevel + 10;
         update(pet)
-            .catch(() => history.push("/error"));
+            .catch(() => history.push(`/pet/${pet && pet.petId}`));
     }
 
     const updatePetCare = evt => {
         pet.careLevel = pet.careLevel + 10;
         update(pet)
-            .catch(() => history.push("/error"));
+            .catch(() => history.push(`/pet/${pet && pet.petId}`));
     }
 
     const updatePetThirst = evt => {
         pet.thirstLevel = pet.thirstLevel + 10;
         update(pet)
-            .catch(() => history.push("/error"));
+            .catch(() => history.push(`/pet/${pet && pet.petId}`));
+
     }
 
     return (
         <div className='container' id="egg-container">
             <div className='display-bars'>
-                <progress id="health-bar" className="nes-progress is-error" value={pet && pet.healthLevel} max="1000" />
+                <progress id="health-bar" className="nes-progress is-error" value={pet && pet.healthLevel} max="100" />
                 <text id="health-text" className="text">health_lvl</text>
                 <progress id="care-bar" className="nes-progress is-warning" value={pet && pet.careLevel} max="100" />
                 <text id="care-text" className="text">care_lvl</text>
@@ -66,7 +67,7 @@ function Pet() {
             <div className='buttons-pet'>
                 <button id="pet-buttons" class={`buttons-pet ${(pet && pet.hungerLevel >= 100 ? "is-warning" : "is-disabled")}`} onClick={updatePetHunger} />
                 <button id="pet-buttons" class={`buttons-pet ${(pet && pet.careLevel >= 100 ? "is-warning" : "is-disabled")}`} onClick={updatePetCare} />
-                <button id="pet-buttons" class={`buttons-pet ${(pet && pet.thirstLevel >= 100 ? "is-warning" : "is-disabled")}`} onclick={updatePetThirst} />
+                <button id="pet-buttons" class={`buttons-pet ${(pet && pet.thirstLevel >= 100 ? "is-warning" : "is-disabled")}`} onClick={updatePetThirst} />
             </div>
             <button id='item-button' className='nes-btn is-normal' >item</button>
         </div>
