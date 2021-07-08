@@ -1,14 +1,17 @@
 import '../pet.scss';
 import { useState, useEffect, useContext } from "react";
-import { useHistory } from "react-router";
+import { useHistory, Link } from "react-router-dom";
 import LoginContext from "../contexts/LoginContext";
 import { findByUsername } from '../services/users';
+import { findById } from '../services/pets';
 
 function Pets() {
 
     const { username } = useContext(LoginContext);
     const [user, setUser] = useState();
+    const [pet, setPet] = useState();
     const history = useHistory();
+    const element = document.getElementById("pet-select");
 
     const thirstMonitor = 1000 * 60 * 60 * 3;
     const currentDate = new Date();
@@ -19,14 +22,37 @@ function Pets() {
             .then(setUser)
             .catch(() => history.push("/error"))
         }
-    }, [history])
+    }, [history]);
+
+    if (element) {
+        element.addEventListener("change", (e) => {
+            const index = e.target.value;
+            const text = element.options[element.selectedIndex];
+
+            console.log("index: " + index);
+        
+            if (index && user) {
+            setPet(user.pets[index]);
+            console.log(user.pets);
+            }
+        });
+    }
 
     return (
-        <div className="row row-cols-4 g-2" >
+        <div className="row" >
+            <label for="success_select">Select a Digipet:</label>
+            <div class="nes-select is-success" name="pet-select">
+            <select required id="pet-select">
+                <option value="" disabled selected hidden>Select...</option>
+                {user && user.pets.map((p, index) =>
+                <option value={index}>{p.name}</option>)}
+            </select>
+            <Link className="nes-btn is-primary" to={`/pet/${pet && pet.petId}`}>Care for Pet</Link>
+            </div>
             {user && user.pets.map(p =>
                 <div className='container' id="egg-container" key={p.petId}>
                     <div className='display-bars'>
-                        <progress id="health-bar" className="nes-progress is-error" value={p.healthLevel} max="1000"/>
+                        <progress id="health-bar" className="nes-progress is-error" value={p.healthLevel} max="100"/>
                         <text id="health-text" className="text">health_lvl</text>
                         <progress id="care-bar" className="nes-progress is-warning" value={p.careLevel} max="100" />
                         <text id="care-text" className="text">care_lvl</text>
@@ -44,16 +70,15 @@ function Pets() {
                         <div className='crack'>
                             <div className='display'>
                                 <div className='grid'>
-                                    <img id="active-image" src="https://2.bp.blogspot.com/-BwqYts1IQQ8/Txl9ZXaXwFI/AAAAAAAACbg/2b9IMKJ8_H0/s1600/6.gif" alt=""/>
+                                    <img id="active-image" src={process.env.PUBLIC_URL + "/img/" + p.petType.name + '/default.gif'} alt=""/>
                                 </div>
                             </div>
                         </div>
                         <div className='buttons'>
-                            <button id="pet-button" className='button' onClick="" />
-                            <button id="pet-button" className='button' onClick="" />
-                            <button id="pet-button" className='button' onClick="" />
+                            <div id="pet-button" class='button' />
+                            <div id="pet-button" class='button' />
+                            <div id="pet-button" class='button' />
                         </div>
-                        <button id='item-button' className='nes-btn is-normal' onClick="">item</button>
                     </div>
                 </div>
             )}

@@ -9,6 +9,7 @@ export async function findAll() {
 }
 
 export async function findById(petId) {
+
     const response = await fetch(`${url}/${petId}`);
     if (response.status !== 200) {
         return Promise.reject("not 200 ok");
@@ -36,19 +37,28 @@ export async function add(pet) {
 
 export async function update(pet) {
 
+    const jwt = localStorage.getItem("jwt");
+
+    if (!jwt) {
+        return Promise.reject("forbidden");
+    }
+
     const init = {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
             "Accept": "application/json",
+            "Authorization": `bearer ${jwt}`
         },
         body: JSON.stringify(pet)
     }
 
     const response = await fetch(`${url}/${pet.petId}`, init);
+
     if (response.status !== 204) {
-        return Promise.reject("not 204 No Content");
+        return Promise.reject("not 204 ok");
     }
+    return response.json();
 }
 
 export async function deleteById(id) {
