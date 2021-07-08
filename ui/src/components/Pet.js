@@ -38,7 +38,6 @@ function Pet() {
         pet.thirstLevel = pet.thirstLevel + 10;
         update(pet)
             .catch(() => history.push(`/pet/${pet && pet.petId}`));
-
     }
 
     return (
@@ -59,7 +58,7 @@ function Pet() {
                 <div className='crack'>
                     <div className='display'>
                         <div className='grid'>
-                            <img id="active-image" src="https://2.bp.blogspot.com/-BwqYts1IQQ8/Txl9ZXaXwFI/AAAAAAAACbg/2b9IMKJ8_H0/s1600/6.gif" alt="" />
+                            <img id="active-image" src={process.env.PUBLIC_URL + "/img/" + `${pet && pet.petType.name}` + '/default.gif'} alt="" />
                         </div>
                     </div>
                 </div>
