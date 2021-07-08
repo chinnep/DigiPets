@@ -27,7 +27,9 @@ public class PetController {
 
     @GetMapping("/{petId}")
     public Pet findById(@PathVariable int petId) {
-        return service.findById(petId);
+        Pet result = service.findById(petId);
+
+        return result;
     }
 
     @PostMapping

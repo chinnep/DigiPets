@@ -36,8 +36,6 @@ function Battle() {
             }
         }, 40000);
     }, [history, battleId]);
-
-    console.log(battle.petA.petType.moves[0]);
     
     return (
         <>

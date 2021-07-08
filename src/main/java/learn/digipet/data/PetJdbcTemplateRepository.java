@@ -119,7 +119,7 @@ public class PetJdbcTemplateRepository implements PetRepository {
                 + "from pet_type "
                 + "where pet_type_id = ?";
 
-        var petType = jdbcTemplate.query(sql, new PetTypeMapper(), pet.getPetId())
+        var petType = jdbcTemplate.query(sql, new PetTypeMapper(), pet.getPetType().getPetTypeId())
                 .stream()
                 .findFirst()
                 .orElse(null);
