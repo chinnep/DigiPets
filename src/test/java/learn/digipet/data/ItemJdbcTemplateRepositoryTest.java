@@ -36,7 +36,8 @@ class ItemJdbcTemplateRepositoryTest {
         expected.setName("Sledgehammer");
         expected.setDescription("A sledgehammer is a tool with a large, flat, often metal head, attached to a long handle.");
         expected.setForBattle(true);
-        expected.setPrice(200);
+        expected.setPrice(22000);
+        expected.setImgUrl("/melon.jpg");
 
         Item actual = repository.findById(1);
 
