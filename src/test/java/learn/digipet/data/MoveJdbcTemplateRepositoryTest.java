@@ -31,7 +31,7 @@ class MoveJdbcTemplateRepositoryTest {
     }
 
     @Test
-    void findById() {
+    void shouldFindWetWilly() {
 
         Move move = repository.findById(2);
         assertNotNull(move);

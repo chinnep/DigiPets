@@ -101,8 +101,7 @@ insert into item(item_name, description, for_battle, for_food, for_water, for_ca
 	('Sledgehammer','A sledgehammer is a tool with a large, flat, often metal head, attached to a long handle.', true, false, false, false, false, 22000, '/sledgehammer.png');
 
 -- petType
-insert into pet_type(pet_type_name, appetite, care, thirst, health, next_pet_type_id)
-		values
+insert into pet_type(pet_type_name, appetite, care, thirst, health, next_pet_type_id) values
 	('young',2.0,2.0,1.0,30,null),
 	('baby',2.0,3.0,1.0,20,1),
 	('egg',0,3.0,0,10,2),
@@ -148,7 +147,7 @@ insert into user_item(quantity, username, item_id) values
 insert into pet (pet_name, hunger_lvl, care_lvl, thirst_lvl, health_lvl,time_at_last_login,is_dead,trophies,pet_type_id,username) values
 	('Eggy',50,73,100,100,'2021-07-07T10:15:30',false,1500,3,'Ash'),
     ('Baby',30,25,44,100,'2021-07-07T10:15:30',false,1500,2,'Ash'),
-    ('Youngin',100,100,100,100,'2021-07-07T10:15:30',false,1500,1,'Ash'),
+    ('Youngin',50,50,50,50,'2021-07-07T10:15:30',false,1500,1,'Ash'),
     ('Bob',0,0,0,0,'2021-07-07T10:15:30',true,1320,6,'Ash'),
     ('ET',100,100,100,100,'2021-07-07T10:15:30',false,1772,5,'Ash'),
     ('Stomper',100,100,100,100,'2021-07-07T10:15:30',false,1821,4,'Nemesis');

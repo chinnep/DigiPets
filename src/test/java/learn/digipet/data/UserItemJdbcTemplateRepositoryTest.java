@@ -29,8 +29,8 @@ class UserItemJdbcTemplateRepositoryTest {
     }
 
     @Test
-    void shouldFindFiveBiscuits () {
-        UserItem result = repository.findByIds(new UserItem("abc123",2,0));
+    void shouldFindFiveSuperMelons () {
+        UserItem result = repository.findByIds(new UserItem("abc123",2,5));
         assertEquals(5, result.getQuantity());
     }
 
