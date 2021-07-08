@@ -1,11 +1,17 @@
 import '../pet.scss';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useHistory, useParams } from 'react-router-dom';
 import { findById, update } from '../services/pets.js';
+import { findByUsername } from '../services/users';
+import LoginContext from "../contexts/LoginContext";
+
 
 function Pet() {
 
     const [pet, setPet] = useState();
+    const[itemList, setItemList] = useState();
+    const { username } = useContext(LoginContext);
+    const [user, setUser] = useState();
     const { id } = useParams();
     const history = useHistory();
 
@@ -13,15 +19,18 @@ function Pet() {
     const currentDate = new Date();
 
     useEffect(() => {
-        if (id) {
-            findById(id)
-                .then(p => {
-                    setPet(p)
-                    console.log(p);
-                })
-                .catch(() => history.push("/error"))
+        if (username) {
+            findByUsername(username)
+            .then((result) => {
+                setUser(result);
+            })
         }
-    }, [id]);
+        if(id) {
+            findById(id)
+            .then(setPet)
+            .catch(() => history.push("/error"))
+        }
+    }, [history]);
 
     const updatePetHunger = evt => {
         pet.hungerLevel = pet.hungerLevel + 10;
@@ -44,19 +53,31 @@ function Pet() {
             .catch(() => history.push("/error"));
     }
 
+    console.log(pet);
+
     return (
+        <>
+        <br></br>
+        <label for="success_select">Use an Item?</label>
+            <div class="nes-select is-success" name="pet-select">
+            <select required id="pet-select">
+                <option value="" disabled selected hidden>Select...</option>
+                {user && user.items.map((i, index) =>
+                <option value={index}>{i.name}</option>)}
+            </select>
+            </div>
         <div className='container' id="egg-container">
             <div className='display-bars'>
-                <progress id="health-bar" className="nes-progress is-error" value={pet && pet.healthLevel} max="100" />
+                <progress id="health-bar" className="nes-progress is-error" value={pet && pet.healthLevel} max={pet && pet.petType.health} />
                 <text id="health-text" className="text">health_lvl</text>
-                <progress id="care-bar" className="nes-progress is-warning" value={pet && pet.careLevel} max="100" />
+                <progress id="care-bar" className="nes-progress is-warning" value={pet && pet.careLevel} max={pet && pet.petType.care} />
                 <text id="care-text" className="text">care_lvl</text>
-                <progress id="hunger-bar" className="nes-progress is-success" value={pet && pet.hungerLevel} max="100" />
+                <progress id="hunger-bar" className="nes-progress is-success" value={pet && pet.hungerLevel} max={pet && pet.petType.appetite} />
                 <text id="hunger-text" className="text">hunger_lvl</text>
-                <progress id="thirst-bar" className="nes-progress is-primary" value={pet && pet.thirstLevel} max="100" />
+                <progress id="thirst-bar" className="nes-progress is-primary" value={pet && pet.thirstLevel} max={pet && pet.petType.thirst} />
                 <text id="thirst-text" className="text">thirst_lvl</text>
             </div>
-            <div className='loops'></div>
+            <button onClick={() => setItemList(true)}className='loops'></button>
             <div className='eggs'>
                 <text className="display-name">{pet && pet.name}</text>
                 <div className='crack'>
@@ -74,6 +95,7 @@ function Pet() {
             </div>
             <button id='item-button' className='nes-btn is-normal' >item</button>
         </div>
+        </>
     );
 }
 
