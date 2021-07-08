@@ -5,7 +5,7 @@ select * from user;
 
 select * from user inner join user_item inner join item on user.username = user_item.username and user_item.item_id = item.item_id;
 
-select * from user inner join pet on user.username = pet.username where user.username = 'test2';
+select * from user inner join pet on user.username = pet.username where user.username = 'test101';
 select * from pet where pet.username = 'test2';
 
 select * from pet;
