@@ -2,23 +2,22 @@ import { useState, useEffect, useContext } from "react";
 import {useHistory, useParams, Link} from 'react-router-dom';
 import LoginContext from "../contexts/LoginContext";
 import Card from 'react-bootstrap/Card';
-import{findById} from '../services/battle.js';
+import{findById, round} from '../services/battle.js';
 import {findByUsername} from '../services/users';
 
 function Battle() {
 
     const [battle, setBattle] = useState();
     const [user, setUser] = useState();
+    const[moveA, setMoveA] = useState();
+    const[moveB, setMoveB] = useState();
     const {battleId} = useParams();
     const { username } = useContext(LoginContext);
     const history = useHistory();
+    let readyA=false;
+    let readyB=false;
 
     useEffect(() => {
-        if (username) {
-            findByUsername(username)
-            .then(setUser)
-            .catch(() => history.push("/error"))
-        };
 
         const interval = setInterval(() => {
             if(battleId) {
@@ -26,9 +25,20 @@ function Battle() {
                 .then(b => setBattle(b))
                 .catch(() => history.push("/error"));
             }
-        }, 400);
-    }, [history, battleId])
+            if(readyA && readyB) {
+                round(battleId, moveA, moveB)
+                .then(result => {
+                    if(result) {
+                        //isover
+                    }
+                })
+                .catch(() => history.push("/error"));
+            }
+        }, 40000);
+    }, [history, battleId]);
 
+    console.log(battle.petA.petType.moves[0]);
+    
     return (
         <>
         {battle && battle.petB?
@@ -55,8 +65,8 @@ function Battle() {
                                 </div>
                             </div>
                             <div id="battleprep-buttons" className='buttons'>
-                                <button id="battleprep-button" value={0} className='button'/>
-                                <button id="battleprep-button" value={1} className='button'/>
+                                <button id="battleprep-button" value={0} onClick={() => setMoveA(battle.petA.petType.moves[0])} className={username !== battle.petA.username ? 'is-disabled' : 'is-warning'}/>
+                                <button id="battleprep-button" value={1} onClick={() => setMoveA(battle.petA.petType.moves[1])} className={username !== battle.petA.username ? 'is-disabled' : 'is-warning'}/>
                                 <button id="battleprep-button" className='button'/>
                             </div>
                         </div>
@@ -67,6 +77,10 @@ function Battle() {
                             <progress className="nes-progress is-error" value={battle.petA.healthLevel} max={battle.petA.petType.health}/>
                             </div>
                         </div>
+                        {/* {username === battle.petA.username ?
+                        <button type="button" className="nes-btn is-success">ready</button>
+                        :<></>} */}
+                        <button type="button" onClick={readyA=true} className={readyB?"nes-btn is-success": "nes-btn is-disabled"}>ready</button>
                     </div>
                 </Card> :<></>}
             {battle.petB?
@@ -81,8 +95,8 @@ function Battle() {
                                 </div>
                             </div>
                             <div id="battleprep-buttons" className='buttons'>
-                                <button id="battleprep-button" className='button'/>
-                                <button id="battleprep-button" className='button'/>
+                                <button id="battleprep-button" value={0} onClick={() => setMoveB(battle.petB.petType.moves[0])} className={username !== battle.petB.username ? 'is-disabled' : 'is-warning'}/>
+                                <button id="battleprep-button" value={1} onClick={() => setMoveB(battle.petB.petType.moves[1])} className={username !== battle.petB.username ? 'is-disabled' : 'is-warning'}/>
                                 <button id="battleprep-button" className='button'/>
                             </div>
                         </div>
@@ -93,6 +107,10 @@ function Battle() {
                             <progress className="nes-progress is-error" value={battle.petB.healthLevel} max={battle.petB.petType.health}/>
                             </div>
                         </div>
+                        {/* {username === battle.petB.username ?
+                        <button type="button" onClick={readyB=true} className={readyB?"nes-btn is-success": "nes-btn is-disabled"}>ready</button>
+                        :<></>} */}
+                        <button type="button" onClick={readyB=true} className={readyB?"nes-btn is-success": "nes-btn is-disabled"}>ready</button>
                     </div>
                 </Card> :<></>}
                 <div>

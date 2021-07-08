@@ -56,14 +56,14 @@ public class BattleController {
         return ErrorResponse.build(result);
     }
 
-    @PutMapping("/{battleId}")
+    @PostMapping("/{battleId}")
     public ResponseEntity<Object> round(@PathVariable int battleId, @RequestBody RoundRequest req) {
         Result<Battle> result = service.round(battleId, req.getMoveA(), req.getMoveB());
 
         if(!result.isSuccess()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }else if (result.isSuccess()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(result.getPayload(), HttpStatus.OK);
         }
 
         return ErrorResponse.build(result);
