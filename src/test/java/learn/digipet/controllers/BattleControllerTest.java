@@ -145,9 +145,9 @@ class BattleControllerTest {
         Result<Battle> result = new Result<>();
 
         RoundRequest req = new RoundRequest(0,new Move(1,"test",100),
-                new Move(1,"test",100));
+                true);
 
-        when(service.round(req.getBattleId(),req.getMoveA(),req.getMoveB()))
+        when(service.round(req.getBattleId(),req.getMoveA(),req.getMoveA()))
                 .thenReturn(result);
 
         ObjectMapper jsonMapper = new ObjectMapper();

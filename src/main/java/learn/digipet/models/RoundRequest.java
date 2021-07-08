@@ -10,12 +10,12 @@ public class RoundRequest {
     @NotBlank(message = "PetA must send in a valid move.")
     private final Move moveA;
     @NotBlank(message = "PetB must send in a valid move.")
-    private final Move moveB;
+    private final boolean isPlayerA;
 
-    public RoundRequest(int battleId, Move moveA, Move moveB) {
+    public RoundRequest(int battleId, Move moveA, boolean isPlayerA) {
         this.battleId = battleId;
         this.moveA = moveA;
-        this.moveB = moveB;
+        this.isPlayerA = isPlayerA;
     }
 
     public int getBattleId() {
@@ -26,7 +26,7 @@ public class RoundRequest {
         return moveA;
     }
 
-    public Move getMoveB() {
-        return moveB;
+    public boolean getIsPlayerA() {
+        return isPlayerA;
     }
 }
