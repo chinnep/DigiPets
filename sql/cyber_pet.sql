@@ -107,7 +107,8 @@ insert into pet_type(pet_type_name, appetite, care, thirst, health, next_pet_typ
 	('baby',2.0,3.0,1.0,20,1),
 	('egg',0,3.0,0,10,2),
     ('rhino',2.0,0.5,2,10,null),
-    ('alien',0.2,1,0,10,null);
+    ('alien',0.2,1,0,10,null),
+    ('dead',0,0,0,0,null);
     
 insert into move(move_name, damage) values
 	('Crack',0),
@@ -148,6 +149,6 @@ insert into pet (pet_name, hunger_lvl, care_lvl, thirst_lvl, health_lvl,time_at_
 	('Eggy',50,73,100,100,'2021-07-07T10:15:30',false,1500,3,'Ash'),
     ('Baby',30,25,44,100,'2021-07-07T10:15:30',false,1500,2,'Ash'),
     ('Youngin',100,100,100,100,'2021-07-07T10:15:30',false,1500,1,'Ash'),
-    ('Bob',0,0,0,0,'2021-07-07T10:15:30',true,1320,1,'Ash'),
-    ('ET',100,100,100,100,'2021-07-07T10:15:30',false,1772,4,'Ash'),
-    ('Stomper',100,100,100,100,'2021-07-07T10:15:30',false,1821,5,'Nemesis');
+    ('Bob',0,0,0,0,'2021-07-07T10:15:30',true,1320,6,'Ash'),
+    ('ET',100,100,100,100,'2021-07-07T10:15:30',false,1772,5,'Ash'),
+    ('Stomper',100,100,100,100,'2021-07-07T10:15:30',false,1821,4,'Nemesis');

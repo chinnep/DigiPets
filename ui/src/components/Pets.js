@@ -70,7 +70,7 @@ function Pets() {
                         <div className='crack'>
                             <div className='display'>
                                 <div className='grid'>
-                                    <img id="active-image" src="https://2.bp.blogspot.com/-BwqYts1IQQ8/Txl9ZXaXwFI/AAAAAAAACbg/2b9IMKJ8_H0/s1600/6.gif" alt=""/>
+                                    <img id="active-image" src={process.env.PUBLIC_URL + "/img/" + p.petType.name + '/default.gif'} alt=""/>
                                 </div>
                             </div>
                         </div>
