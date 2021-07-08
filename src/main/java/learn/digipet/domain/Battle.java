@@ -1,24 +1,27 @@
 package learn.digipet.domain;
 
+import learn.digipet.data.PetJdbcTemplateRepository;
+import learn.digipet.data.PetRepository;
 import learn.digipet.models.Item;
 import learn.digipet.models.Move;
 import learn.digipet.models.Pet;
+import learn.digipet.domain.PetTypeMoveService;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PositiveOrZero;
+import java.util.List;
 import java.util.Objects;
 
 public class Battle {
 
     @PositiveOrZero
     int battleId;
-    @NotBlank(message= "Need 2 pets to battle.")
     Pet petA;
-    @NotBlank(message= "Need 2 pets to battle.")
     Pet petB;
     //currently not requiring items to battle
     Item itemA;
     Item itemB;
+    //PetTypeMoveService petTypeMoveService;
 
     public Battle() {
     }
@@ -29,6 +32,9 @@ public class Battle {
         this.itemA = itemA;
         this.itemB = itemB;
     }
+
+//    List<Move> petAMoves = petTypeMoveService.findByPetTypeId(petA.getPetType().getPetTypeId());
+//    List<Move> petBMoves = petTypeMoveService.findByPetTypeId(petB.getPetType().getPetTypeId());
 
     public boolean round(Move moveA, Move moveB) {
 

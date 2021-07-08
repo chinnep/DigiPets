@@ -15,9 +15,7 @@ import java.util.Map;
 public class BattleService {
 
     private final Map<Integer, Battle> battles = new HashMap<>();
-    private final Map<Integer, BattleRequest> queue = new HashMap<>();
     private int lastId = 0;
-    private int lastBattleQueue = 0;
     public BattleService() {
     }
 
@@ -69,6 +67,7 @@ public class BattleService {
 
     public Result<Battle> requestBattle(BattleRequest req) {
         Result<Battle> result = new Result<>();
+        Battle battle;
         if(req == null) {
             result.addMessage("request cannot be null.", ResultType.INVALID);
             return result;
@@ -77,23 +76,22 @@ public class BattleService {
             result.addMessage("Pet cannot be null.", ResultType.INVALID);
             return result;
         }
-        if(queue.size() > 0) {
-            for(BattleRequest b : queue.values()) {
-                if(b.getPet().getUsername() == req.getPet().getUsername()) {
-                    result.addMessage("User has already made a request", ResultType.INVALID);
-                    return result;
-                }
+
+        for(Battle b : battles.values()) {
+            if(b.getPetA().getUsername() == req.getPet().getUsername()) {
+                result.addMessage("User has already made a request", ResultType.INVALID);
+                return result;
+            } else if(b.getPetB() == null) {
+                b.setPetB(req.getPet());
+                b.setItemB(req.getItem());
+                result.setPayload(b);
+                return result;
             }
-            //I'm just going to give the first one waiting that PetA advantage...
-            int firstInLine = queue.keySet().stream().sorted().findFirst().orElse(-1);
-            Battle battle = new Battle(queue.get(firstInLine).getPet(), req.getPet(),
-                    queue.get(firstInLine).getItem(), req.getItem());
-            queue.remove(firstInLine);
-            result.setPayload(battle);
-        } else {
-            queue.put(lastBattleQueue, req);
-            lastBattleQueue++;
         }
+        battle = new Battle(req.getPet(),null, req.getItem(), null);
+        battles.put(lastId, battle);
+        lastId++;
+        result.setPayload(battle);
         return result;
     }
 

@@ -21,7 +21,7 @@ function BattleWaitingRoom() {
                 })
                 .catch(() => history.pushState("/error"));
             }
-        }, 77);
+        }, 3000);
     }, [history, petId])
 
     return(

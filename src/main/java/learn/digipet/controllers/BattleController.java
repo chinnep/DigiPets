@@ -47,7 +47,11 @@ public class BattleController {
     public ResponseEntity<Object> requestBattle(@RequestBody BattleRequest request) {
         Result<Battle> result = service.requestBattle(request);
         if (result.isSuccess()) {
-            return new ResponseEntity<>(result.getPayload(), HttpStatus.CREATED);
+            if(result.getPayload() != null) {
+                return new ResponseEntity<>(result.getPayload(), HttpStatus.CREATED);
+            } else {
+                return new ResponseEntity<>(HttpStatus.OK);
+            }
         }
         return ErrorResponse.build(result);
     }

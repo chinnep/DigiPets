@@ -1,3 +1,5 @@
+import { ResponsiveEmbed } from "react-bootstrap";
+
 const url = "http://localhost:8080/battle";
 
 export async function findAll() {
@@ -81,8 +83,10 @@ export async function requestBattle(battleReqest) {
     }
 
     const response = await fetch(`${url}/request`, init);
-    if (response.status !== 201) {
-        return Promise.reject("not 201 Created");
+    if (response.status == 201) {
+        return response.json();
+    } else if(response.status === 200) {
+        return;
     }
-    return response.json();
+    return Promise.reject("not 201 Created");
 }
