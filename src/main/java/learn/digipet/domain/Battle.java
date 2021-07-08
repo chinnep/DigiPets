@@ -21,7 +21,6 @@ public class Battle {
     //currently not requiring items to battle
     Item itemA;
     Item itemB;
-    //PetTypeMoveService petTypeMoveService;
 
     public Battle() {
     }
@@ -32,9 +31,6 @@ public class Battle {
         this.itemA = itemA;
         this.itemB = itemB;
     }
-
-//    List<Move> petAMoves = petTypeMoveService.findByPetTypeId(petA.getPetType().getPetTypeId());
-//    List<Move> petBMoves = petTypeMoveService.findByPetTypeId(petB.getPetType().getPetTypeId());
 
     public boolean round(Move moveA, Move moveB) {
 

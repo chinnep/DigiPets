@@ -112,8 +112,8 @@ function BattlePrep() {
                         <div className="nes-select">
                             <select required id="default_select" onChange={selectItem}>
                                 <option deafultvalue="" disabled selected hidden>Select an item</option>
-                                {user.items? user.items.forEach(i => {(i.quantity > 0) ?
-                                    <option value={i.itemId} key={i.name}>{i.name}</option>:<></>}):<></>}
+                                {user.items? user.items.map(i => {(i.quantity > 0) ?
+                                    <option value={i.itemId} key={i.name}>{console.log(i.name)}</option>:<></>}):<></>}
                             </select>
                         </div>
                         <button onClick={enterQueue} type="button" className="nes-btn is-success">Enter the Queue</button>

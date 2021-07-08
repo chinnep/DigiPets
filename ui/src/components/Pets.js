@@ -51,13 +51,13 @@ function Pets() {
             {user && user.pets.map(p =>
                 <div className='container' id="egg-container" key={p.petId}>
                     <div className='display-bars'>
-                        <progress id="health-bar" className="nes-progress is-error" value={p.healthLevel} max="100"/>
-                        <text id="health-text" className="text">health_lvl</text>
-                        <progress id="care-bar" className="nes-progress is-warning" value={p.careLevel} max="100" />
-                        <text id="care-text" className="text">care_lvl</text>
-                        <progress id="hunger-bar" className="nes-progress is-success" value={p.hungerLevel} max="100" />
-                        <text id="hunger-text" className="text">hunger_lvl</text>
-                        <progress id="thirst-bar" className="nes-progress is-primary" value={p.thirstLevel} max="100" />
+                    <progress id="health-bar" className="nes-progress is-error" value={p.healthLevel} max={p.petType.health} />
+                    <text id="health-text" className="text">health_lvl</text>
+                    <progress id="care-bar" className="nes-progress is-warning" value={p.careLevel} max={p.petType.care} />
+                    <text id="care-text" className="text">care_lvl</text>
+                    <progress id="hunger-bar" className="nes-progress is-success" value={p.hungerLevel} max={p.petType.appetite} />
+                    <text id="hunger-text" className="text">hunger_lvl</text>
+                    <progress id="thirst-bar" className="nes-progress is-primary" value={p.thirstLevel} max={p.petType.thirst} />
                             {//p.thirstLevel - (Math.abs(currentDate.toLocaleString() - p.timeAtLastLogin) / thirstMonitor)
                             // ^^ trying to get thirst to deplete over time... 1 point every 3 hours is what it should equate to
                             }

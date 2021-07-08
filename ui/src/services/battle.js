@@ -1,5 +1,3 @@
-import { ResponsiveEmbed } from "react-bootstrap";
-
 const url = "http://localhost:8080/battle";
 
 export async function findAll() {
@@ -42,8 +40,9 @@ export async function add(battle) {
     return response.json();
 }
 
-export async function round(round) {
+export async function round(roundMove) {
     const jwt = localStorage.getItem("jwt");
+    console.log(roundMove);
 
     if (!jwt) {
         return Promise.reject("forbidden");
@@ -56,10 +55,10 @@ export async function round(round) {
             "Accept": "application/json",
             "Authorization": `bearer ${jwt}`
         },
-        body: JSON.stringify(round)
+        body: JSON.stringify(roundMove)
     }
 
-    const response = await fetch(`${url}/${round.battleId}`, init);
+    const response = await fetch(`${url}/${roundMove.battleId}`, init);
     if (response.status !== 200) {
         return Promise.reject("not 200 No Content");
     }
