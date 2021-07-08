@@ -25,19 +25,22 @@ function Pet() {
     const updatePetHunger = evt => {
         pet.hungerLevel = pet.hungerLevel + 10;
         update(pet)
-            .catch(() => history.push(`/pet/${pet && pet.petId}`));
+            .then(() => history.push(`/pet/${pet && pet.petId}`))
+            .catch(() => history.push("/error"));
     }
 
     const updatePetCare = evt => {
         pet.careLevel = pet.careLevel + 10;
         update(pet)
-            .catch(() => history.push(`/pet/${pet && pet.petId}`));
+            .then(() => history.push(`/pet/${pet && pet.petId}`))
+            .catch(() => history.push("/error"));
     }
 
     const updatePetThirst = evt => {
         pet.thirstLevel = pet.thirstLevel + 10;
         update(pet)
-            .catch(() => history.push(`/pet/${pet && pet.petId}`));
+            .then(() => history.push(`/pet/${pet && pet.petId}`))
+            .catch(() => history.push("/error"));
     }
 
     return (

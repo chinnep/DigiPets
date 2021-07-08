@@ -37,7 +37,7 @@ function Battle() {
                             <div id="battleprep-crack" className='crack'>
                                 <div id="battleprep-display" className='display'>
                                     <div className='grid'>
-                                        <img id="battleprep-image" src="https://2.bp.blogspot.com/-BwqYts1IQQ8/Txl9ZXaXwFI/AAAAAAAACbg/2b9IMKJ8_H0/s1600/6.gif" alt=""/>
+                                        <img id="battleprep-image" src={process.env.PUBLIC_URL + "/img/" + `${battle.petA.petType.name}` + '/default.gif'} alt=""/>
                                     </div>
                                 </div>
                             </div>
@@ -76,7 +76,7 @@ function Battle() {
                             <div id="battleprep-crack" className='crack'>
                                 <div id="battleprep-display" className='display'>
                                     <div className='grid'>
-                                        <img id="battleprep-image" src="https://2.bp.blogspot.com/-BwqYts1IQQ8/Txl9ZXaXwFI/AAAAAAAACbg/2b9IMKJ8_H0/s1600/6.gif" alt=""/>
+                                        <img id="battleprep-image" src={process.env.PUBLIC_URL + "/img/" + `${battle.petB.petType.name}` + '/default.gif'} alt=""/>
                                     </div>
                                 </div>
                             </div>

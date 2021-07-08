@@ -3,7 +3,6 @@ import { useState, useEffect, useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
 import LoginContext from "../contexts/LoginContext";
 import { findByUsername } from '../services/users';
-import { findById } from '../services/pets';
 
 function Pets() {
 
