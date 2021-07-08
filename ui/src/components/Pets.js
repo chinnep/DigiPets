@@ -23,22 +23,19 @@ function Pets() {
         }
     }, [history]);
 
-    if (element) {
-        element.addEventListener("change", (e) => {
+    const selectPet = (e) => {
             const index = e.target.value;
-            const text = element.options[element.selectedIndex];
         
             if (index && user) {
             setPet(user.pets[index]);
             }
-        });
     }
 
     return (
         <div className="row" >
             <label for="success_select">Select a Digipet:</label>
             <div class="nes-select is-success" name="pet-select">
-            <select required id="pet-select">
+            <select required id="pet-select" onChange={selectPet}>
                 <option value="" disabled selected hidden>Select...</option>
                 {user && user.pets.map((p, index) =>
                 <option value={index}>{p.name}</option>)}

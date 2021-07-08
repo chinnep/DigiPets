@@ -58,7 +58,6 @@ export async function update(pet) {
     if (response.status !== 204) {
         return Promise.reject("not 204 ok");
     }
-    return response.json();
 }
 
 export async function deleteById(id) {
