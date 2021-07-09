@@ -69,7 +69,7 @@ function Battle() {
                             body background-image: url("battle_background_stars.gif");
                         </style>
                         {battle.petA ?
-                            <Card id="battle-card-left" className="nes-container is-dark with-title is-centered">
+                            <Card id="battle-card-left" className="nes-container with-title is-centered">
                                 <text id="battleprep-display-name" className="title">{battle.petA.name}</text>
                                 <div id="battleprep-egg" className='egg'>
                                     <div id="battleprep-crack" className='crack'>
@@ -95,7 +95,7 @@ function Battle() {
                                 </div>
                             </Card> : <></>}
                         {battle.petB ?
-                            <Card id="battle-card-right" className="nes-container is-dark with-title is-centered">
+                            <Card id="battle-card-right" className="nes-container with-title is-centered">
                                 <text id="battleprep-display-name" className="title">{battle.petB.name}</text>
                                 <div id="battleprep-egg" className='egg'>
                                     <div id="battleprep-crack" className='crack'>
