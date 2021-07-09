@@ -21,7 +21,12 @@ function Loss() {
 
     return (
         <>{pet ?
-            <h3 id="title-container">{pet.name} loss!</h3>
+        <div className="cat-container">
+            <img alt="jumping cat" id="loading" src={process.env.PUBLIC_URL + '/img/lose.gif'} />
+            <div className="nes-container is-rounded is-dark">
+                <p>{pet.name} loses</p>
+            </div>
+        </div>
 
             : <></>}
         </>

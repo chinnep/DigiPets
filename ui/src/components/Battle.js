@@ -12,13 +12,8 @@ function Battle() {
     const { battleId } = useParams();
     const { username } = useContext(LoginContext);
     const history = useHistory();
-    const x = Math.ceil(Math.random() * 8);
 
     useEffect(() => {
-
-        if(document.getElementById("battle-background")) {
-            document.getElementById("battle-background").style.backgroundImage = url("background_img/"+x+".gif");
-        }
 
         const interval = setInterval(() => {
             if (battleId) {
@@ -57,10 +52,6 @@ function Battle() {
                 }
             })
             //.catch(() => history.push("/error"));
-    }
-
-    if(document.getElementById("battle-background")) {
-        document.getElementById("battle-background").style.backgroundImage = process.env.PUBLIC_URL + "/img/background/" + x + '.gif';
     }
 
     return (
@@ -127,7 +118,6 @@ function Battle() {
                                 </div>
                             </Card> : <></>}
                         <div>
-                            log
                         </div>
                     </div>
                 </>

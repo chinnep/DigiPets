@@ -21,7 +21,12 @@ function Victory() {
 
     return (
         <>{pet ?
-            <h3 id="title-container">{pet.name} wins!</h3>
+            <div className="cat-container">
+            <img alt="jumping cat" id="loading" src={process.env.PUBLIC_URL + '/img/victory.gif'} />
+            <div className="nes-container is-rounded is-dark">
+                <p>{pet.name} wins!</p>
+            </div>
+        </div>
 
             : <></>}
         </>
