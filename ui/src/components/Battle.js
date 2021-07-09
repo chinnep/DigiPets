@@ -12,8 +12,13 @@ function Battle() {
     const { battleId } = useParams();
     const { username } = useContext(LoginContext);
     const history = useHistory();
+    const x = Math.ceil(Math.random() * 8);
 
     useEffect(() => {
+
+        if(document.getElementById("battle-background")) {
+            document.getElementById("battle-background").style.backgroundImage = url("background_img/"+x+".gif");
+        }
 
         const interval = setInterval(() => {
             if (battleId) {
@@ -40,6 +45,10 @@ function Battle() {
             .catch(() => history.push("/error"));
     }
 
+    if(document.getElementById("battle-background")) {
+        document.getElementById("battle-background").style.backgroundImage = process.env.PUBLIC_URL + "/img/background/" + x + '.gif';
+    }
+
     return (
         <>
             {battle && battle.petB ?
@@ -51,9 +60,6 @@ function Battle() {
                         </div>
                     </div>
                     <div id="battle-background">
-                        <style>
-                            body background-image: url("battle_background_stars.gif");
-                        </style>
                         {battle.petA ?
                             <Card id="battle-card-left" className="nes-container is-dark with-title is-centered">
                                 <text id="battleprep-display-name" className="title">{battle.petA.name}</text>
