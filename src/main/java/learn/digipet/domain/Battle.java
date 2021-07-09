@@ -9,6 +9,7 @@ import learn.digipet.domain.PetTypeMoveService;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PositiveOrZero;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -18,9 +19,11 @@ public class Battle {
     int battleId;
     Pet petA;
     Pet petB;
+    Pet winner;
     //currently not requiring items to battle
     Item itemA;
     Item itemB;
+    List<String> BattleLog = new ArrayList<>();
 
     public Battle() {
     }
@@ -37,6 +40,8 @@ public class Battle {
         setPetBHealth(moveA);
         if(this.petB.getHealthLevel() <= 0) {
             calculateTrophies(1, 0);
+
+            //BattleLog.add(petA.getName() )
             return true;
         }
 
@@ -84,7 +89,7 @@ public class Battle {
         } else if (carePercentage > 0.8) {
             damage *= 1.2;
         }
-        this.petA.setHealthLevel((int)((double)this.petA.getHealthLevel() - damage));
+        this.petA.setHealthLevel((int)((double)(this.petA.getHealthLevel() - (damage*(Math.random() + 0.5)))));
     }
 
     private void setPetBHealth(Move move) {
@@ -108,7 +113,8 @@ public class Battle {
         } else if (carePercentage > 0.8) {
             damage *= 1.2;
         }
-        this.petB.setHealthLevel((int)((double)this.petB.getHealthLevel() - damage));
+
+        this.petB.setHealthLevel((int)((double)(this.petB.getHealthLevel() - (damage*(Math.random() + 0.5)))));
     }
 
     public int getBattleId() {
@@ -149,6 +155,14 @@ public class Battle {
 
     public void setItemB(Item itemB) {
         this.itemB = itemB;
+    }
+
+    public List<String> getBattleLog() {
+        return BattleLog;
+    }
+
+    public void setBattleLog(List<String> battleLog) {
+        BattleLog = battleLog;
     }
 
     @Override

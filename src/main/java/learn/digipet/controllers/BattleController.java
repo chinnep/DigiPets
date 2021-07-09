@@ -63,13 +63,8 @@ public class BattleController {
 
     @PostMapping("/{battleId}")
     public ResponseEntity<Object> round(@PathVariable int battleId, @RequestBody RoundRequest req) {
-        System.out.println(req);
 
         Result<Battle> result = moveHandler.enterMove(battleId, req.getMoveA(), req.getIsPlayerA());
-
-        System.out.println(result.isSuccess());
-        System.out.println("in Battle controller after moveHandler call");
-        System.out.println(result.getPayload() + "\n");
 
         if(!result.isSuccess()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
