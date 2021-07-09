@@ -61,7 +61,7 @@ function BattlePrep() {
 
     return (
         <>
-        {!user? <h3>{history.push("/")}</h3>:
+        {!user? <h3>Big Error oof</h3>:
             <>
             <div className="battleprep-container">
                 <h2 htmlFor="success_select">Choose a DigiPet to Battle:</h2>

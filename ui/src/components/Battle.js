@@ -9,13 +9,9 @@ function Battle() {
 
     const [battle, setBattle] = useState();
     const [user, setUser] = useState();
-    // const[moveA, setMoveA] = useState();
-    // const[moveB, setMoveB] = useState();
     const { battleId } = useParams();
     const { username } = useContext(LoginContext);
     const history = useHistory();
-    // let readyA=false;
-    // let readyB=false;
 
     useEffect(() => {
 
@@ -25,15 +21,7 @@ function Battle() {
                     .then(b => setBattle(b))
                     .catch(() => history.push("/error"));
             }
-            // if(readyA && readyB) {
-            //     round(battleId, moveA, moveB)
-            //     .then(result => {
-            //         if(result) {
-            //             //isover
-            //         }
-            //     })
-            //     .catch(() => history.push("/error"));
-            // }
+
         }, 1000);
     }, [history, battleId]);
 
@@ -90,10 +78,6 @@ function Battle() {
                                             <progress className="nes-progress is-error" value={battle.petA.healthLevel} max={100} />
                                         </div>
                                     </div>
-                                    {/* {username === battle.petA.username ?
-                        <button type="button" className="nes-btn is-success">ready</button>
-                        :<></>} */}
-                                    {/* <button type="button" onClick={readyA=true} className={readyB?"nes-btn is-success": "nes-btn is-disabled"}>ready</button> */}
                                 </div>
                             </Card> : <></>}
                         {battle.petB ?
@@ -120,10 +104,6 @@ function Battle() {
                                             <progress className="nes-progress is-error" value={battle.petB.healthLevel} max={100} />
                                         </div>
                                     </div>
-                                    {/* {username === battle.petB.username ?
-                        <button type="button" onClick={readyB=true} className={readyB?"nes-btn is-success": "nes-btn is-disabled"}>ready</button>
-                        :<></>} */}
-                                    {/* <button type="button" onClick={readyB=true} className={readyB?"nes-btn is-success": "nes-btn is-disabled"}>ready</button> */}
                                 </div>
                             </Card> : <></>}
                         <div>
