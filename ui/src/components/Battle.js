@@ -1,3 +1,4 @@
+  
 import { useState, useEffect, useContext } from "react";
 import { useHistory, useParams, Link } from 'react-router-dom';
 import LoginContext from "../contexts/LoginContext";
@@ -65,6 +66,9 @@ function Battle() {
                         </div>
                     </div>
                     <div id="battle-background">
+                        <style>
+                            body background-image: url("battle_background_stars.gif");
+                        </style>
                         {battle.petA ?
                             <Card id="battle-card-left" className="nes-container with-title is-centered">
                                 <text id="battleprep-display-name" className="title">{battle.petA.name}</text>
@@ -118,6 +122,7 @@ function Battle() {
                                 </div>
                             </Card> : <></>}
                         <div>
+                            .
                         </div>
                     </div>
                 </>
