@@ -27,22 +27,36 @@ function Battle() {
                     .catch(() => history.push("/error"));
             }
 
-        }, 1000);
-    }, [history, battleId]);
+        }, 250);
+        return () => clearInterval(interval);
+    }, [battleId]);
+
+
 
     const makeMove = (move, isPlayerA) => {
-        console.log(move);
-        console.log(battleId);
-        console.log(isPlayerA);
-        console.log(battle.petA.healthLevel);
 
-        round({battleId, move, isPlayerA})
+        round({ battleId, move, isPlayerA })
             .then(result => {
+                console.log('first' + result);
                 if (result) {
-                    //isover
+                    console.log(result);
+                    if (result.petB.healthLevel <= 0) {
+                        if (result.petB.username === username) {
+                            history.push(`/loss/${result.petB.petId}`);
+                        } else {
+                            history.push(`/victory/${result.petA.petId}`);
+                        }
+                    } else if (result.petA.healthLevel <= 0) {
+                        if (result.petB.username === username) {
+                            history.push(`/victory/${result.petB.petId}`);
+                        } else {
+                            history.push(`/loss/${result.petA.petId}`);
+                        }
+                    }
+                else {} 
                 }
             })
-            .catch(() => history.push("/error"));
+            //.catch(() => history.push("/error"));
     }
 
     if(document.getElementById("battle-background")) {
@@ -61,7 +75,7 @@ function Battle() {
                     </div>
                     <div id="battle-background">
                         {battle.petA ?
-                            <Card id="battle-card-left" className="nes-container is-dark with-title is-centered">
+                            <Card id="battle-card-left" className="nes-container with-title is-centered">
                                 <text id="battleprep-display-name" className="title">{battle.petA.name}</text>
                                 <div id="battleprep-egg" className='egg'>
                                     <div id="battleprep-crack" className='crack'>
@@ -87,7 +101,7 @@ function Battle() {
                                 </div>
                             </Card> : <></>}
                         {battle.petB ?
-                            <Card id="battle-card-right" className="nes-container is-dark with-title is-centered">
+                            <Card id="battle-card-right" className="nes-container with-title is-centered">
                                 <text id="battleprep-display-name" className="title">{battle.petB.name}</text>
                                 <div id="battleprep-egg" className='egg'>
                                     <div id="battleprep-crack" className='crack'>

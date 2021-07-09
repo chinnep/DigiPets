@@ -68,7 +68,7 @@ public class BattleService {
         boolean isOver = battle.round(moveA, moveB);
         if(isOver) {
             result.setPayload(findById(battleId));
-            battles.remove(battleId);
+            //battles.remove(battleId);
         }
 
         return result;
@@ -99,6 +99,7 @@ public class BattleService {
         }
         battle = new Battle(req.getPet(),null, req.getItem(), null);
         battles.put(lastId, battle);
+        battle.setBattleId(lastId);
         lastId++;
         result.setPayload(battle);
         return result;

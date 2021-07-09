@@ -42,7 +42,6 @@ export async function add(battle) {
 
 export async function round(roundMove) {
     const jwt = localStorage.getItem("jwt");
-    console.log(roundMove);
 
     if (!jwt) {
         return Promise.reject("forbidden");
@@ -62,6 +61,7 @@ export async function round(roundMove) {
     if (response.status !== 200) {
         return Promise.reject("not 200 No Content");
     }
+    return response.json();
 }
 
 export async function requestBattle(battleReqest) {

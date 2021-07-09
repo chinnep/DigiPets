@@ -16,6 +16,8 @@ import Shop from "./components/Shop";
 import BattlePrep from "./components/BattlePrep";
 import Battle from "./components/Battle";
 import BattleWaitingRoom from "./components/BattleWaitingRoom";
+import Victory from "./components/Victory";
+import Loss from "./components/Loss";
 import './style.css';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import "nes.css/css/nes.min.css";
@@ -61,6 +63,14 @@ function App() {
       <Router>
         <Nav />
         <Switch>
+
+          <Route path="/Victory/:petId">
+            <Victory />
+          </Route>
+
+          <Route path="/Loss/:petId">
+            <Loss />
+          </Route>
 
           <Route path="/register">
             <Register />

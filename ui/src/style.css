@@ -133,3 +133,9 @@ h1 {
   background-color: #EAF47C;
   margin-top: 10rem;
 }
+
+#battle-background {
+  background-image: url("background_img/3.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+}

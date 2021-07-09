@@ -20,6 +20,7 @@ function Nav() {
           : <Link className="nes-btn is-warning" to="/mockpet">See a pet!</Link>}
           {username && <Link className="nes-btn is-success" to="/battleprep">Battle!</Link>}
           <Link to="/rankings"className="nes-btn is-error">Rankings</Link>
+          <Link to="/Victory"className="nes-btn is-error">Victory</Link>
         </div>
         <div className="col-right">
           {username ?<button className="nes-btn is-error" onClick={handleLogout}>Logout</button>

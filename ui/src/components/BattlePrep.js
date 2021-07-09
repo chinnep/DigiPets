@@ -109,13 +109,13 @@ function BattlePrep() {
                                 <progress className="nes-progress is-primary" value={pet.thirstLevel} max={pet.petType.thirst}/>
                             </div>
                         </div>
-                        <div className="nes-select">
+                        {/* <div className="nes-select">
                             <select required id="default_select" onChange={selectItem}>
                                 <option deafultvalue="" disabled selected hidden>Select an item</option>
                                 {user.items? user.items.map(i => {(i.quantity > 0) ?
                                     <option value={i.itemId} key={i.name}>{console.log(i.name)}</option>:<></>}):<></>}
                             </select>
-                        </div>
+                        </div> */}
                         <button onClick={enterQueue} type="button" className="nes-btn is-success">Enter the Queue</button>
                     </div>
                 </Card> :<></>}
