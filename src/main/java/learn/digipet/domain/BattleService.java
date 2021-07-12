@@ -46,10 +46,6 @@ public class BattleService {
     }
 
     public Result<Battle> round(int battleId, Move moveA, Move moveB) {
-        System.out.println("in round in BattleService");
-        System.out.println(moveA);
-        System.out.println(moveB);
-        System.out.println(battleId);
 
         Result<Battle> result = validateMoves(moveA, moveB);
 
