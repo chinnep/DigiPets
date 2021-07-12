@@ -1,10 +1,10 @@
   
 import { useState, useEffect, useContext } from "react";
-import { useHistory, useParams, Link } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import LoginContext from "../contexts/LoginContext";
 import Card from 'react-bootstrap/Card';
-import { findById, round } from '../services/battle.js';
-import { findByUsername } from '../services/users';
+import { findById, round, deleteById } from '../services/battle.js';
+import { update } from '../services/pets.js';
 
 function Battle() {
 
@@ -35,7 +35,16 @@ function Battle() {
             .then(result => {
                 console.log('first' + result);
                 if (result) {
-                    console.log(result);
+                    //update petA and petB
+                    update(battle.petA)
+                    .catch((err) => console.log(err));
+
+                    update(battle.petB)
+                    .catch((err) => console.log(err));
+
+                    deleteById(battle.battleId)
+                    .catch((err) => console.log(err));
+                    
                     if (result.petB.healthLevel <= 0) {
                         if (result.petB.username === username) {
                             history.push(`/loss/${result.petB.petId}`);

@@ -1,6 +1,6 @@
-import { useState, useEffect, useContext } from "react";
-import { useHistory, useParams } from 'react-router-dom';
-import { findById, update } from '../services/pets.js';
+import { useState, useEffect } from "react";
+import { useHistory, useParams, Link } from 'react-router-dom';
+import { findById } from '../services/pets.js';
 
 function Victory() {
 
@@ -22,12 +22,15 @@ function Victory() {
     return (
         <>{pet ?
             <div className="cat-container">
-            <img alt="jumping cat" id="loading" src={process.env.PUBLIC_URL + '/img/victory.gif'} />
-            <div className="nes-container is-rounded is-dark">
-                <p>{pet.name} wins!</p>
+                <img alt="jumping cat" id="loading" src={process.env.PUBLIC_URL + '/img/victory.gif'} />
+                <div className="nes-container is-rounded is-dark">
+                    <p>{pet.name} wins!</p> 
+                </div>
+                <div>
+                    <br></br>
+                    <Link to="/" className="nes-btn is-success">Home</Link>
+                </div>
             </div>
-        </div>
-
             : <></>}
         </>
     );

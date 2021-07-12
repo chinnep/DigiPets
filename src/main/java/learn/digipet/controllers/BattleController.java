@@ -74,4 +74,12 @@ public class BattleController {
 
         return ErrorResponse.build(result);
     }
+
+    @DeleteMapping("/{battleId}")
+    public ResponseEntity<Void> deleteById(@PathVariable int battleId) {
+        if (service.deleteById(battleId)) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }

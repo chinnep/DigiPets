@@ -46,6 +46,10 @@ public class BattleService {
     }
 
     public Result<Battle> round(int battleId, Move moveA, Move moveB) {
+        System.out.println("in round in BattleService");
+        System.out.println(moveA);
+        System.out.println(moveB);
+        System.out.println(battleId);
 
         Result<Battle> result = validateMoves(moveA, moveB);
 
@@ -131,6 +135,11 @@ public class BattleService {
             result.addMessage("Moves must have a positive number", ResultType.INVALID);
         }
         return result;
+    }
+
+    public boolean deleteById(int battleId) {
+
+        return battleId == battles.remove(battleId).getBattleId();
     }
 
     //TODO: perhaps add a method here to use an item to teach the third move ?

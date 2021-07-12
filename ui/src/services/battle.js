@@ -89,3 +89,10 @@ export async function requestBattle(battleReqest) {
     }
     return Promise.reject("not 201 Created");
 }
+
+export async function deleteById(id) {
+    const response = await fetch(`${url}/${id}`, { method: "DELETE" });
+    if (response.status !== 204) {
+        return Promise.reject("wasn't 204");
+    }
+}

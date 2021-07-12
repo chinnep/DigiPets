@@ -28,7 +28,7 @@ function BattleWaitingRoom() {
         <div className="cat-container">
             <img alt="jumping cat" id="loading" src={process.env.PUBLIC_URL + '/img/loading_cat.gif'} />
             <div className="nes-container is-rounded is-dark">
-                <p>Please wait while we pair you with your opponent...</p>
+                <p>There has been an error finding you an opponent... please go back to the home page and try again.</p>
             </div>
         </div>
     )
