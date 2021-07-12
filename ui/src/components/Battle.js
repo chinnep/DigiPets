@@ -63,6 +63,10 @@ function Battle() {
             })
             //.catch(() => history.push("/error"));
     }
+    
+    const chatWindow = document.getElementById('msg-container'); 
+    var xH = chatWindow.scrollHeight; 
+    chatWindow.scrollTo(0, xH);
 
     return (
         <>
@@ -130,9 +134,12 @@ function Battle() {
                                     </div>
                                 </div>
                             </Card> : <></>}
-                        <div>
-                            .
-                        </div>
+                        <div>.</div>
+                    </div>
+                    <br></br>
+                    <div className="nes-container is-rounded" id="msg-container">
+                            {battle.battleLog.map(msg => 
+                                <p>{msg}</p>)}
                     </div>
                 </>
                 :

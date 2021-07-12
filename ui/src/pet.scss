@@ -363,3 +363,15 @@ button {
   width: 40%;
   margin: 5%;
 }
+
+#msg-container {
+  overflow-y: scroll;
+  font-size: 14px;
+  font-weight: bold;
+  left: -1px;
+  padding: 10px 7px 5px;
+  height: 115px;
+  * {
+    scroll-snap-stop: auto;
+  }
+}

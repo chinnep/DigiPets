@@ -46,18 +46,10 @@ public class BattleService {
     }
 
     public Result<Battle> round(int battleId, Move moveA, Move moveB) {
-        System.out.println("in round in BattleService");
-        System.out.println(moveA);
-        System.out.println(moveB);
-        System.out.println(battleId);
 
         Result<Battle> result = validateMoves(moveA, moveB);
 
-        System.out.println(result.getPayload());
-
         if(!result.isSuccess()) return result;
-
-        System.out.println("made it through");
 
         Battle battle = findById(battleId);
         if(battle == null) {
@@ -67,8 +59,8 @@ public class BattleService {
 
         boolean isOver = battle.round(moveA, moveB);
         if(isOver) {
-            result.setPayload(findById(battleId));
-            //battles.remove(battleId);
+            battle.battleLog.add("The battle is over.");
+            result.setPayload(battle);
         }
 
         return result;
@@ -93,6 +85,7 @@ public class BattleService {
             } else if(b.getPetB() == null) {
                 b.setPetB(req.getPet());
                 b.setItemB(req.getItem());
+                b.battleLog.add(req.getPet().getName()+" has joined "+b.getPetA().getName()+" to battle!");
                 result.setPayload(b);
                 return result;
             }
@@ -100,6 +93,7 @@ public class BattleService {
         battle = new Battle(req.getPet(),null, req.getItem(), null);
         battles.put(lastId, battle);
         battle.setBattleId(lastId);
+        battle.battleLog.add(req.getPet().getName()+" is waiting for an opponent...");
         lastId++;
         result.setPayload(battle);
         return result;
