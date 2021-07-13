@@ -1,4 +1,4 @@
-# cyber-pet
+# DigiPets
 Dev-10 Capstone Project
 
 =======
