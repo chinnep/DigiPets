@@ -38,6 +38,7 @@
 }
 
 .shop-egg {
+  display: block;
   margin-left: auto;
   margin-right: auto;
   width: auto;
@@ -145,4 +146,8 @@ h1 {
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
   grid-auto-rows: minmax(100px, auto);
+}
+
+.nes-list li{
+  text-align: left;
 }

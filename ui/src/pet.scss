@@ -306,10 +306,15 @@ button {
 
 .nes-field progress {
   max-height: 2rem;
+  position:relative;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .nes-field text{
-  min-width: 26rem;
+  position: relative;
+  width: 200px;
+  margin-right: 5px;
 }
 
 #battleprep-button {

@@ -76,20 +76,6 @@ function BattlePrep() {
             {pet?
                 <Card id="battleprep-card" className="nes-container with-title is-centered">
                     <text id="battleprep-display-name" className="title">{pet.name}</text>
-                        <div  id="battleprep-egg" className='egg'>
-                            <div id="battleprep-crack" className='crack'>
-                                <div id="battleprep-display" className='display'>
-                                    <div className='grid'>
-                                        <img id="battleprep-image" src={process.env.PUBLIC_URL + "/img/" + pet.petType.name + '/default.gif'} alt=""/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="battleprep-buttons" className='buttons'>
-                                <div id="battleprep-button" className='button'></div>
-                                <div id="battleprep-button" className='button'></div>
-                                <div id="battleprep-button" className='button'></div>
-                            </div>
-                        </div>
                     <div>
                         <div id="bars">
                             <div className="nes-field is-inline">
@@ -116,6 +102,20 @@ function BattlePrep() {
                                     <option value={i.itemId} key={i.name}>{console.log(i.name)}</option>:<></>}):<></>}
                             </select>
                         </div> */}
+                         <div  id="battleprep-egg" className='egg'>
+                            <div id="battleprep-crack" className='crack'>
+                                <div id="battleprep-display" className='display'>
+                                    <div className='grid'>
+                                        <img id="battleprep-image" src={process.env.PUBLIC_URL + "/img/" + pet.petType.name + '/default.gif'} alt=""/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="battleprep-buttons" className='buttons'>
+                                <div id="battleprep-button" className='button'></div>
+                                <div id="battleprep-button" className='button'></div>
+                                <div id="battleprep-button" className='button'></div>
+                            </div>
+                        </div>
                         <button onClick={enterQueue} type="button" className="nes-btn is-success">Enter the Queue</button>
                     </div>
                 </Card> :<></>}

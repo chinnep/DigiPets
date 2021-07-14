@@ -63,10 +63,11 @@ function Battle() {
             })
             //.catch(() => history.push("/error"));
     }
-    
     const chatWindow = document.getElementById('msg-container'); 
-    var xH = chatWindow.scrollHeight; 
-    chatWindow.scrollTo(0, xH);
+    if (chatWindow) {
+        var xH = chatWindow.scrollHeight; 
+        chatWindow.scrollTo(0, xH);
+    }
 
     return (
         <>

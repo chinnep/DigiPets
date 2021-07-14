@@ -1,7 +1,7 @@
 import { Link, useHistory } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { add } from '../services/users';
-import ErrorSummary from "./ErrorSummary";
+import {findByUsername} from '../services/users';
 
 function Register() {
 
@@ -9,17 +9,60 @@ function Register() {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState();
-
+    let e = [];
     const history = useHistory();
+
+    useEffect(() => {
+        if (username) {
+            findByUsername(username)
+                .then(() => {
+                    e.push("Username is already taken.");
+                    setErrors(e);
+                })
+                .catch(() => {
+                    if(/\W+/.test(username)) {
+                        e.push("Invalid username, can only contain letters, numbers, and underscore(_).")
+                        setErrors(e);
+                    }
+                })
+        }
+        if(password === confirmPassword) {
+            if(password.length < 8) {
+                e.push("Password must be at least 8 characters long.");
+                setErrors(e);
+            } if(!/\d+/.test(password)) {
+                e.push("Password must contain a number.");
+                setErrors(e);
+            } if(!/[a-zA-Z]/.test(password)) {
+                e.push("Password must contain a letter.");
+                setErrors(e);
+            }
+            if(password.length >= 8 && /\d+/.test(password) && /[a-zA-Z]/.test(password) && !/\W+/.test(username)) {
+               setErrors([]);
+            }
+        } else setErrors(["Passwords don't match"]);
+
+    }, [username, password, confirmPassword, history]);
 
     async function onSubmit(evt) {
         evt.preventDefault();
 
-        password === confirmPassword ?
-            add({ username, password })
+        // if(password === confirmPassword) {
+        //     if(password.length < 8) {
+        //         e.push("Password must be at least 8 characters long.");
+        //         setErrors(e);
+        //     } if(!/\d+/.test(password)) {
+        //         e.push("Password must contain a number.");
+        //         setErrors(e);
+        //     } if(!/[a-zA-Z]/.test(password)) {
+        //         e.push("Password must contain a letter.");
+        //         setErrors(e);
+        //     }
+            if(errors.length === 0) {
+                add({ username, password })
                 .then(() => history.push("/login"))
                 .catch(setErrors(["There was a problem registering."]))
-            : setErrors(["Passwords don't match"]);
+            }
     }
 
     return (
@@ -32,12 +75,12 @@ function Register() {
             </div>
             <div className="nes-field is-inline">
                 <label htmlFor="inline_field">Password</label>
-                <input type="password" id="password" className="nes-input" placeholder="Password" required
+                <input type="password" id="password" className={errors && errors.length > 0 ? "nes-input is-error":"nes-input"} placeholder="Password" required
                     value={password} onChange={evt => setPassword(evt.target.value)}></input>
             </div>
             <div className="nes-field is-inline">
                 <label htmlFor="inline_field">Confirm Password</label>
-                <input type="password" id="password-confirm" className="nes-input" placeholder="Confirm Password" required
+                <input type="password" id="password-confirm" className={errors && errors.length > 0 ? "nes-input is-error":"nes-input"} placeholder="Confirm Password" required
                     value={confirmPassword} onChange={evt => setConfirmPassword(evt.target.value)}></input>
             </div>
             <div>
@@ -45,7 +88,11 @@ function Register() {
                 <Link to="/" className="nes-btn is-warning">Cancel</Link>
             </div>
             <br></br>
-            {errors && <ErrorSummary errors={errors} />}
+            {errors && errors.length > 0 ?
+                <ul className="nes-list is-disc">
+                    {errors.map((e, index) => 
+                    <li className="nes-text" key={index}>{e}</li>)}
+                </ul>:<></>}
         </form>
     );
 }

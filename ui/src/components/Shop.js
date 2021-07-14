@@ -39,7 +39,7 @@ function Shop() {
                     <img className="ghost-shop" 
                     src={process.env.PUBLIC_URL + '/img/Shop.gif'} alt="Shop" />
                     <div class="nes-balloon from-left">
-                        <p>Welcome to the market!</p>
+                        <p>Welcome to my shop!</p>
                         <p>You have {" "}
                         <i class="nes-icon coin is-small"></i>
                          {user && user.gold}</p>
@@ -47,8 +47,8 @@ function Shop() {
                     </section>
                 </section>
             </section>
-
-            <div class="wrapper nes-container is-centered">
+            <br></br>
+            <div class="wrapper is-centered">
                 <div className="nes-container is-rounded">
                     <img class="shop-egg" src={process.env.PUBLIC_URL + '/img/Egg.gif'} alt="A new egg!" />
                     <div className="card-body">
