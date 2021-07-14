@@ -34,8 +34,8 @@ function Nav() {
         </div>
         <div className="col-right">
           {username && user ?
-          <>Hello {user.username}
-          {/* <>Hello {user.username} <i class="nes-icon coin is-medium"></i> {user.gold}</> */}
+          <>
+          <>{user.username+" "}</>
           <button className="nes-btn is-error" onClick={handleLogout}>Logout</button>
           </>
             : <Link to="/login" className="nes-btn is-primary">Login</Link>}
