@@ -54,36 +54,31 @@ function Shop() {
                 <i class="nes-icon coin is-large"></i>
             </section>
 
-            <div class="nes-container is-centered">
+            <div class="wrapper nes-container is-centered">
                 <div className="nes-container is-rounded">
                     <img class="shop-egg" src={process.env.PUBLIC_URL + '/img/Egg.gif'} alt="A new egg!" />
                     <div className="card-body">
                         <h2 className="card-title nes-text is-warning">DigiPet Egg</h2>
                         <p className="card-text">This excitable little egg is hopping all about! What pet awaits inside??!</p>
+                        <button type="button" class={`nes-btn ${(user && user.gold >= 100 ? "is-warning" : "is-disabled")}`} onClick={() => buyEgg()}>
+                            <i class="nes-icon coin" />
+                            <p>100</p>
+                        </button>
                     </div>
-                    <button type="button" class={`nes-btn ${(user && user.gold >= 100 ? "is-warning" : "is-disabled")}`} onClick={() => buyEgg()}>
-                        <i class="nes-icon coin" />
-                        <p>100</p>
-                    </button>
                 </div>
-                {user && user.items.map(i =>
-                    <div className="nes-container is-rounded" key={i.itemId}>
+                {user && user.items.map((i, index) =>
+                    <div id="item-container" className="nes-container is-rounded" key={i.itemId}>
                         {i.name && <img class="shop-item" src={process.env.PUBLIC_URL + '/img/items' + i.imgUrl} alt="" />}
                         <div className="card-body">
-                            <h2 className="card-title nes-text is-warning">{i.name}</h2>
+                            <h2 className="card-title nes-text is-warning">{i.name}{index}</h2>
                             <p className="card-text">{i.description}</p>
-                        </div>
-
-                        <button type="button" class={`nes-btn ${(user.gold >= i.price ? "is-warning" : "is-disabled")}`} onClick={() => buyItem(i)}>
-                            <i class="nes-icon coin" />
-                            <p>{i.price}</p>
-                        </button>
-
-                        <div class="card-body">
+                            <button type="button" class={`nes-btn ${(user.gold >= i.price ? "is-warning" : "is-disabled")}`} onClick={() => buyItem(i)}>
+                                <i class="nes-icon coin" />
+                                <p>{i.price}</p>
+                            </button>
                             <p class="nes-text is-warning">Owned: {i.quantity}</p>
                         </div>
-                    </div>
-                )}
+                    </div>)}
             </div>
         </>
     );

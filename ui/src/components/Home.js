@@ -24,7 +24,7 @@ function Home() {
                         <div>
                             _
                         </div>
-                        <p>Hello! I'm a software engineer from Northern Virginia and I love hiking, travelling, and learning new things.
+                        <p>Hello! I'm a software developer from Northern Virginia and I love hiking, travelling, and learning new things.
                             My favorite games are Settlers of Catan, Clash of Clans, and almost all Nintendo games.
                         </p>
                     </div>

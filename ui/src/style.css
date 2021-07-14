@@ -139,3 +139,10 @@ h1 {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}

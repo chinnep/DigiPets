@@ -18,7 +18,6 @@ function Rankings() {
         if (pets == null) return null;
         let newArray = [...pets];
         // no need to track max since we're bubbling
-        // int max = 0;
         for (let i = 0; i < newArray.length; i++) {
             // we can start at 1 because we assume the first element is already the max
             for (let j = 1; j < newArray.length - i; j++) {
@@ -28,9 +27,6 @@ function Rankings() {
                     let swapTemp = newArray[j];
                     newArray[j] = newArray[j-1];
                     newArray[j - 1] = swapTemp;
-                    // comment out for now because it slows down one million
-                    // System.out.println("new max : " + newArray[j]);
-                    // System.out.println("Values at j: " + newArray[j]);
                 }
             }
         }

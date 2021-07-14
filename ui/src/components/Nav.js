@@ -1,10 +1,21 @@
-import { useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import LoginContext from "../contexts/LoginContext";
+import { findByUsername } from "../services/users";
+
 
 function Nav() {
   const { username, logout } = useContext(LoginContext);
+  const [user, setUser] = useState();
   const history = useHistory();
+
+  useEffect(() => {
+    if (username) {
+        findByUsername(username)
+            .then(setUser)
+            .catch(() => history.push("/error"))
+    }
+}, [history])
 
   const handleLogout = () => {
     logout();
@@ -22,7 +33,11 @@ function Nav() {
           <Link to="/rankings"className="nes-btn is-error">Rankings</Link>
         </div>
         <div className="col-right">
-          {username ?<button className="nes-btn is-error" onClick={handleLogout}>Logout</button>
+          {username && user ?
+          <>Hello {user.username}
+          {/* <>Hello {user.username} <i class="nes-icon coin is-medium"></i> {user.gold}</> */}
+          <button className="nes-btn is-error" onClick={handleLogout}>Logout</button>
+          </>
             : <Link to="/login" className="nes-btn is-primary">Login</Link>}
           {!username && <Link to="/register" className="nes-btn is-success">Register</Link>}
         </div>
