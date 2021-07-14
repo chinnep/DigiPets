@@ -13,6 +13,7 @@ function Battle() {
     const { battleId } = useParams();
     const { username } = useContext(LoginContext);
     const history = useHistory();
+    var time = 250;
 
     useEffect(() => {
 
@@ -23,7 +24,7 @@ function Battle() {
                     .catch(() => history.push("/error"));
             }
 
-        }, 250);
+        }, time);
         return () => clearInterval(interval);
     }, [battleId]);
 
@@ -45,6 +46,7 @@ function Battle() {
                     deleteById(battle.battleId)
                     .catch((err) => console.log(err));
                     
+                    time = 3000;
                     if (result.petB.healthLevel <= 0) {
                         if (result.petB.username === username) {
                             history.push(`/loss/${result.petB.petId}`);
@@ -67,7 +69,7 @@ function Battle() {
     if (chatWindow) {
         var xH = chatWindow.scrollHeight; 
         chatWindow.scrollTo(0, xH);
-    }
+    };
 
     return (
         <>
@@ -150,6 +152,7 @@ function Battle() {
                         <p>Please wait while we pair you with your opponent...</p>
                     </div>
                 </div>}
+        <audio src={process.env.PUBLIC_URL+ '/Arcade_Arena-30.mp3'} controls loop></audio>
         </>
 
     )

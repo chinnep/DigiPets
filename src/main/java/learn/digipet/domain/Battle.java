@@ -62,8 +62,14 @@ public class Battle {
         double startRankingPetA = (double)this.petA.getTrophies();
         double startRankingPetB = (double)this.petB.getTrophies();
 
-        this.petA.setTrophies((int)(startRankingPetA + 32 * (matchStatusA - (startRankingPetA/(startRankingPetA + startRankingPetB)))));
-        this.petB.setTrophies((int)(startRankingPetB + 32 * (matchStatusB - (startRankingPetB/(startRankingPetA + startRankingPetB)))));
+        double aGain = 32 * (matchStatusA - (startRankingPetA/(startRankingPetA + startRankingPetB)));
+        double bGain = 32 * (matchStatusB - (startRankingPetB/(startRankingPetA + startRankingPetB)));
+
+        this.battleLog.add(this.petA.getName() + " gains " + aGain + " trophies!");
+        this.battleLog.add(this.petB.getName() + " gains " + bGain + " trophies.");
+
+        this.petA.setTrophies((int)(startRankingPetA + aGain));
+        this.petB.setTrophies((int)(startRankingPetB + bGain));
     }
 
     //If the attacking pet has health < 10% their damage is 2 times as strong

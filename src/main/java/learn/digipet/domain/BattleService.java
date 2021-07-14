@@ -83,6 +83,8 @@ public class BattleService {
                 result.addMessage("User has already made a request", ResultType.INVALID);
                 return result;
             } else if(b.getPetB() == null) {
+                result = validatePets(b.getPetA(), req.getPet());
+                if(!result.isSuccess()) return result;
                 b.setPetB(req.getPet());
                 b.setItemB(req.getItem());
                 b.battleLog.add(req.getPet().getName()+" has joined "+b.getPetA().getName()+" to battle!");
@@ -110,6 +112,9 @@ public class BattleService {
         if(!petA.getClass().getName().equals("learn.digipet.models.Pet") ||
                 !petB.getClass().getName().equals("learn.digipet.models.Pet")) {
             result.addMessage("Pet is not valid.", ResultType.INVALID);
+        }
+        if(petA.getPetId() == petB.getPetId()) {
+            result.addMessage("Pets cannot battle themselves.", ResultType.INVALID);
         }
         return result;
     }

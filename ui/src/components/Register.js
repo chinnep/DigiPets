@@ -9,10 +9,10 @@ function Register() {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState();
-    let e = [];
     const history = useHistory();
 
     useEffect(() => {
+        let e = [];
         if (username) {
             findByUsername(username)
                 .then(() => {
