@@ -33,25 +33,19 @@ function Shop() {
 
     return (
         <>
-            <div className="shop nes-container">
-                <img className="ghost-shop"
+            <section class="shop nes-container">
+                <section class="message-list">
+                    <section class="message -left">
+                    <img className="ghost-shop" 
                     src={process.env.PUBLIC_URL + '/img/Shop.gif'} alt="Shop" />
-            </div>
-
-            <section className="user-coin icon-list">
-                <i class="nes-icon coin is-large"></i>
-                <i class="nes-icon coin is-large"></i>
-                <i class="nes-icon coin is-large"></i>
-                <i class="nes-icon coin is-large"></i>
-                <h1 class="nes-text is-warning">{username}</h1>
-
-                <h2 className="nes-text is-warning">
-                    Current Gold: {user && user.gold}
-                </h2>
-                <i class="nes-icon coin is-large"></i>
-                <i class="nes-icon coin is-large"></i>
-                <i class="nes-icon coin is-large"></i>
-                <i class="nes-icon coin is-large"></i>
+                    <div class="nes-balloon from-left">
+                        <p>Welcome to the market!</p>
+                        <p>You have {" "}
+                        <i class="nes-icon coin is-small"></i>
+                         {user && user.gold}</p>
+                    </div>
+                    </section>
+                </section>
             </section>
 
             <div class="wrapper nes-container is-centered">
@@ -70,7 +64,7 @@ function Shop() {
                     <div id="item-container" className="nes-container is-rounded" key={i.itemId}>
                         {i.name && <img class="shop-item" src={process.env.PUBLIC_URL + '/img/items' + i.imgUrl} alt="" />}
                         <div className="card-body">
-                            <h2 className="card-title nes-text is-warning">{i.name}{index}</h2>
+                            <h2 className="card-title nes-text is-warning">{i.name}</h2>
                             <p className="card-text">{i.description}</p>
                             <button type="button" class={`nes-btn ${(user.gold >= i.price ? "is-warning" : "is-disabled")}`} onClick={() => buyItem(i)}>
                                 <i class="nes-icon coin" />

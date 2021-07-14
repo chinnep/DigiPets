@@ -21,13 +21,13 @@
   background-color: #EAF47C;
   padding-left: 20%;
   padding-right: 20%;
+  height: 40%;
 }
 
 .ghost-shop {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 25%;
+  margin-left: 25%;
+  width: 40%;
+  max-width: 25%;
 }
 
 .user-coin {
@@ -40,7 +40,7 @@
 .shop-egg {
   margin-left: auto;
   margin-right: auto;
-  width: 25%;
+  width: auto;
 }
 
 .shop-item {
