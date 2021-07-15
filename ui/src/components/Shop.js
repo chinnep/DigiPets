@@ -49,7 +49,7 @@ function Shop() {
             </section>
             <br></br>
             <div class="wrapper is-centered">
-                <div className="nes-container is-rounded">
+                <div className="nes-container is-rounded is-centered">
                     <img class="shop-egg" src={process.env.PUBLIC_URL + '/img/Egg.gif'} alt="A new egg!" />
                     <div className="card-body">
                         <h2 className="card-title nes-text is-warning">DigiPet Egg</h2>
@@ -61,7 +61,7 @@ function Shop() {
                     </div>
                 </div>
                 {user && user.items.map((i, index) =>
-                    <div id="item-container" className="nes-container is-rounded" key={i.itemId}>
+                    <div id="item-container" className="nes-container is-rounded is-centered" key={i.itemId}>
                         {i.name && <img class="shop-item" src={process.env.PUBLIC_URL + '/img/items' + i.imgUrl} alt="" />}
                         <div className="card-body">
                             <h2 className="card-title nes-text is-warning">{i.name}</h2>

@@ -1,4 +1,6 @@
 import '../pet.scss';
+import Card from 'react-bootstrap/Card';
+
 import { useState, useEffect, useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
 import LoginContext from "../contexts/LoginContext";
@@ -44,37 +46,43 @@ function Pets() {
             </div>
             <div className="pets-wrapper">
             {user && user.pets.map(p =>
-                <div className='container' id="egg-container" key={p.petId}>
-                    <div className='display-bars'>
-                    <progress id="health-bar" className="nes-progress is-error" value={p.healthLevel} max={100} />
-                    <text id="health-text" className="text">health_lvl</text>
-                    <progress id="care-bar" className="nes-progress is-warning" value={p.careLevel} max={100} />
-                    <text id="care-text" className="text">care_lvl</text>
-                    <progress id="hunger-bar" className="nes-progress is-success" value={p.hungerLevel} max={100} />
-                    <text id="hunger-text" className="text">hunger_lvl</text>
-                    <progress id="thirst-bar" className="nes-progress is-primary" value={p.thirstLevel} max={100} />
-                            {//p.thirstLevel - (Math.abs(currentDate.toLocaleString() - p.timeAtLastLogin) / thirstMonitor)
-                            // ^^ trying to get thirst to deplete over time... 1 point every 3 hours is what it should equate to
-                            }
-                        <text id="thirst-text" className="text">thirst_lvl</text>
-                    </div>
-                    <div className='loops'></div>
-                    <div className='eggs'>
-                        <text className="display-name">{p.name}</text>
-                        <div className='crack'>
-                            <div className='display'>
-                                <div className='grid'>
-                                    <img id="active-image" src={process.env.PUBLIC_URL + "/img/" + p.petType.name + '/default.gif'} alt=""/>
-                                </div>
+                <Card id="pets-card" className="nes-container with-title is-centered">
+                    <text id="battleprep-display-name" className="title">{p.name}</text>
+                    <div>
+                        <div id="bars">
+                            <div className="nes-field is-inline">
+                                <text className="text">health_lvl</text>
+                            <progress className="nes-progress is-error" value={p.healthLevel} max={100}/>
+                            </div>
+                            <div className="nes-field is-inline">
+                                <text className="text">care_lvl </text>
+                                <progress className="nes-progress is-warning" value={p.careLevel} max={p.petType.care}/>
+                            </div>
+                            <div className="nes-field is-inline">
+                                <text className="text">hunger_lvl</text>
+                                <progress className="nes-progress is-success" value={p.hungerLevel} max={100}/>
+                            </div>
+                            <div className="nes-field is-inline">
+                                <text className="text">thirst_lvl</text>
+                                <progress className="nes-progress is-primary" value={p.thirstLevel} max={100}/>
                             </div>
                         </div>
-                        <div className='buttons'>
-                            <div id="pet-button" class='button' />
-                            <div id="pet-button" class='button' />
-                            <div id="pet-button" class='button' />
+                            <div  id="battleprep-egg" className='egg'>
+                            <div id="battleprep-crack" className='crack'>
+                                <div id="battleprep-display" className='display'>
+                                    <div className='grid'>
+                                        <img id="battleprep-image" src={process.env.PUBLIC_URL + "/img/" + p.petType.name + '/default.gif'} alt=""/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="battleprep-buttons" className='buttons'>
+                                <div id="battleprep-button" className='button'></div>
+                                <div id="battleprep-button" className='button'></div>
+                                <div id="battleprep-button" className='button'></div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </Card>
             )}
             </div>
         </div>

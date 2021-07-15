@@ -161,7 +161,6 @@ html {
 .pets-wrapper {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 10px;
   grid-auto-rows: minmax(100px, auto);
 }
 
@@ -243,13 +242,12 @@ button {
 
 
 .loops {
-  width: 3rem;
-  height: 3rem;
+  width: 1.5rem;
+  height: 1.5rem;
   position: relative;
   border: 2rem $egg solid;
   border-radius: 50%;
-  left: 50%;
-  top: -93.5%;
+  left: 2.5rem;
   transform: translatex(-50%);
 }
 
@@ -345,6 +343,7 @@ button {
 
 #battleprep-card {
   margin:10rem;
+  background-color: rgb(8, 178, 227, 0.8);;
 }
 
 #battleprep-display-name {
@@ -386,4 +385,13 @@ button {
   * {
     scroll-snap-stop: auto;
   }
+}
+
+#pets-card {
+  margin: 30px;
+  background-color: rgba(238, 99, 82, 0.8);
+}
+
+.container {
+  background-color: #EAF47C;
 }

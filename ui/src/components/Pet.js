@@ -2,6 +2,8 @@ import '../pet.scss';
 import { useState, useEffect, useContext } from "react";
 import { useHistory, useParams } from 'react-router-dom';
 import { findById, update } from '../services/pets.js';
+import Card from 'react-bootstrap/Card';
+
 import { findByUsername } from '../services/users';
 import LoginContext from "../contexts/LoginContext";
 
@@ -109,35 +111,52 @@ function Pet() {
 
                     <br></br>
                 </> : <></>}
-            {pet ?
-                <div className='container' id="egg-container">
-                    <div className='display-bars'>
-                        <progress id="health-bar" className="nes-progress is-error" value={pet.healthLevel} max={100} />
-                        <text id="health-text" className="text">health_lvl</text>
-                        <progress id="care-bar" className="nes-progress is-warning" value={pet.careLevel} max={100} />
-                        <text id="care-text" className="text">care_lvl</text>
-                        <progress id="hunger-bar" className="nes-progress is-success" value={pet.hungerLevel} max={100} />
-                        <text id="hunger-text" className="text">hunger_lvl</text>
-                        <progress id="thirst-bar" className="nes-progress is-primary" value={pet.thirstLevel} max={100} />
-                        <text id="thirst-text" className="text">thirst_lvl</text>
-                    </div>
-                    <button onClick={() => setItemList(true)} className='loops'></button>
-                    <div className='eggs'>
-                        <text className="display-name">{pet.name}</text>
-                        <div className='crack'>
-                            <div className='display'>
-                                <div className='grid'>
-                                    <img id="active-image" src={process.env.PUBLIC_URL + "/img/" + pet.petType.name + '/default.gif'} alt="" />
+                {pet?
+                <Card id="battleprep-card" className="nes-container with-title is-centered">
+                    <text id="battleprep-display-name" className="title">{pet.name}</text>
+                    <div>
+                        <div id="bars">
+                            <div className="nes-field is-inline">
+                                <text className="text">health_lvl</text>
+                            <progress className="nes-progress is-error" value={pet.healthLevel} max={100}/>
+                            </div>
+                            <div className="nes-field is-inline">
+                                <text className="text">care_lvl </text>
+                                <progress className="nes-progress is-warning" value={pet.careLevel} max={100}/>
+                            </div>
+                            <div className="nes-field is-inline">
+                                <text className="text">hunger_lvl</text>
+                                <progress className="nes-progress is-success" value={pet.hungerLevel} max={100}/>
+                            </div>
+                            <div className="nes-field is-inline">
+                                <text className="text">thirst_lvl</text>
+                                <progress className="nes-progress is-primary" value={pet.thirstLevel} max={100}/>
+                            </div>
+                        </div>
+                        {/* <div className="nes-select">
+                            <select required id="default_select" onChange={selectItem}>
+                                <option deafultvalue="" disabled selected hidden>Select an item</option>
+                                {user.items? user.items.map(i => {(i.quantity > 0) ?
+                                    <option value={i.itemId} key={i.name}>{console.log(i.name)}</option>:<></>}):<></>}
+                            </select>
+                        </div> */}
+                        <button onClick={() => setItemList(true)} className='loops'></button>
+                         <div  id="battleprep-egg" className='egg'>
+                            <div id="battleprep-crack" className='crack'>
+                                <div id="battleprep-display" className='display'>
+                                    <div className='grid'>
+                                        <img id="battleprep-image" src={process.env.PUBLIC_URL + "/img/" + pet.petType.name + '/default.gif'} alt=""/>
+                                    </div>
                                 </div>
+                            </div>
+                            <div id="battleprep-buttons" className='buttons'>
+                                <button id="battleprep-button" className={`buttons-pet ${(pet.hungerLevel >= 100 ? "is-warning" : "is-disabled")}`} onClick={updatePetHunger}></button>
+                                <button id="battleprep-button" className={`buttons-pet ${(pet.careLevel >= 100 ? "is-warning" : "is-disabled")}`} onClick={updatePetCare}></button>
+                                <button id="battleprep-button" className={`buttons-pet ${(pet.thirstLevel >= 100 ? "is-warning" : "is-disabled")}`} onClick={updatePetThirst}></button>
                             </div>
                         </div>
                     </div>
-                    <div className='buttons-pet'>
-                        <button id="pet-buttons" className={`buttons-pet ${(pet.hungerLevel >= 100 ? "is-warning" : "is-disabled")}`} onClick={updatePetHunger} />
-                        <button id="pet-buttons" className={`buttons-pet ${(pet.careLevel >= 100 ? "is-warning" : "is-disabled")}`} onClick={updatePetCare} />
-                        <button id="pet-buttons" className={`buttons-pet ${(pet.thirstLevel >= 100 ? "is-warning" : "is-disabled")}`} onClick={updatePetThirst} />
-                    </div>
-                </div> : <></>}
+                </Card> :<></>}
         </>
     );
 }
