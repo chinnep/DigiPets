@@ -9,7 +9,6 @@ import { update } from '../services/pets.js';
 function Battle() {
 
     const [battle, setBattle] = useState();
-    const [user, setUser] = useState();
     const { battleId } = useParams();
     const { username } = useContext(LoginContext);
     const history = useHistory();
@@ -34,7 +33,6 @@ function Battle() {
 
         round({ battleId, move, isPlayerA })
             .then(result => {
-                console.log('first' + result);
                 if (result) {
                     //update petA and petB
                     update(battle.petA)
@@ -144,6 +142,7 @@ function Battle() {
                             {battle.battleLog.map(msg => 
                                 <p>{msg}</p>)}
                     </div>
+                    <audio src={process.env.PUBLIC_URL+'/battle_tunes/'+battle.music+'.mp3'} controls loop></audio>
                 </>
                 :
                 <div className="cat-container">
@@ -152,7 +151,6 @@ function Battle() {
                         <p>Please wait while we pair you with your opponent...</p>
                     </div>
                 </div>}
-        <audio src={process.env.PUBLIC_URL+ '/Arcade_Arena-30.mp3'} controls loop></audio>
         </>
 
     )

@@ -23,3 +23,8 @@ The user can take care of an 8 bit pet and then battle them against friends to s
  - can battle same pet
  - battle winner does not gain gold
 
+#### Music Credits :   Frank Drive
+https://www.youtube.com/watch?v=hT7uhKS_v10
+
+#### CSS Framwork Credit: NES.css
+#### Tamagotchi: Aki Maita

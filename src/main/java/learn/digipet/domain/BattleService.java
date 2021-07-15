@@ -87,6 +87,8 @@ public class BattleService {
                 if(!result.isSuccess()) return result;
                 b.setPetB(req.getPet());
                 b.setItemB(req.getItem());
+                
+                b.setMusic((int)Math.ceil(Math.random()*5));
                 b.battleLog.add(req.getPet().getName()+" has joined "+b.getPetA().getName()+" to battle!");
                 result.setPayload(b);
                 return result;
@@ -139,6 +141,19 @@ public class BattleService {
     public boolean deleteById(int battleId) {
 
         return battleId == battles.remove(battleId).getBattleId();
+    }
+
+    public int[] calculateGold(int matchStatusA, int matchStatusB, Battle b) {
+        double startRankingPetA = (double)b.petA.getTrophies();
+        double startRankingPetB = (double)b.petB.getTrophies();
+
+        int aGain = (int)Math.ceil(320 * (matchStatusA - (startRankingPetA/(startRankingPetA + startRankingPetB))));
+        int bGain = (int)Math.floor(320 * (matchStatusB - (startRankingPetB/(startRankingPetA + startRankingPetB))));
+
+        b.battleLog.add(b.petA.getUsername() + " got " + aGain + " gold!");
+        b.battleLog.add(b.petB.getUsername() + " lost " + bGain + " gold :(");
+
+        return new int[]{aGain, bGain};
     }
 
     //TODO: perhaps add a method here to use an item to teach the third move ?

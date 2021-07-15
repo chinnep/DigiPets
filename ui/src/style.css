@@ -151,3 +151,10 @@ h1 {
 .nes-list li{
   text-align: left;
 }
+
+#footer {
+  margin-top: 200px;
+  background-color: #08B2E3;
+  width:100%;
+  padding: 50px;
+}

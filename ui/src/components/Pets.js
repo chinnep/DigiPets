@@ -42,6 +42,7 @@ function Pets() {
             </select>
             <Link className="nes-btn is-primary" to={`/pet/${pet && pet.petId}`}>Care for Pet</Link>
             </div>
+            <div className="pets-wrapper">
             {user && user.pets.map(p =>
                 <div className='container' id="egg-container" key={p.petId}>
                     <div className='display-bars'>
@@ -75,6 +76,7 @@ function Pets() {
                     </div>
                 </div>
             )}
+            </div>
         </div>
     );
 }

@@ -1,3 +1,5 @@
+import {Link} from 'react-router-dom';
+
 function Home() {
 
     return (
@@ -55,6 +57,9 @@ function Home() {
                     </div>
                 </div>
             </div>
+            {/* <div id="footer">
+            <Link className="nes-icon github is-large" href="https://github.com/chinnep/DigiPets"></Link>
+            </div> */}
         </>
     );
 }

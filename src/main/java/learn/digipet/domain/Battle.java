@@ -23,6 +23,7 @@ public class Battle {
     //currently not requiring items to battle
     Item itemA;
     Item itemB;
+    int music;
     List<String> battleLog = new ArrayList<>();
 
     public Battle() {
@@ -42,7 +43,7 @@ public class Battle {
         if(this.petB.getHealthLevel() <= 0) {
             calculateTrophies(1, 0);
 
-            //BattleLog.add(petA.getName() )
+            setWinner(this.petA);
             return true;
         }
 
@@ -50,6 +51,7 @@ public class Battle {
         this.petA.setHealthLevel(calculateNewHealth(petA, moveB));
         if(this.petA.getHealthLevel() <= 0) {
             calculateTrophies(0, 1);
+            setWinner(this.petB);
             return true;
         }
 
@@ -127,6 +129,14 @@ public class Battle {
         this.petB = petB;
     }
 
+    public Pet getWinner() {
+        return winner;
+    }
+
+    public void setWinner(Pet winner) {
+        this.winner = winner;
+    }
+
     public Item getItemA() {
         return itemA;
     }
@@ -141,6 +151,14 @@ public class Battle {
 
     public void setItemB(Item itemB) {
         this.itemB = itemB;
+    }
+
+    public int getMusic() {
+        return music;
+    }
+
+    public void setMusic(int music) {
+        this.music = music;
     }
 
     public List<String> getBattleLog() {
