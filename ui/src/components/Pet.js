@@ -68,32 +68,12 @@ function Pet() {
         }
     };
 
-    const dialog = () => {
-        return (
-            <section>
-                <button type="button" className="nes-btn is-primary" onclick="document.getElementById('dialog-rounded').showModal();">
-                    Open rounded dialog
-                </button>
-                <dialog class="nes-dialog is-rounded" id="dialog-rounded">
-                    <form method="dialog">
-                    <p class="title">Rounded dialog</p>
-                    <p>Alert: this is a dialog.</p>
-                    <menu class="dialog-menu">
-                        <button class="nes-btn">Cancel</button>
-                        <button class="nes-btn is-primary">Confirm</button>
-                    </menu>
-                    </form>
-                </dialog>
-            </section>
-        )
-    }
-
     const useItem = () => {
 
         if (item) {
             const petClone = { ...pet };
             if(item.forBattle) {
-                return <dialog/>
+                //send an error
             }
             switch (item.itemId) {
                 case 1:

@@ -87,24 +87,18 @@ function Battle() {
         <>
             {battle && battle.petB ?
                 <>
-                    <div className="container">
-                        <div id="title-container">
-                            <p>Battle</p>
-                            <p className="caption">
+                    <div className="battle-container">
                                 <div className="row">
-                                    <div className="column">
+                                    <h1 className="column">
                                    {battle.petA.name}
-                                    </div>
+                                    </h1>
                                     <div className="column">
-                                    <button id="music-button" onClick={changeTheBackground}><i class="nes-icon close is-small"></i></button>
+                                    <button id="music-button" onClick={changeTheBackground}><i class="nes-icon close is-medium"></i></button>
                                     </div>
-                                    <div className="column">
+                                    <h1 className="column">
                                     {battle.petB.name}
-                                    </div>
+                                    </h1>
                                 </div>
-                                
-                            </p>
-                        </div>
                     </div>
                     <div id="battle-background">
                         {battle.petA ?

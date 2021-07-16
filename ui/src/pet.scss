@@ -403,8 +403,22 @@ button {
   background-color: rgb(234, 244, 124, 0.95);
 }
 
-#music-button {
-  outline: 0;
-  background:transparent;
-  border: none;
+.battle-container {
+  background-color: rgb(234, 244, 124, 0.95);
+  padding: 20px;
+  div {
+    * {
+      text-align: center;
+      color: #08B2E3;
+      vertical-align: text-bottom;
+    }
+    h1 {
+      line-height: 60px;
+    }
+    button {
+      outline: 0;
+      background:transparent;
+      border: none;
+    }
+  }
 }
