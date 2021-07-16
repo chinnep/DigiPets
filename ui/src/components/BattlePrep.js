@@ -51,7 +51,7 @@ function BattlePrep() {
         .then((result)=> {
             if(result) {
                 history.push(`./battle/${result.battleId}`);
-            } else {history.push(`/waitingroom/${pet.petId}`)}
+            }
         })
         .catch((err) => {
             console.error(err);
@@ -80,19 +80,19 @@ function BattlePrep() {
                         <div id="bars">
                             <div className="nes-field is-inline">
                                 <text className="text">health_lvl</text>
-                            <progress className="nes-progress is-error" value={pet.healthLevel} max={pet.petType.health}/>
+                            <progress className="nes-progress is-error" value={pet.healthLevel} max={100}/>
                             </div>
                             <div className="nes-field is-inline">
                                 <text className="text">care_lvl </text>
-                                <progress className="nes-progress is-warning" value={pet.careLevel} max={pet.petType.care}/>
+                                <progress className="nes-progress is-warning" value={pet.careLevel} max={100}/>
                             </div>
                             <div className="nes-field is-inline">
                                 <text className="text">hunger_lvl</text>
-                                <progress className="nes-progress is-success" value={pet.hungerLevel} max={pet.petType.appetite}/>
+                                <progress className="nes-progress is-success" value={pet.hungerLevel} max={100}/>
                             </div>
                             <div className="nes-field is-inline">
                                 <text className="text">thirst_lvl</text>
-                                <progress className="nes-progress is-primary" value={pet.thirstLevel} max={pet.petType.thirst}/>
+                                <progress className="nes-progress is-primary" value={pet.thirstLevel} max={100}/>
                             </div>
                         </div>
                         {/* <div className="nes-select">

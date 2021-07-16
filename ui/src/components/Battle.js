@@ -63,6 +63,14 @@ function Battle() {
             })
             //.catch(() => history.push("/error"));
     }
+
+    //currently does not work, may have to go through the controller and tbh its just not that cool of a feature
+    const changeTheBackground = () => {
+        let x = Math.ceil(Math.random()*9);
+        const battleClone = battle
+        battleClone.background = x;
+        setBattle(battleClone);
+    }
     const chatWindow = document.getElementById('msg-container'); 
     if (chatWindow) {
         var xH = chatWindow.scrollHeight; 
@@ -88,7 +96,7 @@ function Battle() {
                                    {battle.petA.name}
                                     </div>
                                     <div className="column">
-                                    <button id="music-button"><i class="nes-icon close is-small"></i></button>
+                                    <button id="music-button" onClick={changeTheBackground}><i class="nes-icon close is-small"></i></button>
                                     </div>
                                     <div className="column">
                                     {battle.petB.name}

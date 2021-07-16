@@ -15,7 +15,6 @@ import Rankings from './components/Rankings';
 import Shop from "./components/Shop";
 import BattlePrep from "./components/BattlePrep";
 import Battle from "./components/Battle";
-import BattleWaitingRoom from "./components/BattleWaitingRoom";
 import Victory from "./components/Victory";
 import Loss from "./components/Loss";
 import './style.css';
@@ -86,10 +85,6 @@ function App() {
 
           <Route path="/battleprep">
             <BattlePrep/>
-          </Route>
-
-          <Route path="/waitingroom/:petId">
-            <BattleWaitingRoom />
           </Route>
 
           <Route path="/rankings">

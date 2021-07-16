@@ -3,7 +3,7 @@ import { useHistory } from "react-router";
 import LoginContext from "../contexts/LoginContext";
 import { findByUsername } from "../services/users";
 import { purchaseItem, purchaseEgg } from "../services/shop";
-
+import Card from 'react-bootstrap/Card';
 
 function Shop() {
 
@@ -39,7 +39,7 @@ function Shop() {
                     <img className="ghost-shop" 
                     src={process.env.PUBLIC_URL + '/img/Shop.gif'} alt="Shop" />
                     <div class="nes-balloon from-left">
-                        <p>Welcome to my shop!</p>
+                        <p>Welcome to the shop!</p>
                         <p>You have {" "}
                         <i class="nes-icon coin is-small"></i>
                          {user && user.gold}</p>
@@ -49,7 +49,7 @@ function Shop() {
             </section>
             <br></br>
             <div class="wrapper is-centered">
-                <div className="nes-container is-rounded is-centered">
+                <Card id="item-container" className="nes-container is-rounded is-centered">
                     <img class="shop-egg" src={process.env.PUBLIC_URL + '/img/Egg.gif'} alt="A new egg!" />
                     <div className="card-body">
                         <h2 className="card-title nes-text is-warning">DigiPet Egg</h2>
@@ -59,9 +59,9 @@ function Shop() {
                             <p>100</p>
                         </button>
                     </div>
-                </div>
+                </Card>
                 {user && user.items.map((i, index) =>
-                    <div id="item-container" className="nes-container is-rounded is-centered" key={i.itemId}>
+                    <Card id="item-container" className="nes-container is-rounded is-centered" key={i.itemId}>
                         {i.name && <img class="shop-item" src={process.env.PUBLIC_URL + '/img/items' + i.imgUrl} alt="" />}
                         <div className="card-body">
                             <h2 className="card-title nes-text is-warning">{i.name}</h2>
@@ -72,7 +72,7 @@ function Shop() {
                             </button>
                             <p class="nes-text is-warning">Owned: {i.quantity}</p>
                         </div>
-                    </div>)}
+                    </Card>)}
             </div>
         </>
     );

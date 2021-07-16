@@ -1,7 +1,7 @@
 import '../pet.scss';
 import { useState, useEffect, useContext } from "react";
 import { useHistory, useParams } from 'react-router-dom';
-import { findById, update } from '../services/pets.js';
+import { update } from '../services/pets.js';
 import Card from 'react-bootstrap/Card';
 
 import { findByUsername } from '../services/users';
@@ -68,10 +68,33 @@ function Pet() {
         }
     };
 
+    const dialog = () => {
+        return (
+            <section>
+                <button type="button" className="nes-btn is-primary" onclick="document.getElementById('dialog-rounded').showModal();">
+                    Open rounded dialog
+                </button>
+                <dialog class="nes-dialog is-rounded" id="dialog-rounded">
+                    <form method="dialog">
+                    <p class="title">Rounded dialog</p>
+                    <p>Alert: this is a dialog.</p>
+                    <menu class="dialog-menu">
+                        <button class="nes-btn">Cancel</button>
+                        <button class="nes-btn is-primary">Confirm</button>
+                    </menu>
+                    </form>
+                </dialog>
+            </section>
+        )
+    }
+
     const useItem = () => {
 
         if (item) {
             const petClone = { ...pet };
+            if(item.forBattle) {
+                return <dialog/>
+            }
             switch (item.itemId) {
                 case 1:
                     petClone.hungerLevel += 700;
@@ -94,69 +117,61 @@ function Pet() {
     }
 
     return (
-        <>
+    <>
+    <br></br>
+    {itemList ?
+        <div className="pet-container">
+            <h3 htmlFor="success_select">Use an Item?</h3>
+            <div className="nes-select is-success" name="pet-select">
+                <select required id="pet-select" onChange={selectItem}>
+                    <option defaultValue={null} key="default">Select...</option>
+                    {user && user.items.map((i, index) =>
+                    
+                        <option value={index} key={i.itemId}>{i.name}</option>)}
+                </select>
+            </div>
             <br></br>
-            {itemList ?
-                <>
-                    <label for="success_select">Use an Item?</label>
-                    <div className="nes-select is-success" name="pet-select">
-                        <select required id="pet-select" onChange={selectItem}>
-                            <option defaultValue={null} key="default">Select...</option>
-                            {user && user.items.map((i, index) =>
-                                <option value={index} key={i.itemId}>{i.name}</option>)}
-                        </select>
-                        <br></br>
+            <button onClick={useItem} className="nes-btn is-success">use on {pet.name}</button>
+        </div> : <></>}
+        {pet?
+        <Card id="battleprep-card" className="nes-container with-title is-centered">
+            <text id="battleprep-display-name" className="title">{pet.name}</text>
+            <div>
+                <div id="bars">
+                    <div className="nes-field is-inline">
+                        <text className="text">health_lvl</text>
+                    <progress className="nes-progress is-error" value={pet.healthLevel} max={100}/>
                     </div>
-                    <button onClick={useItem} className="nes-btn is-success">use on {pet.name}</button>
-
-                    <br></br>
-                </> : <></>}
-                {pet?
-                <Card id="battleprep-card" className="nes-container with-title is-centered">
-                    <text id="battleprep-display-name" className="title">{pet.name}</text>
-                    <div>
-                        <div id="bars">
-                            <div className="nes-field is-inline">
-                                <text className="text">health_lvl</text>
-                            <progress className="nes-progress is-error" value={pet.healthLevel} max={100}/>
-                            </div>
-                            <div className="nes-field is-inline">
-                                <text className="text">care_lvl </text>
-                                <progress className="nes-progress is-warning" value={pet.careLevel} max={100}/>
-                            </div>
-                            <div className="nes-field is-inline">
-                                <text className="text">hunger_lvl</text>
-                                <progress className="nes-progress is-success" value={pet.hungerLevel} max={100}/>
-                            </div>
-                            <div className="nes-field is-inline">
-                                <text className="text">thirst_lvl</text>
-                                <progress className="nes-progress is-primary" value={pet.thirstLevel} max={100}/>
-                            </div>
-                        </div>
-                        {/* <div className="nes-select">
-                            <select required id="default_select" onChange={selectItem}>
-                                <option deafultvalue="" disabled selected hidden>Select an item</option>
-                                {user.items? user.items.map(i => {(i.quantity > 0) ?
-                                    <option value={i.itemId} key={i.name}>{console.log(i.name)}</option>:<></>}):<></>}
-                            </select>
-                        </div> */}
-                        <button onClick={() => setItemList(true)} className='loops'></button>
-                         <div  id="battleprep-egg" className='egg'>
-                            <div id="battleprep-crack" className='crack'>
-                                <div id="battleprep-display" className='display'>
-                                    <div className='grid'>
-                                        <img id="battleprep-image" src={process.env.PUBLIC_URL + "/img/" + pet.petType.name + '/default.gif'} alt=""/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="battleprep-buttons" className='buttons'>
-                                <button id="battleprep-button" className={`buttons-pet ${(pet.hungerLevel >= 100 ? "is-warning" : "is-disabled")}`} onClick={updatePetHunger}></button>
-                                <button id="battleprep-button" className={`buttons-pet ${(pet.careLevel >= 100 ? "is-warning" : "is-disabled")}`} onClick={updatePetCare}></button>
-                                <button id="battleprep-button" className={`buttons-pet ${(pet.thirstLevel >= 100 ? "is-warning" : "is-disabled")}`} onClick={updatePetThirst}></button>
+                    <div className="nes-field is-inline">
+                        <text className="text">care_lvl </text>
+                        <progress className="nes-progress is-warning" value={pet.careLevel} max={100}/>
+                    </div>
+                    <div className="nes-field is-inline">
+                        <text className="text">hunger_lvl</text>
+                        <progress className="nes-progress is-success" value={pet.hungerLevel} max={100}/>
+                    </div>
+                    <div className="nes-field is-inline">
+                        <text className="text">thirst_lvl</text>
+                        <progress className="nes-progress is-primary" value={pet.thirstLevel} max={100}/>
+                    </div>
+                </div>
+                <button onClick={() => setItemList(true)} className='loops'></button>
+                    <div  id="battleprep-egg" className='egg'>
+                    <div id="battleprep-crack" className='crack'>
+                        <div id="battleprep-display" className='display'>
+                            <div className='grid'>
+                                <img id="battleprep-image" src={process.env.PUBLIC_URL + "/img/" + pet.petType.name + '/default.gif'} alt=""/>
                             </div>
                         </div>
                     </div>
-                </Card> :<></>}
+                    <div id="battleprep-buttons" className='buttons'>
+                        <button id="battleprep-button" className={`buttons-pet ${(pet.hungerLevel >= 100 ? "is-warning" : "is-disabled")}`} onClick={updatePetHunger}></button>
+                        <button id="battleprep-button" className={`buttons-pet ${(pet.careLevel >= 100 ? "is-warning" : "is-disabled")}`} onClick={updatePetCare}></button>
+                        <button id="battleprep-button" className={`buttons-pet ${(pet.thirstLevel >= 100 ? "is-warning" : "is-disabled")}`} onClick={updatePetThirst}></button>
+                    </div>
+                </div>
+            </div>
+        </Card> :<></>}
         </>
     );
 }

@@ -29,7 +29,7 @@ function MockPet() {
                             <div id="battleprep-crack" className='crack'>
                                 <div id="battleprep-display" className='display'>
                                     <div className='grid'>
-                                        <img id="battleprep-image" src={process.env.PUBLIC_URL + "/img/" + '/Duck.gif'} alt=""/>
+                                        <img id="battleprep-image" src={process.env.PUBLIC_URL + '/img/' + '/Duck.gif'} alt=""/>
                                     </div>
                                 </div>
                             </div>

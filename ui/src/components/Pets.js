@@ -34,16 +34,19 @@ function Pets() {
     }
 
     return (
-        <div className="row" >
-            <label for="success_select">Select a Digipet:</label>
+        <>
+        <div className="pet-container">
+            <h3 htmlFor="success_select">Select a Digipet:</h3>
             <div class="nes-select is-success" name="pet-select">
-            <select required id="pet-select" onChange={selectPet}>
-                <option value="" disabled selected hidden>Select...</option>
-                {user && user.pets.map((p, index) =>
-                <option value={index}>{p.name}</option>)}
-            </select>
-            <Link className="nes-btn is-primary" to={`/pet/${pet && pet.petId}`}>Care for Pet</Link>
+                <select required id="pet-select" onChange={selectPet}>
+                    <option value="" disabled selected hidden>Select...</option>
+                    {user && user.pets.map((p, index) =>
+                    <option value={index}>{p.name}</option>)}
+                </select>
             </div>
+            <br></br>
+            <Link className="nes-btn is-primary" to={`/pet/${pet && pet.petId}`}>Care for Pet</Link>
+        </div>
             <div className="pets-wrapper">
             {user && user.pets.map(p =>
                 <Card id="pets-card" className="nes-container with-title is-centered">
@@ -85,7 +88,7 @@ function Pets() {
                 </Card>
             )}
             </div>
-        </div>
+        </>
     );
 }
 

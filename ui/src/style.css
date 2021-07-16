@@ -18,7 +18,7 @@
 }
 
 .shop {
-  background-color: #EAF47C;
+  background-color: rgb(234, 244, 124, 0.9);
   padding-left: 20%;
   padding-right: 20%;
   height: 40%;
@@ -59,8 +59,8 @@
   color: #08B2E3;
 }
 
-.card-body {
-  background-color: #28965A;
+#item-container {
+  background-color: rgb(40,150,90, 0.95);
 }
 
 .caption {
@@ -69,28 +69,28 @@
 
 #about-section {
   margin-top: 200px;
-  background-color: #28965A;
+  background-color: rgb(40,150,90, 0.97);
   width:100%;
   padding: 50px;
 }
 
 #rankings-about-section {
   margin-top: 50px;
-  background-color: #28965A;
+  background-color: rgb(40,150,90, 0.97);
   width:100%;
   padding: 30px;
 }
 
 #devs-section {
   margin-top: 200px;
-  background-color: #EE6352;
+  background-color: rgb(238, 99, 82, 0.95);
   width:100%;
   padding: 50px;
 }
 
 #rankings-section {
   margin-top: 100px;
-  background-color: #08B2E3;
+  background-color: rgb(8, 178, 227, 0.97);
   width:100%;
   padding: 50px;
 }
@@ -116,7 +116,7 @@ h1 {
 }
 
 #login-form {
-  background-color: #EAF47C;
+  background-color: rgb(234, 244, 124, 0.9);
   width:100%;
   padding: 50px;
   margin-top: 10rem;
@@ -127,7 +127,7 @@ h1 {
 }
 
 .form {
-  background-color: #EAF47C;
+  background-color: rgb(234, 244, 124, 0.9);
   margin-top: 10rem;
 }
 
@@ -150,7 +150,7 @@ h1 {
 
 #footer {
   margin-top: 200px;
-  background-color: #08B2E3;
+  background-color: rgb(8, 178, 227, 0.97);
   width:100%;
   padding: 50px;
 }
