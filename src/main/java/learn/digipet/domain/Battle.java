@@ -24,6 +24,7 @@ public class Battle {
     Item itemA;
     Item itemB;
     int music;
+    int background;
     List<String> battleLog = new ArrayList<>();
 
     public Battle() {
@@ -159,6 +160,14 @@ public class Battle {
 
     public void setMusic(int music) {
         this.music = music;
+    }
+
+    public int getBackground() {
+        return background;
+    }
+
+    public void setBackground(int background) {
+        this.background = background;
     }
 
     public List<String> getBattleLog() {

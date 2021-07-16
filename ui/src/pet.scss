@@ -352,7 +352,7 @@ button {
 
 .battleprep-container {
   padding: 50px;
-  background-color: #AF1B3F;
+  background-color: #D62246;
 }
 
 //battlewaitingroom
@@ -367,12 +367,14 @@ button {
   float: right;
   width: 40%;
   margin: 5%;
+  background-color: transparent;
 }
 
 #battle-card-left{
   float: left;
   width: 40%;
   margin: 5%;
+  background-color: transparent;
 }
 
 #msg-container {
@@ -394,4 +396,10 @@ button {
 
 .container {
   background-color: #EAF47C;
+}
+
+#music-button {
+  outline: 0;
+  background:transparent;
+  border: none;
 }

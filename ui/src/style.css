@@ -132,7 +132,7 @@ h1 {
 }
 
 #battle-background {
-  background-image: url("background_img/3.gif");
+  /* background-image: url("background_img/3.gif"); */
   background-repeat: no-repeat;
   background-size: cover;
 }

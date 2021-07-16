@@ -69,6 +69,12 @@ function Battle() {
         chatWindow.scrollTo(0, xH);
     };
 
+    const backgroundContainer = document.getElementById('battle-background'); 
+    if (backgroundContainer && battle) {
+        const bgLink = '../img/backgrounds/'+battle.background+'.gif';
+        backgroundContainer.style.backgroundImage = `url(${bgLink})`;
+    };
+
     return (
         <>
             {battle && battle.petB ?
@@ -76,16 +82,25 @@ function Battle() {
                     <div className="container">
                         <div id="title-container">
                             <p>Battle</p>
-                            <p className="caption">{battle.petA.name} versus {battle.petB.name}</p>
+                            <p className="caption">
+                                <div className="row">
+                                    <div className="column">
+                                   {battle.petA.name}
+                                    </div>
+                                    <div className="column">
+                                    <button id="music-button"><i class="nes-icon close is-small"></i></button>
+                                    </div>
+                                    <div className="column">
+                                    {battle.petB.name}
+                                    </div>
+                                </div>
+                                
+                            </p>
                         </div>
                     </div>
                     <div id="battle-background">
-                        <style>
-                            body background-image: url("battle_background_stars.gif");
-                        </style>
                         {battle.petA ?
-                            <Card id="battle-card-left" className="nes-container with-title is-centered">
-                                <text id="battleprep-display-name" className="title">{battle.petA.name}</text>
+                            <Card id="battle-card-left" className="nes-container is-dark is-centered">
                                 <div id="battleprep-egg" className='egg'>
                                     <div id="battleprep-crack" className='crack'>
                                         <div id="battleprep-display" className='display'>
@@ -110,8 +125,7 @@ function Battle() {
                                 </div>
                             </Card> : <></>}
                         {battle.petB ?
-                            <Card id="battle-card-right" className="nes-container with-title is-centered">
-                                <text id="battleprep-display-name" className="title">{battle.petB.name}</text>
+                            <Card id="battle-card-right" className="nes-container is-dark is-centered">
                                 <div id="battleprep-egg" className='egg'>
                                     <div id="battleprep-crack" className='crack'>
                                         <div id="battleprep-display" className='display'>
