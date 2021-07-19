@@ -20,9 +20,19 @@ The user can take care of an 8 bit pet and then battle them against friends to s
 #### Biggest bugs:
  - pets do not evolve over time
  - health stats do not change over time
+ - battle results
 
-#### Music Credits :   Frank Drive
-https://www.youtube.com/watch?v=hT7uhKS_v10
+#### Music Credits :   
+
+Shooting Stars: https://soundcloud.com/screwingaroundwithaudio/bag-raiders-shooting-stars-8-bit-nes-soundfont
+Duel Of the Fates: https://soundcloud.com/crig-1/star-wars-duel-of-the-fates
+Kids: https://soundcloud.com/violett-heart/kids-mgmtrmx-8bit
+My Hero Academia Opening: https://soundcloud.com/m-rcio-luiz-9/my-hero-academia-opening-the-day-8bit
+Eye of the Tiger: https://soundcloud.com/peachypixel8/eye-of-the-tiger-8bit-demake
 
 #### CSS Framwork Credit: NES.css
+#### Imports:
+ - NES
+ - sass
+ - js-joda
 #### Tamagotchi: Aki Maita
