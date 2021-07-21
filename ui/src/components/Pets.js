@@ -37,7 +37,7 @@ function Pets() {
         <>
         <div className="pet-container">
             <h3 htmlFor="success_select">Select a Digipet:</h3>
-            <div class="nes-select is-success" name="pet-select">
+            <div className="nes-select is-success" name="pet-select">
                 <select required id="pet-select" onChange={selectPet}>
                     <option value="" disabled selected hidden>Select...</option>
                     {user && user.pets.map((p, index) =>

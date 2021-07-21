@@ -88,7 +88,7 @@ public class BattleService {
                 b.setPetB(req.getPet());
                 b.setItemB(req.getItem());
 
-                b.setMusic((int)Math.ceil(Math.random()*5));
+                b.setMusic((int)Math.ceil(Math.random()*6));
                 b.setBackground((int)Math.ceil(Math.random()*9));
                 b.battleLog.add(req.getPet().getName()+" has joined "+b.getPetA().getName()+" to battle!");
                 result.setPayload(b);

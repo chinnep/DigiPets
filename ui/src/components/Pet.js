@@ -18,6 +18,8 @@ function Pet() {
     const [msg, setMsg] = useState();
     const { id } = useParams();
     const history = useHistory();
+    var LocalDateTime = require("@js-joda/core").LocalDateTime;
+    var lastLogin = useState();
 
     const thirstMonitor = 1000 * 60 * 60 * 3;
     const currentDate = new Date();
@@ -31,6 +33,11 @@ function Pet() {
                     for (let i = 0; i < result.pets.length; i++) {
                         if (result.pets[i].petId == id) {
                             setPet(result.pets[i]);
+
+                            //resetting health params based on last login:
+                            lastLogin = LocalDateTime.parse(result.pets[i].timeAtLastLogin);
+                            console.log(lastLogin);
+                            
                         }
                     }
                 })
