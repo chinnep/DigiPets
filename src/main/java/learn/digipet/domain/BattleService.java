@@ -79,7 +79,7 @@ public class BattleService {
         }
 
         for(Battle b : battles.values()) {
-            if(b.getPetA().getUsername() == req.getPet().getUsername()) {
+            if(b.getPetA().getUsername().equals(req.getPet().getUsername())) {
                 result.addMessage("User has already made a request", ResultType.INVALID);
                 return result;
             } else if(b.getPetB() == null) {

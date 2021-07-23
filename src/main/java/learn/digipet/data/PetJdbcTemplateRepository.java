@@ -95,6 +95,10 @@ public class PetJdbcTemplateRepository implements PetRepository {
                 + "username = ? "
                 + "where pet_id = ?";
 
+        //calculating things to determine evolution.
+        // going to be determined by health stats average with care being worth 2x as much
+        // need to determine line of evolution....
+
         return jdbcTemplate.update(sql,
                 pet.getName(),
                 pet.getHungerLevel(),

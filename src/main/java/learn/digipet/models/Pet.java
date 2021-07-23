@@ -16,7 +16,9 @@ public class Pet {
     private int thirstLevel;
     @PositiveOrZero
     private int healthLevel;
+    @NotNull
     private LocalDateTime timeAtLastLogin;
+    @NotNull
     private LocalDateTime birthday;
     private boolean isDead;
     @PositiveOrZero

@@ -19,7 +19,6 @@ The user can take care of an 8 bit pet and then battle them against friends to s
 
 #### Biggest bugs:
  - pets do not evolve over time
- - health stats do not change over time
  - battle results
 
 #### Music Credits :   

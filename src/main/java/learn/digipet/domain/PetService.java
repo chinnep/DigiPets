@@ -61,13 +61,6 @@ public class PetService {
 
         if(result.getMessages().size() > 0) return result;
 
-
-        // New pet will call with LocalDateTime.now()
-//        if (pet.getTimeAtLastLogin() != null) {
-//            result.addMessage("Last Login must be null for a brand new pet.", ResultType.INVALID);
-//            return result;
-//        }
-
         if (pet.getPetId() != 0) {
             result.addMessage("PetId cannot be set for `add` operation", ResultType.INVALID);
             return result;
@@ -77,12 +70,6 @@ public class PetService {
             result.addMessage("New pet cannot be dead lol.", ResultType.INVALID);
             return result;
         }
-
-        // New pet will start with 1500 ELO
-//        if (pet.getTrophies() > 0) {
-//            result.addMessage("New pet cannot have trophies.", ResultType.INVALID);
-//            return result;
-//        }
 
         result.setPayload(repository.add(pet));
         return result;
