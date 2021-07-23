@@ -24,12 +24,12 @@ The user can take care of an 8 bit pet and then battle them against friends to s
 
 #### Music Credits :   
 
-Shooting Stars: https://soundcloud.com/screwingaroundwithaudio/bag-raiders-shooting-stars-8-bit-nes-soundfont
-Duel Of the Fates: https://soundcloud.com/crig-1/star-wars-duel-of-the-fates
-Kids: https://soundcloud.com/violett-heart/kids-mgmtrmx-8bit
-My Hero Academia Opening: https://soundcloud.com/m-rcio-luiz-9/my-hero-academia-opening-the-day-8bit
-Eye of the Tiger: https://soundcloud.com/peachypixel8/eye-of-the-tiger-8bit-demake
-
+1. Shooting Stars: https://soundcloud.com/screwingaroundwithaudio/bag-raiders-shooting-stars-8-bit-nes-soundfont
+2. Eye of the Tiger: https://soundcloud.com/peachypixel8/eye-of-the-tiger-8bit-demake
+3. Kids: https://soundcloud.com/violett-heart/kids-mgmtrmx-8bit
+4. Duel Of the Fates: https://soundcloud.com/crig-1/star-wars-duel-of-the-fates
+5. My Hero Academia Opening - The Day: https://soundcloud.com/m-rcio-luiz-9/my-hero-academia-opening-the-day-8bit
+6. trap queen 8bit: https://soundcloud.com/hvllo_hvllo/trap-queen-8bit-remix
 #### CSS Framwork Credit: NES.css
 #### Imports:
  - NES

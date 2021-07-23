@@ -18,11 +18,9 @@ function Pet() {
     const [msg, setMsg] = useState();
     const { id } = useParams();
     const history = useHistory();
-    var LocalDateTime = require("@js-joda/core").LocalDateTime;
+    const {LocalDateTime, Duration, DateTimeFormatter} = require("@js-joda/core");
     var lastLogin = useState();
-
-    const thirstMonitor = 1000 * 60 * 60 * 3;
-    const currentDate = new Date();
+    var timePassed = useState();
 
     useEffect(() => {
         if (username) {
@@ -32,11 +30,19 @@ function Pet() {
 
                     for (let i = 0; i < result.pets.length; i++) {
                         if (result.pets[i].petId == id) {
-                            setPet(result.pets[i]);
 
                             //resetting health params based on last login:
                             lastLogin = LocalDateTime.parse(result.pets[i].timeAtLastLogin);
-                            console.log(lastLogin);
+                            timePassed = Duration.between(lastLogin, LocalDateTime.now());
+
+                            result.pets[i].careLevel -= updateStats(result.pets[i].careLevel, Math.floor(result.pets[i].petType.care*timePassed._seconds/3600));
+                            result.pets[i].hungerLevel -= updateStats(result.pets[i].hungerLevel, Math.floor(result.pets[i].petType.care*timePassed._seconds/3600));
+                            result.pets[i].thirstLevel -= updateStats(result.pets[i].thirstLevel, Math.floor(result.pets[i].petType.care*timePassed._seconds/3600));
+                            result.pets[i].healthLevel += result.pets[i].healthLevel < 100 ? Math.floor(result.pets[i].petType.care*timePassed._seconds/60) : 0;  
+                            result.pets[i].timeAtLastLogin = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME).toString();
+                            update(result.pets[i]);
+
+                            setPet(result.pets[i]);
                             
                         }
                     }
@@ -44,7 +50,7 @@ function Pet() {
                 .catch(() => history.push("/error"))
             }
     }, [id, history]);
-
+    
     const updatePetHunger = evt => {
         pet.hungerLevel += 10;
         update(pet)
@@ -161,6 +167,11 @@ function Pet() {
         </Card> :<></>}
         </>
     );
+}
+
+function updateStats(old, decrement) {
+
+    return decrement > old ? old : decrement;
 }
 
 export default Pet;
