@@ -23,6 +23,8 @@ public class PetMapper implements RowMapper<Pet> {
         pet.setHealthLevel(resultSet.getInt("health_lvl"));
         pet.setTimeAtLastLogin(LocalDateTime.parse(resultSet.getString("time_at_last_login"),
                 DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        pet.setBirthday(LocalDateTime.parse(resultSet.getString("birthday"),
+                DateTimeFormatter.ISO_LOCAL_DATE_TIME));
         pet.setDead(resultSet.getBoolean("is_dead"));
         pet.setTrophies(resultSet.getInt("trophies"));
         pet.setUsername(resultSet.getString("username"));

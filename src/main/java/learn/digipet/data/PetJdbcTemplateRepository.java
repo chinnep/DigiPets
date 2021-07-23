@@ -26,7 +26,7 @@ public class PetJdbcTemplateRepository implements PetRepository {
     @Override
     public List<Pet> findAll() {
         final String sql = "select pet_id, pet_name, hunger_lvl, care_lvl, thirst_lvl, health_lvl, " +
-                "time_at_last_login, is_dead, trophies, username, pet_type_id from pet;";
+                "time_at_last_login, birthday, is_dead, trophies, username, pet_type_id from pet;";
         return jdbcTemplate.query(sql, new PetMapper());
     }
 
@@ -34,7 +34,7 @@ public class PetJdbcTemplateRepository implements PetRepository {
     @Transactional
     public Pet findById(int petId) {
         final String sql = "select pet_id, pet_name, hunger_lvl, care_lvl, thirst_lvl, health_lvl, " +
-                "time_at_last_login, is_dead, trophies, username, pet_type_id "
+                "time_at_last_login, birthday, is_dead, trophies, username, pet_type_id "
                 + "from pet "
                 + "where pet_id = ?";
 
@@ -51,7 +51,7 @@ public class PetJdbcTemplateRepository implements PetRepository {
     @Override
     public Pet add(Pet pet) {
         final String sql = "insert into pet(pet_name, hunger_lvl, care_lvl, thirst_lvl, health_lvl, "
-                        +  " time_at_last_login, is_dead, trophies, pet_type_id, username) "
+                        +  " time_at_last_login, birthday, is_dead, trophies, pet_type_id, username) "
                         +  " values (?,?,?,?,?,?,?,?,?,?);";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -63,10 +63,11 @@ public class PetJdbcTemplateRepository implements PetRepository {
             ps.setInt(4, pet.getThirstLevel());
             ps.setInt(5, pet.getHealthLevel());
             ps.setString(6, pet.getTimeAtLastLogin().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-            ps.setBoolean(7, pet.isDead());
-            ps.setInt(8, pet.getTrophies());
-            ps.setInt(9, pet.getPetType().getPetTypeId());
-            ps.setString(10, pet.getUsername());
+            ps.setString(7, pet.getBirthday().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+            ps.setBoolean(8, pet.isDead());
+            ps.setInt(9, pet.getTrophies());
+            ps.setInt(10, pet.getPetType().getPetTypeId());
+            ps.setString(11, pet.getUsername());
             return ps;
         }, keyHolder);
 
@@ -87,6 +88,7 @@ public class PetJdbcTemplateRepository implements PetRepository {
                 + "thirst_lvl = ?, "
                 + "health_lvl = ?, "
                 + "time_at_last_login = ?, "
+                + "birthday = ?, "
                 + "is_dead = ?, "
                 + "trophies = ?, "
                 + "pet_type_id = ?, "
@@ -100,6 +102,7 @@ public class PetJdbcTemplateRepository implements PetRepository {
                 pet.getThirstLevel(),
                 pet.getHealthLevel(),
                 pet.getTimeAtLastLogin().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME),
+                pet.getBirthday().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME),
                 pet.isDead(),
                 pet.getTrophies(),
                 pet.getPetType().getPetTypeId(),

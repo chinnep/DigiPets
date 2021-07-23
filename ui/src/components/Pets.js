@@ -5,6 +5,7 @@ import { useState, useEffect, useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
 import LoginContext from "../contexts/LoginContext";
 import { findByUsername } from '../services/users';
+import { update } from '../services/pets.js';
 
 function Pets() {
 
@@ -12,15 +13,30 @@ function Pets() {
     const [user, setUser] = useState();
     const [pet, setPet] = useState();
     const history = useHistory();
-    const element = document.getElementById("pet-select");
-
-    const thirstMonitor = 1000 * 60 * 60 * 3;
-    const currentDate = new Date();
+    const {LocalDateTime, Duration, DateTimeFormatter} = require("@js-joda/core");
+    var lastLogin = useState();
+    var timePassed = useState();
 
     useEffect(() => {
         if (username) {
             findByUsername(username)
-            .then(setUser)
+            .then((result) => {
+                setUser(result);
+
+                for (let i = 0; i < result.pets.length; i++) {
+
+                    //resetting health params based on last login:
+                    lastLogin = LocalDateTime.parse(result.pets[i].timeAtLastLogin);
+                    timePassed = Duration.between(lastLogin, LocalDateTime.now());
+
+                    result.pets[i].careLevel -= updateStats(result.pets[i].careLevel, Math.floor(result.pets[i].petType.care*timePassed._seconds/3600));
+                    result.pets[i].hungerLevel -= updateStats(result.pets[i].hungerLevel, Math.floor(result.pets[i].petType.care*timePassed._seconds/3600));
+                    result.pets[i].thirstLevel -= updateStats(result.pets[i].thirstLevel, Math.floor(result.pets[i].petType.care*timePassed._seconds/3600));
+                    result.pets[i].healthLevel += result.pets[i].healthLevel < 100 ? Math.floor(result.pets[i].petType.care*timePassed._seconds/60) : 0;  
+                    result.pets[i].timeAtLastLogin = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME).toString();
+                    update(result.pets[i]);
+                }
+            })
             .catch(() => history.push("/error"))
         }
     }, [history]);
@@ -90,6 +106,11 @@ function Pets() {
             </div>
         </>
     );
+}
+
+function updateStats(old, decrement) {
+
+    return decrement > old ? old : decrement;
 }
 
 export default Pets;

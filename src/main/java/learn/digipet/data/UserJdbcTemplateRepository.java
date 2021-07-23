@@ -76,7 +76,7 @@ public class UserJdbcTemplateRepository implements UserRepository {
     private void addPets(User user) {
 
         final String sql = "select pet_id, pet_name, hunger_lvl, care_lvl, "
-                + "thirst_lvl, health_lvl, time_at_last_login, is_dead, trophies, pet_type_id, username "
+                + "thirst_lvl, health_lvl, time_at_last_login, birthday, is_dead, trophies, pet_type_id, username "
                 + "from pet "
                 + "where username = ?";
 

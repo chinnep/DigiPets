@@ -17,6 +17,7 @@ public class Pet {
     @PositiveOrZero
     private int healthLevel;
     private LocalDateTime timeAtLastLogin;
+    private LocalDateTime birthday;
     private boolean isDead;
     @PositiveOrZero
     private int trophies;
@@ -24,6 +25,21 @@ public class Pet {
     private PetType petType;
     @NotBlank
     private String username;
+
+    public Pet(String name, int hungerLevel, int careLevel, int thirstLevel, int healthLevel, LocalDateTime timeAtLastLogin, boolean isDead, int trophies, PetType petType, String username) {
+        this.name = name;
+        this.hungerLevel = hungerLevel;
+        this.careLevel = careLevel;
+        this.thirstLevel = thirstLevel;
+        this.healthLevel = healthLevel;
+        this.timeAtLastLogin = timeAtLastLogin;
+        this.isDead = isDead;
+        this.trophies = trophies;
+        this.petType = petType;
+        this.username = username;
+    }
+
+    public Pet(){}
 
     public int getPetId() {
         return petId;
@@ -81,6 +97,14 @@ public class Pet {
         this.timeAtLastLogin = timeAtLastLogin;
     }
 
+    public LocalDateTime getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(LocalDateTime birthday) {
+        this.birthday = birthday;
+    }
+
     public int getTrophies() {
         return trophies;
     }
@@ -108,21 +132,6 @@ public class Pet {
     public PetType getPetType() {
         return petType;
     }
-
-    public Pet(String name, int hungerLevel, int careLevel, int thirstLevel, int healthLevel, LocalDateTime timeAtLastLogin, boolean isDead, int trophies, PetType petType, String username) {
-        this.name = name;
-        this.hungerLevel = hungerLevel;
-        this.careLevel = careLevel;
-        this.thirstLevel = thirstLevel;
-        this.healthLevel = healthLevel;
-        this.timeAtLastLogin = timeAtLastLogin;
-        this.isDead = isDead;
-        this.trophies = trophies;
-        this.petType = petType;
-        this.username = username;
-    }
-
-    public Pet(){}
 
     public void setPetType(PetType petType) {
         this.petType = petType;
