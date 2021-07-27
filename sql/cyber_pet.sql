@@ -59,6 +59,7 @@ create table pet(
     thirst_lvl float not null,
     health_lvl float not null,
     time_at_last_login varchar(30),
+    birthday varchar(30),
     is_dead boolean not null,
     trophies int not null,
     pet_type_id int not null,
@@ -118,7 +119,8 @@ insert into move(move_name, damage) values
     ('Skewer',10),
     ('Stomp',10),
     ('Laser',10),
-    ('Spinning Charge', 10);
+    ('Spinning Charge', 10),
+    ('Sledgehammer', 20);
         
 insert into pet_type_move(pet_type_id, move_id) values
 	(1,1), (1,2),
@@ -129,8 +131,8 @@ insert into pet_type_move(pet_type_id, move_id) values
     
 -- Prototype user: username: Ash or Nemesis, password: password
 insert into user(username, password_hash, gold) values
-	('Ash','$2a$10$WjNHV53U7CuBQyAm9Dxs1u.XDwB7Rrs2ZaytPZfO8.mIuYHjEBCAy',10000),
-    ('Nemesis','$2a$10$WjNHV53U7CuBQyAm9Dxs1u.XDwB7Rrs2ZaytPZfO8.mIuYHjEBCAy',10000);
+	('Ash','$2a$10$WjNHV53U7CuBQyAm9Dxs1u.XDwB7Rrs2ZaytPZfO8.mIuYHjEBCAy',100000),
+    ('Nemesis','$2a$10$WjNHV53U7CuBQyAm9Dxs1u.XDwB7Rrs2ZaytPZfO8.mIuYHjEBCAy',100000);
         
 insert into user_item(quantity, username, item_id) values
 	(1,'Ash',1),
@@ -144,10 +146,10 @@ insert into user_item(quantity, username, item_id) values
     (1,'Nemesis',4),
     (1,'Nemesis',5);
     
-insert into pet (pet_name, hunger_lvl, care_lvl, thirst_lvl, health_lvl,time_at_last_login,is_dead,trophies,pet_type_id,username) values
-	('Eggy',50,73,100,100,'2021-07-07T10:15:30',false,1500,3,'Ash'),
-    ('Baby',30,25,44,100,'2021-07-07T10:15:30',false,1500,2,'Ash'),
-    ('Youngin',50,50,50,50,'2021-07-07T10:15:30',false,1500,1,'Ash'),
-    ('Bob',0,0,0,0,'2021-07-07T10:15:30',true,1320,6,'Ash'),
-    ('ET',100,100,100,100,'2021-07-07T10:15:30',false,1772,5,'Ash'),
-    ('Stomper',100,100,100,100,'2021-07-07T10:15:30',false,1821,4,'Nemesis');
+insert into pet (pet_name, hunger_lvl, care_lvl, thirst_lvl, health_lvl,time_at_last_login,birthday,is_dead,trophies,pet_type_id,username) values
+	('Eggy',50,73,100,100,'2021-07-23T09:12:30','2021-07-23T09:12:30',false,1500,3,'Ash'),
+    ('Baby',30,25,44,100,'2021-07-23T09:12:30','2021-07-23T09:12:30',false,1500,2,'Ash'),
+    ('Youngin',50,50,50,50,'2021-07-23T09:12:30','2021-07-23T09:12:30',false,1500,1,'Ash'),
+    ('Bob',0,0,0,0,'2021-07-23T09:12:30','2021-07-23T09:12:30',true,1320,6,'Ash'),
+    ('ET',100,100,100,100,'2021-07-23T09:12:30','2021-07-23T09:12:30',false,1772,5,'Ash'),
+    ('Stomper',100,100,100,100,'2021-07-23T09:12:30','2021-07-23T09:12:30',false,1821,4,'Nemesis');
